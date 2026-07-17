@@ -8,14 +8,16 @@
   porque es el pariente visual más cercano a Neue Haas Grotesk.
 */
 @theme {
-  --color-visf-accent: #BAD4EE;
+  --color-visf-accent: #bad4ee;
   --color-visf-ink: #111111;
-  --color-visf-gray: #4B4B4B;
+  --color-visf-gray: #4b4b4b;
 
   --radius-visf-card: 52px;
 
-  --font-visf-headline: 'Helvetica Neue', Arial, sans-serif;
-  --font-visf-text: 'Helvetica Neue', Arial, sans-serif;
+  --font-visf-headline:
+    var(--font-visf-text-loaded), "Helvetica Neue", Arial, sans-serif;
+  --font-visf-text:
+    var(--font-visf-text-loaded), "Helvetica Neue", Arial, sans-serif;
 }
 
 :root {
@@ -30,5 +32,7 @@ body {
 }
 
 * {
-  cursor: url('/cursor-visf.png') 32 32, pointer;
+  cursor:
+    url("/cursor-visf.png") 32 32,
+    pointer;
 }
