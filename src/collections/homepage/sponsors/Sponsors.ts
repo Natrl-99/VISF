@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createMediaFolderHook } from '@/lib/autoTagMediaFolder'
 
 export const Sponsors: CollectionConfig = {
   slug: 'sponsors',
@@ -53,6 +54,9 @@ export const Sponsors: CollectionConfig = {
       label: 'Visible on the site',
     },
   ],
+  hooks: {
+    afterChange: [createMediaFolderHook('logo', 'sponsors')],
+  },
 }
 
 export default Sponsors

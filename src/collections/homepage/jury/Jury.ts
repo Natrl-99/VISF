@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createMediaFolderHook } from "@/lib/autoTagMediaFolder";
 
 export const Jury: CollectionConfig = {
   slug: "jury-members",
@@ -59,6 +60,9 @@ export const Jury: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [createMediaFolderHook("photo", "jury")],
+  },
 };
 
 export default Jury;

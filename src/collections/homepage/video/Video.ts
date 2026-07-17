@@ -39,7 +39,6 @@ export const Video: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   upload: {
-    staticDir: "media/videos",
     mimeTypes: ["video/mp4", "video/webm"],
     adminThumbnail: ({ doc }) => {
       const thumbnail = doc.thumbnail as
@@ -73,22 +72,30 @@ export const Video: CollectionConfig = {
           return doc;
         }
 
-        const videoPath = path.join(
-          process.cwd(),
-          "media/videos",
-          doc.filename,
-        );
+        const uploadedFile = req.file;
+        if (!uploadedFile?.data) {
+          req.payload.logger.error(
+            `No file buffer available to generate thumbnail for video ${doc.id}`,
+          );
+          return doc;
+        }
+
         const tmpDir = os.tmpdir();
+        const videoPath = path.join(
+          tmpDir,
+          `video-${doc.id}-src${path.extname(doc.filename)}`,
+        );
         const thumbName = `video-${doc.id}-thumb.jpg`;
 
         try {
+          await fs.writeFile(videoPath, uploadedFile.data);
           await extractFrame(videoPath, tmpDir, thumbName);
           const thumbPath = path.join(tmpDir, thumbName);
           const buffer = await fs.readFile(thumbPath);
 
           const mediaDoc = await req.payload.create({
             collection: "media",
-            data: { alt: `${doc.title} thumbnail` },
+            data: { alt: `${doc.title} thumbnail`, prefix: "thumbnails" },
             file: {
               data: buffer,
               mimetype: "image/jpeg",
@@ -129,6 +136,8 @@ export const Video: CollectionConfig = {
           req.payload.logger.error(
             `Failed to generate thumbnail for video ${doc.id}: ${err}`,
           );
+        } finally {
+          await fs.unlink(videoPath).catch(() => {});
         }
 
         return doc;

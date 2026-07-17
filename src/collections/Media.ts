@@ -10,21 +10,23 @@ export const Media: CollectionConfig = {
   },
   admin: {
     group: 'Photos',
-    description: "Imagenes que se almacenan en el servidor y son usadas en HomePage, Jury y Sponsors. Cuando conectemos Cloudinary, este bloque se reemplaza por el storage adapter correspondiente — el resto de las colecciones que usan 'relationTo: media' no necesitan cambiar nada.",
+    description: "Imagenes que se almacenan en Cloudinary y son usadas en HomePage, Jury y Sponsors.",
   },
-  upload: {
-    // TEMPORAL: guarda los archivos en disco local dentro del proyecto,
-    // para poder probar el flujo ya mismo. Cuando conectemos Cloudinary,
-    // este bloque se reemplaza por el storage adapter correspondiente —
-    // el resto de las colecciones que usan "relationTo: 'media'" no
-    // necesitan cambiar nada.
-    staticDir: 'media',
-  },
+  upload: true,
   fields: [
     {
       name: 'alt',
       type: 'text',
       label: 'Texto alternativo (accesibilidad)',
+    },
+    {
+      name: 'prefix',
+      type: 'text',
+      label: 'Carpeta en Cloudinary',
+      admin: {
+        description:
+          "Subcarpeta dentro de VISF en Cloudinary (ej: jury, sponsors, banner). Dejar en blanco para VISF directamente.",
+      },
     },
   ],
 }
