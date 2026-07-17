@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
 import { buildConfig } from 'payload'
 
 import Users from './src/collections/Users'
@@ -11,6 +12,7 @@ import { DateEvent } from '@/collections/homepage/gallery/DateEvent'
 import { Video } from '@/collections/homepage/video/Video'
 import { Competition } from '@/collections/homepage/competitions/Competition'
 import { Categories } from '@/collections/homepage/categories/Categories'
+import { cloudinaryAdapter } from './src/lib/cloudinaryStorageAdapter'
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
@@ -21,6 +23,24 @@ export default buildConfig({
   }),
   editor: lexicalEditor({}),
   collections: [Users, Media, Jury, Sponsors, Introduction, DateEvent, Video, Competition, Categories],
+  plugins: [
+    cloudStoragePlugin({
+      collections: {
+        media: {
+          adapter: cloudinaryAdapter,
+          disableLocalStorage: true,
+          disablePayloadAccessControl: true,
+          prefix: '',
+        },
+        video: {
+          adapter: cloudinaryAdapter,
+          disableLocalStorage: true,
+          disablePayloadAccessControl: true,
+          prefix: 'video',
+        },
+      },
+    }),
+  ],
   typescript: {
     outputFile: 'src/payload-types.ts',
   }
