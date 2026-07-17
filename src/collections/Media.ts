@@ -9,7 +9,7 @@ export const Media: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   admin: {
-    group: 'Home',
+    group: 'Photos',
     description: "Imagenes que se almacenan en el servidor y son usadas en HomePage, Jury y Sponsors. Cuando conectemos Cloudinary, este bloque se reemplaza por el storage adapter correspondiente — el resto de las colecciones que usan 'relationTo: media' no necesitan cambiar nada.",
   },
   upload: {

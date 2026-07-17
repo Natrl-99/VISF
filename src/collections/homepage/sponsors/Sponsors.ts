@@ -1,0 +1,58 @@
+import type { CollectionConfig } from 'payload'
+
+export const Sponsors: CollectionConfig = {
+  slug: 'sponsors',
+  labels: {
+    singular: 'Sponsor',
+    plural: 'Sponsors',
+  },
+  admin: {
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'order', 'isActive'],
+    description: 'Sponsors for the festival. The order field determines the order of appearance on the site.',
+    group: 'Home',
+  },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+      label: 'Sponsor Name',
+    },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      label: 'Logo',
+      admin: {
+        description: 'Recommended: logo with transparent background, minimum 400px wide.',
+      },
+    },
+    {
+      name: 'websiteUrl',
+      type: 'text',
+      label: 'Website URL (optional)',
+    },
+    {
+      name: 'order',
+      type: 'number',
+      required: true,
+      label: 'Order of Appearance',
+    },
+    {
+      name: 'isActive',
+      type: 'checkbox',
+      defaultValue: true,
+      label: 'Visible on the site',
+    },
+  ],
+}
+
+export default Sponsors
