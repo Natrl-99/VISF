@@ -36,3 +36,35 @@ export interface PayloadSponsor {
   order: number
   isActive: boolean
 }
+
+export interface PayloadIntroduction {
+  id: string
+  text: string
+}
+
+export interface PayloadDateEvent {
+  id: string
+  name: string
+  initialDate: string
+  endDate: string
+  city: string
+  country: string
+}
+
+export interface PayloadVideo {
+  id: string
+  title: string
+  url: string
+  thumbnail: MediaRef | null
+}
+export interface PayloadCompetition {
+  id: string
+  name: string
+  isActive: boolean
+}
+
+export interface PayloadCategory {
+  id: string
+  name: string
+  isActive: boolean
+}
