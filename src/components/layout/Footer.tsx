@@ -1,13 +1,18 @@
-import { FaInstagram, FaVimeoV } from 'react-icons/fa'
+import { FaInstagram, FaVimeoV } from "react-icons/fa";
 
 export type Sponsor = {
-  id: string
-  name: string
-  logoUrl: string | null
-}
+  id: string;
+  name: string;
+  logoUrl: string | null;
+  websiteUrl?: string;
+};
 
 type FooterProps = {
-  sponsors: Sponsor[]
+  sponsors: Sponsor[];
+};
+
+function withProtocol(url: string) {
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
 }
 
 export default function Footer({ sponsors }: FooterProps) {
@@ -26,15 +31,30 @@ export default function Footer({ sponsors }: FooterProps) {
         <div className="flex flex-wrap items-center gap-6 opacity-70">
           {sponsors.map((sp) =>
             sp.logoUrl ? (
-              <img key={sp.id} src={sp.logoUrl} alt={sp.name} className="h-4 object-contain" />
+              <a
+                key={sp.id}
+                href={sp.websiteUrl ? withProtocol(sp.websiteUrl) : "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  key={sp.id}
+                  src={sp.logoUrl}
+                  alt={sp.name}
+                  className="h-4 object-contain"
+                />
+              </a>
             ) : (
-              <span key={sp.id} className="text-[10px] font-semibold uppercase tracking-wide">
+              <span
+                key={sp.id}
+                className="text-[10px] font-semibold uppercase tracking-wide"
+              >
                 {sp.name}
               </span>
-            )
+            ),
           )}
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local uploads (temporary storage until Cloudinary is wired up)
+/media/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

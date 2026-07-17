@@ -1,10 +1,18 @@
+'use client'
+
 type IntroSectionProps = {
   imageUrl: string
   dateLabel: string
   locationLabel: string
+  introText: string
 }
 
-export default function IntroSection({ imageUrl, dateLabel, locationLabel }: IntroSectionProps) {
+export default function IntroSection({
+  imageUrl,
+  dateLabel,
+  locationLabel,
+  introText,
+}: IntroSectionProps) {
   return (
     <section className="font-visf-text px-6 py-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
       <div>
@@ -18,10 +26,7 @@ export default function IntroSection({ imageUrl, dateLabel, locationLabel }: Int
           AUDIENCE
         </h2>
         <p className="text-sm text-neutral-600 leading-relaxed mb-6 max-w-sm">
-          The Verona International Short Film Festival showcases outstanding independent short
-          films from around the world. Combining live screenings, virtual events, and a strong
-          international community, the festival is dedicated to discovering new talent and
-          celebrating bold cinematic storytelling.
+          {introText}
         </p>
         <button className="text-xs font-semibold bg-visf-accent px-4 py-3 rounded-md">
           Submit

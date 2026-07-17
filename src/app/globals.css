@@ -28,3 +28,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-visf-text);
 }
+
+* {
+  cursor: url('/cursor-visf.png') 32 32, pointer;
+}

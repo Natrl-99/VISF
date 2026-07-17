@@ -11,7 +11,7 @@ import { getPayloadClient } from '@/lib/fetchFromCMS'
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
 // contexto). Cuando el archivo autogenerado esté disponible, se reemplaza
 // este import por el de "@/payload-types".
-import type { PayloadJuryMember, PayloadSponsor } from '@/types/cms'
+import type { PayloadJuryMember, PayloadSponsor, PayloadIntroduction } from '@/types/cms'
 
 // ---------------------------------------------------------------------------
 // Datos que TODAVÍA son de prueba — Hero y VideoBanner los conectamos
@@ -58,7 +58,17 @@ export default async function HomePage() {
     id: String(doc.id),
     name: doc.name,
     logoUrl: typeof doc.logo === 'object' && doc.logo?.url ? doc.logo.url : null,
+    websiteUrl: doc.websiteUrl,
   }))
+
+  // --- Texto de introducción ---
+  const introductionResult = await payload.find({
+    collection: 'introduction',
+    limit: 1,
+  })
+
+  const introText =
+    (introductionResult.docs[0] as PayloadIntroduction | undefined)?.text ?? ''
 
   return (
     <main className="bg-white">
@@ -67,11 +77,25 @@ export default async function HomePage() {
         <Hero headline={heroData.headline} imageUrl={heroData.imageUrl} />
 
         <div className="relative pb-10 px-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {sponsorsData.map((sp) => (
-            <span key={sp.id} className="text-neutral-400 text-[11px] font-semibold tracking-wide uppercase">
-              {sp.name}
-            </span>
-          ))}
+          {sponsorsData.map((sp) =>
+            sp.logoUrl ? (
+              <img
+                key={sp.id}
+                src={sp.logoUrl}
+                alt={sp.name}
+                width={400}
+                height={400}
+                className="h-6 w-6 object-contain opacity-70 grayscale invert"
+              />
+            ) : (
+              <span
+                key={sp.id}
+                className="text-neutral-400 text-[11px] font-semibold tracking-wide uppercase"
+              >
+                {sp.name}
+              </span>
+            ),
+          )}
         </div>
       </section>
 
@@ -79,6 +103,7 @@ export default async function HomePage() {
         imageUrl="https://picsum.photos/seed/visf-toast/900/700?grayscale"
         dateLabel="12-17 MAY, 2027"
         locationLabel="VERONA, ITALY"
+        introText={introText}
       />
 
       <OfficialSelectionOnlineSessions
