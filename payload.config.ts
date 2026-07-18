@@ -15,6 +15,15 @@ import { Categories } from '@/collections/homepage/categories/Categories'
 import { cloudinaryAdapter } from './src/lib/cloudinaryStorageAdapter'
 
 export default buildConfig({
+  admin: {
+    user: Users.slug,
+    components: {
+      graphics: {
+        Logo: '@/app/(payload)/admin/components/Logo#Logo',
+        Icon: '@/app/(payload)/admin/components/Icon#Icon',
+      }
+    }
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   db: postgresAdapter({
     pool: {
