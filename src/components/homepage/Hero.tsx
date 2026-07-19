@@ -13,6 +13,7 @@ export default function Hero({ imageUrl, sponsors }: HeroProps) {
       <GrayscaleHoverImage
         src={imageUrl}
         alt=""
+        loading="eager"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div
