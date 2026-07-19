@@ -68,3 +68,23 @@ export interface PayloadCategory {
   name: string
   isActive: boolean
 }
+
+// The "category" field is a "relationship" to the categories collection —
+// depending on the query "depth", Payload returns it as just the ID
+// (string) or as the fully resolved PayloadCategory document.
+export type CategoryRef = string | PayloadCategory
+
+export interface PayloadAward {
+  id: string
+  category: CategoryRef
+  movieTitle: string
+  director: string
+  country: string
+}
+
+export interface PayloadWinnersYear {
+  id: string
+  year: number
+  isActive: boolean
+  awards: PayloadAward[]
+}
