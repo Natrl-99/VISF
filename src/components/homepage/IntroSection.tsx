@@ -1,4 +1,7 @@
-'use client'
+import Link from 'next/link'
+import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
+import SubmitFilmButton from '@/components/ui/SubmitFilmButton'
+import SectionIntroText from '@/components/ui/SectionIntroText'
 
 type IntroSectionProps = {
   imageUrl: string
@@ -14,9 +17,9 @@ export default function IntroSection({
   introText,
 }: IntroSectionProps) {
   return (
-    <section className="font-visf-text px-6 py-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-      <div>
-        <h2 className="font-visf-headline text-[32px] sm:text-[48px] font-medium leading-[1.02] mb-5">
+    <section className="font-visf-text px-8 sm:px-12 lg:px-[140px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
+      <div className="lg:w-[406px] lg:shrink-0">
+        <h2 className="font-visf-headline text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-[1.02] mb-5">
           WHERE
           <br />
           INDEPENDENT
@@ -25,22 +28,32 @@ export default function IntroSection({
           <br />
           AUDIENCE
         </h2>
-        <p className="text-sm text-neutral-600 leading-relaxed mb-6 max-w-sm">
-          {introText}
-        </p>
-        <button className="text-xs font-semibold bg-visf-accent px-4 py-3 rounded-md">
-          Submit
+
+        <SectionIntroText text={introText} className="mb-6" />
+
+        <SubmitFilmButton className="inline-block text-xs font-semibold bg-visf-accent px-4 py-3 rounded-md hover:underline">
+          SUBMIT
           <br />
-          your film
-        </button>
+          YOUR FILM
+        </SubmitFilmButton>
       </div>
 
-      <div className="relative rounded-visf-card overflow-hidden">
-        <img src={imageUrl} alt="" className="w-full h-[420px] object-cover" />
-        <div className="absolute bottom-5 right-5 text-white text-right">
-          <p className="font-visf-headline text-xl font-bold leading-tight">{dateLabel}</p>
-          <p className="font-visf-headline text-sm font-light text-neutral-100">{locationLabel}</p>
+      <div className="group relative w-full sm:w-[420px] lg:w-[784px] h-[300px] sm:h-[380px] lg:h-[523px] rounded-visf-card overflow-hidden shrink-0">
+        <GrayscaleHoverImage
+          src={imageUrl}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/[0.56] opacity-[0.71]" />
+        <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 text-right">
+          <p className="font-visf-headline text-white text-xl sm:text-2xl lg:text-[48px] lg:leading-[49px] font-bold">
+            {dateLabel}
+          </p>
+          <p className="font-visf-headline text-white text-sm sm:text-base lg:text-[48px] lg:leading-[49px] font-extralight">
+            {locationLabel}
+          </p>
         </div>
+        <Link href="/gallery" className="absolute inset-0" aria-label="View gallery" />
       </div>
     </section>
   )

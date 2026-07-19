@@ -1,8 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { X } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { FaInstagram, FaVimeoV } from 'react-icons/fa'
+import SubmitFilmButton from '@/components/ui/SubmitFilmButton'
 
 const NAV_LINKS = [
   'Submit your film',
@@ -13,36 +16,55 @@ const NAV_LINKS = [
   'Gallery',
 ]
 
+const HEADER_HEIGHT = 'h-20 sm:h-24 lg:h-36'
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <>
-      <header className="relative z-10 flex items-center justify-between px-6 py-5 font-visf-text">
-        <button onClick={() => setMenuOpen(true)} aria-label="Abrir menú">
-          <Menu size={22} />
+      <header
+        className={`fixed inset-x-0 top-0 z-50 ${HEADER_HEIGHT} flex items-center justify-between bg-white px-4 sm:px-6 lg:px-12 font-visf-text text-black`}
+      >
+        <button
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+          className="flex h-10 w-6 shrink-0 flex-col items-stretch justify-center gap-1.5 sm:h-12 sm:w-8 sm:gap-2 lg:w-[38px]"
+        >
+          <span className="h-px w-full bg-black" />
+          <span className="h-px w-full bg-black" />
+          <span className="h-px w-full bg-black" />
         </button>
 
-        <div className="text-center">
-          <p className="font-visf-headline text-lg font-black tracking-tight leading-none">◎ VISF</p>
-          <p className="text-[9px] tracking-widest uppercase text-neutral-500 leading-tight mt-0.5">
-            Verona International
-            <br />
-            Short Film Festival
-          </p>
-        </div>
+        <Link
+          href="/"
+          aria-label="VISF — Back to home"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <Image
+            src="/LOGO-VISF-BLACK.png"
+            alt="VISF — Verona International Short Film Festival"
+            width={238}
+            height={118}
+            preload
+            className="h-14 w-auto sm:h-16 lg:h-24"
+          />
+        </Link>
 
-        <div className="flex items-center gap-3">
-          <span className="text-[11px] font-medium hidden sm:inline">ENG/IT</span>
-          <button className="text-[11px] font-semibold bg-visf-accent px-3 py-1.5 rounded-full whitespace-nowrap">
-            Submit your film
-          </button>
+        <div className="flex flex-col items-end gap-1.5 sm:gap-2">
+          <span className="text-xs font-medium leading-tight text-black sm:text-sm sm:leading-6 lg:text-base lg:leading-9 hover:underline">
+            ENG/IT
+          </span>
+          <SubmitFilmButton className="text-[16px] leading-[14px] font-medium text-black bg-visf-accent px-3 py-1.5 rounded-[16px] whitespace-nowrap hover:underline" />
         </div>
       </header>
 
+      {/* Spacer to offset the fixed header's height */}
+      <div className={HEADER_HEIGHT} aria-hidden="true" />
+
       {/* Side menu */}
       <div
-        className={`fixed inset-0 z-40 transition ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[60] transition ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
         aria-hidden={!menuOpen}
       >
         <div
@@ -58,11 +80,21 @@ export default function Header() {
             <X size={14} /> Close
           </button>
           <nav className="flex flex-col gap-4">
-            {NAV_LINKS.map((label) => (
-              <a key={label} href="#" className="text-sm font-semibold uppercase text-neutral-800">
-                {label}
-              </a>
-            ))}
+            {NAV_LINKS.map((label) =>
+              label === 'Submit your film' ? (
+                <SubmitFilmButton key={label} className="text-sm font-semibold uppercase text-neutral-800 text-left">
+                  {label}
+                </SubmitFilmButton>
+              ) : label === 'Gallery' ? (
+                <Link key={label} href="/gallery" className="text-sm font-semibold uppercase text-neutral-800">
+                  {label}
+                </Link>
+              ) : (
+                <a key={label} href="#" className="text-sm font-semibold uppercase text-neutral-800">
+                  {label}
+                </a>
+              )
+            )}
           </nav>
           <div className="flex gap-3 mt-10 text-neutral-700">
             <FaInstagram size={16} />

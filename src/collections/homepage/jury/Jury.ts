@@ -9,7 +9,7 @@ export const Jury: CollectionConfig = {
   },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["photo", "name", "bio", "order", "isActive"],
+    defaultColumns: ["photo", "name", "bio", "isActive"],
     description: 'Jury members for the festival. The order field determines the order of appearance on the site.',
     group: "Home",
   },
@@ -42,12 +42,6 @@ export const Jury: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Biography",
-    },
-    {
-      name: "order",
-      type: "number",
-      required: true,
-      label: "Order of Appearance",
     },
     {
       name: "isActive",
