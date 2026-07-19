@@ -34,7 +34,7 @@ export default function Hero({ imageUrl, sponsors }: HeroProps) {
               key={sp.id}
               src={sp.logoUrl}
               alt={sp.name}
-              className="h-15 w-15 object-contain opacity-70 grayscale invert transition-[filter,opacity] duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-hover:invert-0"
+              className="h-15 w-15 object-contain opacity-70 grayscale invert"
             />
           ) : (
             <span
