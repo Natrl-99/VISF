@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
+
 type OfficialSelectionOnlineSessionsProps = {
   officialSelectionImageUrl: string
   onlineSessionsImageUrl: string
@@ -8,27 +11,41 @@ export default function OfficialSelectionOnlineSessions({
   onlineSessionsImageUrl,
 }: OfficialSelectionOnlineSessionsProps) {
   return (
-    <section className="font-visf-headline px-6 pb-16 max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="/official-selection" className="relative rounded-visf-card overflow-hidden block">
-          <img src={officialSelectionImageUrl} alt="" className="w-full h-[380px] object-cover" />
+    <section className="font-visf-headline px-[35px] pb-16 max-w-[1440px] mx-auto">
+      <div className="flex flex-col sm:flex-row gap-[30px]">
+        <Link
+          href="/official-selection"
+          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
+        >
+          <GrayscaleHoverImage
+            src={officialSelectionImageUrl}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute bottom-6 left-6 text-white text-[40px] font-medium leading-none">
+          <p className="absolute bottom-6 left-6 text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
             OFFICIAL
             <br />
             <span className="text-visf-accent">SELECTION</span>
           </p>
-        </a>
+        </Link>
 
-        <a href="/online-sessions" className="relative rounded-visf-card overflow-hidden block">
-          <img src={onlineSessionsImageUrl} alt="" className="w-full h-[380px] object-cover" />
+        <Link
+          href="/online-sessions"
+          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
+        >
+          <GrayscaleHoverImage
+            src={onlineSessionsImageUrl}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute top-6 left-6 text-white text-[28px] font-medium leading-none">
+          <p className="absolute top-6 left-6 text-white text-lg sm:text-xl lg:text-[28px] font-medium leading-none">
             <span className="text-visf-accent">S</span> ONLINE
             <br />
             SESSIONS
           </p>
-        </a>
+        </Link>
       </div>
     </section>
   )
