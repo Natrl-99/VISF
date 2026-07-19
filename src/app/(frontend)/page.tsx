@@ -15,23 +15,20 @@ import { getPayloadClient } from "@/lib/fetchFromCMS";
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
 // contexto). Cuando el archivo autogenerado esté disponible, se reemplaza
 // este import por el de "@/payload-types".
-import type { PayloadJuryMember, PayloadSponsor } from '@/types/cms'
+import type {
+  PayloadJuryMember,
+  PayloadSponsor,
+  PayloadDateEvent,
+  PayloadIntroduction,
+} from "@/types/cms";
 
-// ---------------------------------------------------------------------------
-// Datos que TODAVÍA son de prueba — Hero y VideoBanner los conectamos
-// después, cuando convirtamos esos globals a TypeScript.
-// ---------------------------------------------------------------------------
 const heroData = {
   imageUrl: "/banner.png",
 };
 
 const introSectionData = {
-  imageUrl: '/banner.png',
-  dateLabel: '12-17 MAY, 2027',
-  locationLabel: 'VERONA, ITALY',
-  introText:
-    'The Verona International Short Film Festival showcases outstanding independent short films from around the world. Combining live screenings, virtual events, and a strong international community, the festival is dedicated to discovering new talent and celebrating bold cinematic storytelling.',
-}
+  imageUrl: "/banner.png",
+};
 
 const videoBannerData = {
   headline: "SUBMIT YOUR FILM NOW",
@@ -78,6 +75,51 @@ export default async function HomePage() {
     websiteUrl: doc.websiteUrl,
   }));
 
+  // --- Próximas fechas de evento, ordenadas por fecha inicial ---
+  type DateEventProp = {
+    id: string;
+    name: string;
+    initialDate: Date;
+    endDate: Date;
+    city: string;
+    country: string;
+  };
+
+  const dateEventsResult = await payload.find({
+    collection: "date-event",
+    sort: "initialDate",
+    depth: 0,
+  });
+
+  const dateEventsData: DateEventProp[] = (
+    dateEventsResult.docs as PayloadDateEvent[]
+  ).map((doc) => ({
+    id: String(doc.id),
+    name: doc.name,
+    initialDate: new Date(doc.initialDate),
+    endDate: new Date(doc.endDate),
+    city: doc.city,
+    country: doc.country,
+  }));
+
+  // ---- Introducción del festival (texto) ----
+  type IntroProp = {
+    id: string;
+    text: string;
+  };
+
+  const introResult = await payload.find({
+    collection: "introduction",
+    limit: 1,
+    depth: 0,
+  });
+
+  const introDoc = (introResult.docs as PayloadIntroduction[])[0];
+
+  const introData: IntroProp = introDoc
+    ? { id: String(introDoc.id), text: introDoc.text }
+    : { id: "", text: "" };
+
   return (
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
@@ -89,9 +131,21 @@ export default async function HomePage() {
 
       <IntroSection
         imageUrl={introSectionData.imageUrl}
-        dateLabel={introSectionData.dateLabel}
-        locationLabel={introSectionData.locationLabel}
-        introText={introSectionData.introText}
+        dateLabel={
+          dateEventsData[0].initialDate.getDate() +
+          "-" +
+          dateEventsData[0].endDate.getDate() +
+          " " +
+          dateEventsData[0].endDate.toLocaleString("default", {
+            month: "short",
+          }) +
+          ", " +
+          dateEventsData[0].endDate.getFullYear()
+        }
+        locationLabel={
+          dateEventsData[0].city + ", " + dateEventsData[0].country
+        }
+        introText={introData.text}
       />
 
       <OfficialSelectionOnlineSessions
