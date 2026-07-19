@@ -52,10 +52,10 @@ export default function Header() {
         </Link>
 
         <div className="flex flex-col items-end gap-1.5 sm:gap-2">
-          <span className="text-xs font-medium leading-tight text-black underline sm:text-sm sm:leading-6 lg:text-base lg:leading-9">
+          <span className="text-xs font-medium leading-tight text-black sm:text-sm sm:leading-6 lg:text-base lg:leading-9 hover:underline">
             ENG/IT
           </span>
-          <SubmitFilmButton className="text-[16px] leading-[14px] font-medium text-black bg-visf-accent px-3 py-1.5 rounded-[16px] whitespace-nowrap" />
+          <SubmitFilmButton className="text-[16px] leading-[14px] font-medium text-black bg-visf-accent px-3 py-1.5 rounded-[16px] whitespace-nowrap hover:underline" />
         </div>
       </header>
 

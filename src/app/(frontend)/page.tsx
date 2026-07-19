@@ -18,8 +18,7 @@ import type { PayloadJuryMember, PayloadSponsor, PayloadIntroduction } from '@/t
 // después, cuando convirtamos esos globals a TypeScript.
 // ---------------------------------------------------------------------------
 const heroData = {
-  headline: 'SUBMISSIONS OPEN',
-  imageUrl: 'https://picsum.photos/seed/visf-hero/1600/900?grayscale',
+  imageUrl: '/banner.png',
 }
 
 const videoBannerData = {
@@ -74,7 +73,7 @@ export default async function HomePage() {
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
         <Header />
-        <Hero headline={heroData.headline} imageUrl={heroData.imageUrl} />
+        <Hero imageUrl={heroData.imageUrl} />
 
         <div className="relative pb-10 px-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
           {sponsorsData.map((sp) =>
