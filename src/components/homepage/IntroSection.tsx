@@ -19,12 +19,12 @@ export default function IntroSection({
   return (
     <section className="font-visf-text px-8 sm:px-12 lg:px-[140px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
       <div className="lg:w-[406px] lg:shrink-0">
-        <h2 className="font-visf-headline text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-[1.02] mb-5">
+        <h2 className="font-visf-headline text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-[1.02] mb-5 uppercase">
           WHERE
           <br />
           INDEPENDENT
           <br />
-          <span className="text-visf-accent">CINEMA</span> FINDS ITS
+          <span className="text-visf-accent uppercase">CINEMA</span> FINDS ITS
           <br />
           AUDIENCE
         </h2>
@@ -46,10 +46,10 @@ export default function IntroSection({
         />
         <div className="absolute inset-0 bg-black/[0.56] opacity-[0.71]" />
         <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 text-right">
-          <p className="font-visf-headline text-white text-xl sm:text-2xl lg:text-[48px] lg:leading-[49px] font-bold">
+          <p className="font-visf-headline text-white text-xl sm:text-2xl lg:text-[48px] lg:leading-[49px] font-bold uppercase">
             {dateLabel}
           </p>
-          <p className="font-visf-headline text-white text-sm sm:text-base lg:text-[48px] lg:leading-[49px] font-extralight">
+          <p className="font-visf-headline text-white text-sm sm:text-base lg:text-[48px] lg:leading-[49px] font-extralight uppercase">
             {locationLabel}
           </p>
         </div>
