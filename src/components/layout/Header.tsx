@@ -85,6 +85,10 @@ export default function Header() {
                 <SubmitFilmButton key={label} className="text-sm font-semibold uppercase text-neutral-800 text-left">
                   {label}
                 </SubmitFilmButton>
+              ) : label === 'Gallery' ? (
+                <Link key={label} href="/gallery" className="text-sm font-semibold uppercase text-neutral-800">
+                  {label}
+                </Link>
               ) : (
                 <a key={label} href="#" className="text-sm font-semibold uppercase text-neutral-800">
                   {label}

@@ -15,11 +15,7 @@ import { getPayloadClient } from "@/lib/fetchFromCMS";
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
 // contexto). Cuando el archivo autogenerado esté disponible, se reemplaza
 // este import por el de "@/payload-types".
-import type {
-  PayloadJuryMember,
-  PayloadSponsor,
-  PayloadIntroduction,
-} from "@/types/cms";
+import type { PayloadJuryMember, PayloadSponsor } from '@/types/cms'
 
 // ---------------------------------------------------------------------------
 // Datos que TODAVÍA son de prueba — Hero y VideoBanner los conectamos
@@ -28,6 +24,14 @@ import type {
 const heroData = {
   imageUrl: "/banner.png",
 };
+
+const introSectionData = {
+  imageUrl: '/banner.png',
+  dateLabel: '12-17 MAY, 2027',
+  locationLabel: 'VERONA, ITALY',
+  introText:
+    'The Verona International Short Film Festival showcases outstanding independent short films from around the world. Combining live screenings, virtual events, and a strong international community, the festival is dedicated to discovering new talent and celebrating bold cinematic storytelling.',
+}
 
 const videoBannerData = {
   headline: "SUBMIT YOUR FILM NOW",
@@ -74,15 +78,6 @@ export default async function HomePage() {
     websiteUrl: doc.websiteUrl,
   }));
 
-  // --- Texto de introducción ---
-  const introductionResult = await payload.find({
-    collection: "introduction",
-    limit: 1,
-  });
-
-  const introText =
-    (introductionResult.docs[0] as PayloadIntroduction | undefined)?.text ?? "";
-
   return (
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
@@ -93,10 +88,10 @@ export default async function HomePage() {
       </section>
 
       <IntroSection
-        imageUrl="https://picsum.photos/seed/visf-toast/900/700?grayscale"
-        dateLabel="12-17 MAY, 2027"
-        locationLabel="VERONA, ITALY"
-        introText={introText}
+        imageUrl={introSectionData.imageUrl}
+        dateLabel={introSectionData.dateLabel}
+        locationLabel={introSectionData.locationLabel}
+        introText={introSectionData.introText}
       />
 
       <OfficialSelectionOnlineSessions
