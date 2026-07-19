@@ -149,8 +149,8 @@ export default async function HomePage() {
       />
 
       <OfficialSelectionOnlineSessions
-        officialSelectionImageUrl="https://picsum.photos/seed/visf-camera/900/900?grayscale"
-        onlineSessionsImageUrl="https://picsum.photos/seed/visf-audience/900/900?grayscale"
+        officialSelectionImageUrl="/banner.png"
+        onlineSessionsImageUrl="/banner.png"
       />
 
       <VideoBanner
