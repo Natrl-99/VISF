@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import SectionIntroText from '@/components/ui/SectionIntroText'
 
 export type JuryMember = {
   id: string
@@ -13,62 +14,62 @@ type JurySectionProps = {
   members: JuryMember[]
 }
 
+const INTRO_TEXT = `Our distinguished jury brings together industry leaders, creative visionaries, and experienced professionals from across the design and innovation landscape. Each juror has been carefully selected for their expertise, achievements, and commitment to recognizing outstanding work.
+
+With diverse perspectives and deep knowledge, they will evaluate every submission based on creativity, originality, execution, impact, and excellence, ensuring a fair and transparent judging process. Their collective experience helps celebrate the projects and talent that are shaping the future of the industry.`
+
 export default function JurySection({ members }: JurySectionProps) {
+  const sortedMembers = useMemo(
+    () => [...members].sort((a, b) => a.name.localeCompare(b.name)),
+    [members],
+  )
   const [selectedIdx, setSelectedIdx] = useState(0)
-  const selected = members[selectedIdx]
+  const selected = sortedMembers[selectedIdx]
 
   return (
-    <section className="px-6 pb-16 max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-10">
-        <div className="font-visf-text">
-          <h2 className="font-visf-headline text-[40px] font-medium leading-[1.05] mb-4">
-            <span className="text-visf-accent underline decoration-current underline-offset-4">MEET</span>
-            <br />
-            THE JURY
-          </h2>
-          <p className="text-xs text-neutral-700 leading-relaxed mb-3 underline decoration-neutral-300 underline-offset-4">
-            Our distinguished jury brings together industry leaders, creative visionaries, and
-            experienced professionals from across the design and innovation landscape. Each juror
-            has been carefully selected for their expertise, achievements, and commitment to
-            recognizing outstanding work.
-          </p>
-          <p className="text-xs text-neutral-700 leading-relaxed underline decoration-neutral-300 underline-offset-4">
-            With diverse perspectives and deep knowledge, they will evaluate every submission
-            based on creativity, originality, execution, impact, and excellence.
-          </p>
-        </div>
+    <section className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
+      <div className="lg:w-[406px] lg:shrink-0">
+        <h2 className="font-visf-headline text-[40px] font-medium leading-[1.05] mb-4">
+          <span className="text-visf-accent  decoration-current">MEET</span>
+          <br />
+          THE JURY
+        </h2>
 
-        <div>
-          <nav className="flex gap-5 border-b border-neutral-200 pb-3 mb-5 overflow-x-auto">
-            {members.map((member, idx) => (
-              <button
-                key={member.id}
-                onClick={() => setSelectedIdx(idx)}
-                className={`font-visf-headline text-xs sm:text-sm whitespace-nowrap pb-1 ${
-                  idx === selectedIdx
-                    ? 'font-bold text-neutral-900 underline underline-offset-4'
-                    : 'text-neutral-500'
-                }`}
-              >
-                {member.name.toUpperCase()}
-              </button>
-            ))}
-          </nav>
+        <SectionIntroText text={INTRO_TEXT} />
+      </div>
 
-          {selected && (
-            <div className="rounded-visf-card p-6 flex flex-col sm:flex-row gap-6 bg-visf-accent">
-              <div className="flex-1">
-                <p className="font-visf-headline font-medium text-sm mb-2">{selected.name}</p>
-                <p className="font-visf-text text-xs text-neutral-800 leading-relaxed">{selected.bio}</p>
-              </div>
+      <div className="w-full lg:flex-1 lg:min-w-0">
+        <nav className="flex flex-wrap gap-x-6 gap-y-2 border-b border-neutral-200 pb-3 mb-5">
+          {sortedMembers.map((member, idx) => (
+            <button
+              key={member.id}
+              onClick={() => setSelectedIdx(idx)}
+              className={`font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[20px] lg:leading-[29px] whitespace-nowrap ${
+                idx === selectedIdx ? 'underline' : ''
+              }`}
+            >
+              {member.name.toUpperCase()}
+            </button>
+          ))}
+        </nav>
+
+        {selected && (
+          <div className="bg-visf-accent rounded-visf-card p-8 sm:p-10 lg:p-12 flex flex-col sm:flex-row gap-8 lg:min-h-[683px]">
+            <div className="flex-1">
+              <p className="font-visf-headline font-medium text-[20px] leading-[29px] mb-4">
+                {selected.name}
+              </p>
+              <SectionIntroText text={selected.bio} />
+            </div>
+            <div className="w-[140px] h-[187px] sm:w-[220px] sm:h-[300px] lg:w-[317px] lg:h-[423px] rounded-visf-card overflow-hidden shrink-0">
               <img
                 src={selected.photoUrl}
                 alt={selected.name}
-                className="w-32 h-32 sm:w-36 sm:h-36 rounded-[32px] object-cover shrink-0"
+                className="w-full h-full object-cover"
               />
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   )
