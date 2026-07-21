@@ -42,6 +42,7 @@ export default function IntroSection({
         <GrayscaleHoverImage
           src={imageUrl}
           alt=""
+          loading="eager"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/[0.56] opacity-[0.71]" />
