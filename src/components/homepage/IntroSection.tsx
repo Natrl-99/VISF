@@ -17,7 +17,7 @@ export default function IntroSection({
   introText,
 }: IntroSectionProps) {
   return (
-    <section className="font-visf-text px-8 sm:px-12 lg:px-[140px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
+    <section className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-8 sm:pr-12 lg:pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-[1.02] mb-5 uppercase">
           WHERE
