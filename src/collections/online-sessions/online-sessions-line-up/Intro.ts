@@ -3,14 +3,14 @@ import type { CollectionConfig } from "payload";
 export const OnlineSessionsIntro: CollectionConfig = {
   slug: "online-sessions-intro",
   labels: {
-    singular: "Online Sessions - Intro",
-    plural: "Online Sessions - Intros",
+    singular: "Line Up - Introduction",
+    plural: "Line Up - Introduction",
   },
   admin: {
     useAsTitle: "label",
-    defaultColumns: ["label", "isActive"],
+    defaultColumns: ["label"],
     description: "Intro text shown at the top of the Online Sessions Line Up page.",
-    group: "Online Sessions - Line Up",
+    group: "Online Sessions",
   },
   access: {
     read: () => true,
@@ -37,16 +37,6 @@ export const OnlineSessionsIntro: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Intro Text",
-    },
-    {
-      name: "isActive",
-      type: "checkbox",
-      defaultValue: true,
-      label: "Visible on the site",
-      admin: {
-        description:
-          "If unchecked, this intro will not be displayed on the site, but will remain in the database.",
-      },
     },
   ],
 };

@@ -16,7 +16,7 @@ import Sponsors from "./src/collections/homepage/sponsors/Sponsors";
 
 //homepage
 import Introduction from "./src/collections/homepage/introduction/Introduction";
-import { DateEvent } from "@/collections/homepage/gallery/DateEvent";
+import { DateEvent } from "@/collections/homepage/date/DateEvent";
 import { Video } from "@/collections/homepage/video/Video";
 import { Competition } from "@/collections/homepage/competitions/Competition";
 import { Categories } from "@/collections/homepage/categories/Categories";
@@ -35,6 +35,11 @@ import { OnlineScheduleBlocks } from "@/collections/online-sessions/online-sessi
 
 //cloudinary
 import { cloudinaryAdapter } from "./src/lib/cloudinaryStorageAdapter";
+import ShortFilmsNextEdition from "@/collections/official-selection/short-films/NextEdition";
+import ShortFilmsIntro from "@/collections/official-selection/short-films/Intro";
+import ShortFilmsBlocks from "@/collections/official-selection/short-films/Blocks";
+import ScreeningIntro from "@/collections/official-selection/screening-schedule/Intro";
+import ScreeningBlocks from "@/collections/official-selection/screening-schedule/Blocks";
 
 export default buildConfig({
   admin: {
@@ -70,6 +75,11 @@ export default buildConfig({
     OnlineSessionsBlocks,
     OnlineScheduleIntro,
     OnlineScheduleBlocks,
+    ShortFilmsNextEdition,
+    ShortFilmsIntro,
+    ShortFilmsBlocks,
+    ScreeningIntro,
+    ScreeningBlocks,
   ],
   plugins: [
     cloudStoragePlugin({

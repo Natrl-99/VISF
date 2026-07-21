@@ -1,36 +1,33 @@
 import type { CollectionConfig } from "payload";
 
-export const NextEdition: CollectionConfig = {
-  slug: "online-sessions-next-edition",
+export const DateEvent: CollectionConfig = {
+  slug: "date-event",
   labels: {
-    singular: "Line Up - Next Edition",
-    plural: "Line Up - Next Edition",
+    singular: "Date Event",
+    plural: "Date Event",
   },
   admin: {
-    useAsTitle: "label",
-    defaultColumns: ["label", "initialDate", "endDate"],
-    description: "Next edition announcement shown on the Online Sessions Line Up page.",
-    group: "Online Sessions",
+    useAsTitle: "name",
+    defaultColumns: ["name", "initialDate", "endDate", "city", "country"],
+    description: "Date of the festival.",
+    group: "Home",
   },
   access: {
     read: () => true,
     create: async ({ req }) => {
       if (!req.user) return false;
-      const { totalDocs } = await req.payload.count({ collection: "online-sessions-next-edition" });
+      const { totalDocs } = await req.payload.count({ collection: "date-event" });
       return totalDocs === 0;
     },
-    update: ({ req: { user } }) => Boolean(user), 
+    update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
     {
-      name: "label",
+      name: "name",
       type: "text",
       required: true,
-      label: "Label",
-      admin: {
-        description: "Internal name to identify this edition in the admin, e.g. \"2027 Online Sessions\".",
-      },
+      label: "Name",
     },
     {
       name: "initialDate",
@@ -50,7 +47,19 @@ export const NextEdition: CollectionConfig = {
       required: true,
       label: "End Date",
     },
+    {
+      name: "city",
+      type: "text",
+      required: true,
+      label: "City",
+    },
+    {
+      name: "country",
+      type: "text",
+      required: true,
+      label: "Country",
+    },
   ],
 };
 
-export default NextEdition;
+export default DateEvent;

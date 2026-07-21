@@ -27,6 +27,10 @@ const extractFrame = (
 
 export const Video: CollectionConfig = {
   slug: "video",
+  labels: {
+    singular: "Video",
+    plural: "Video",
+  },
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "thumbnail"],
@@ -34,7 +38,11 @@ export const Video: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user),
+    create: async ({ req }) => {
+      if (!req.user) return false;
+      const { totalDocs } = await req.payload.count({ collection: "video" });
+      return totalDocs === 0;
+    },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },
@@ -47,6 +55,7 @@ export const Video: CollectionConfig = {
         ? thumbnail.url
         : null;
     },
+    bulkUpload: false,
   },
   fields: [
     { name: "title", type: "text", required: true, label: "Title" },

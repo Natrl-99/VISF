@@ -20,8 +20,6 @@ export interface PayloadSponsor {
   name: string;
   logo: MediaRef;
   websiteUrl?: string;
-  order: number;
-  isActive: boolean;
 }
 
 //Introduction Text
@@ -77,7 +75,6 @@ export interface PayloadAward {
 export interface PayloadWinnersYear {
   id: string;
   year: number;
-  isActive: boolean;
   awards: PayloadAward[];
 }
 
@@ -87,13 +84,11 @@ export interface PayloadNextEdition {
   label: string;
   initialDate: string;
   endDate: string;
-  isActive: boolean;
 }
 export interface PayloadOnlineSessionsIntro {
   id: string;
   label: string;
   text: string;
-  isActive: boolean;
 }
 export interface PayloadOnlineSessionsMovie {
   id: string;
@@ -107,7 +102,6 @@ export interface PayloadOnlineSessionsBlocks {
   id: string;
   name: string;
   intro: string;
-  isActive: boolean;
   movies: PayloadOnlineSessionsMovie[];
 }
 
@@ -116,7 +110,6 @@ export interface PayloadOnlineScheduleIntro {
   id: string;
   label: string;
   text: string;
-  isActive: boolean;
 }
 export interface PayloadOnlineScheduleMovie {
   id: string;
@@ -127,6 +120,52 @@ export interface PayloadOnlineScheduleBlock {
   id: string;
   name: string;
   title: string;
-  isActive: boolean;
   movies: PayloadOnlineScheduleMovie[];
+}
+
+//Official Selection Short Films
+export interface PayloadShortFilmsIntro {
+  id: string;
+  label: string;
+  text: string;
+}
+export interface PayloadShortFilmsNextEdition {
+  id: string;
+  label: string;
+  initialDate: string;
+  endDate: string;
+}
+export interface PayloadShortFilmsMovie {
+  id: string;
+  title: string;
+  poster: MediaRef;
+  director: string;
+  country: string;
+  duration: string;
+  description: string;
+}
+export interface PayloadShortFilmsBlocks {
+  id: string;
+  name: string;
+  intro: string;
+  movies: PayloadShortFilmsMovie[];
+}
+
+//Screening Schedule
+export interface PayloadScreeningIntro {
+  id: string;
+  label: string;
+  text: string;
+}
+export interface PayloadScreeningMovie {
+  id: string;
+  title: string;
+}
+export interface PayloadScreeningBlock {
+  id: string;
+  name: string;
+  title: string;
+  date: string;
+  time: string;
+  movies: PayloadScreeningMovie[];
 }

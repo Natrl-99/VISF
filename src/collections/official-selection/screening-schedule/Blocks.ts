@@ -1,17 +1,17 @@
 import type { CollectionConfig } from "payload";
 
-export const OnlineScheduleBlocks: CollectionConfig = {
-  slug: "online-schedule-blocks",
+export const ScreeningBlocks: CollectionConfig = {
+  slug: "screening-blocks",
   labels: {
-    singular: "Schedule - Block",
-    plural: "Schedule - Blocks",
+    singular: "Screening Schedule - Block",
+    plural: "Screening Schedule - Blocks",
   },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "title"],
+    defaultColumns: ["name", "title", "date", "time"],
     description:
-      "Blocks for the Online Screening Schedule page. The order field determines the order of the blocks.",
-    group: "Online Screening Schedule",
+      "Blocks for the Screening Schedule page. The order field determines the order of the blocks.",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
@@ -36,6 +36,24 @@ export const OnlineScheduleBlocks: CollectionConfig = {
       label: "Block Title",
     },
     {
+      name: "date",
+      type: "date",
+      required: true,
+      label: "Date",
+      admin: {
+        date: { pickerAppearance: "dayOnly", displayFormat: "dd/MMM/yyyy" },
+      },
+    },
+    {
+      name: "time",
+      type: "date",
+      required: true,
+      label: "Time",
+      admin: {
+        date: { pickerAppearance: "timeOnly", displayFormat: "HH:mm" },
+      },
+    },
+    {
       name: "movies",
       type: "array",
       required: true,
@@ -51,15 +69,9 @@ export const OnlineScheduleBlocks: CollectionConfig = {
           required: true,
           label: "Title",
         },
-        {
-          name: "director",
-          type: "text",
-          required: true,
-          label: "Director",
-        },
       ],
     },
   ],
 };
 
-export default OnlineScheduleBlocks;
+export default ScreeningBlocks;

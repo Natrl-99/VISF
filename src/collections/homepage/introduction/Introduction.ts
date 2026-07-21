@@ -4,7 +4,7 @@ export const Introduction: CollectionConfig = {
   slug: "introduction",
   labels: {
     singular: "Introduction",
-    plural: "Introductions",
+    plural: "Introduction",
   },
   admin: {
     useAsTitle: "text",

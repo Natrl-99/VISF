@@ -8,8 +8,6 @@ export default async function OfficialSelectionPage() {
 
   const sponsorsResult = await payload.find({
     collection: 'sponsors',
-    where: { isActive: { equals: true } },
-    sort: 'order',
     depth: 1,
   })
 

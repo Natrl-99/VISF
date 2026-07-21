@@ -1,17 +1,18 @@
 import type { CollectionConfig } from "payload";
+import { createArrayMediaFolderHook } from "@/lib/autoTagMediaFolder";
 
-export const OnlineSessionsBlocks: CollectionConfig = {
-  slug: "online-sessions-blocks",
+export const ShortFilmsBlocks: CollectionConfig = {
+  slug: "short-films-blocks",
   labels: {
-    singular: "Line Up - Block",
-    plural: "Line Up - Blocks",
+    singular: "Short Films - Block",
+    plural: "Short Films - Blocks",
   },
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name"],
     description:
-      "Blocks for the Online Sessions Line Up page. The order field determines the order of the blocks.",
-    group: "Online Sessions",
+      "Blocks for the Official Selection Short Films. The order field determines the order of the blocks.",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
@@ -52,6 +53,13 @@ export const OnlineSessionsBlocks: CollectionConfig = {
           label: "Title",
         },
         {
+          name: "poster",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+          label: "Poster",
+        },
+        {
           name: "director",
           type: "text",
           required: true,
@@ -81,6 +89,9 @@ export const OnlineSessionsBlocks: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [createArrayMediaFolderHook("movies", "poster", "posters")],
+  },
 };
 
-export default OnlineSessionsBlocks;
+export default ShortFilmsBlocks;

@@ -1,32 +1,36 @@
 import type { CollectionConfig } from "payload";
 
-export const DateEvent: CollectionConfig = {
-  slug: "date-event",
+export const ShortFilmsNextEdition: CollectionConfig = {
+  slug: "short-films-next-edition",
   labels: {
-    singular: "Date Event",
+    singular: "Short Films - Next Edition",
+    plural: "Short Films - Next Edition",
   },
   admin: {
-    useAsTitle: "name",
-    defaultColumns: ["name", "initialDate", "endDate", "city", "country"],
-    description: "Date of the festival.",
-    group: "Home",
+    useAsTitle: "label",
+    defaultColumns: ["label", "initialDate", "endDate"],
+    description: "Next edition announcement shown on the Official Selection Short Films page.",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
     create: async ({ req }) => {
       if (!req.user) return false;
-      const { totalDocs } = await req.payload.count({ collection: "date-event" });
+      const { totalDocs } = await req.payload.count({ collection: "short-films-next-edition" });
       return totalDocs === 0;
     },
-    update: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user), 
     delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
     {
-      name: "name",
+      name: "label",
       type: "text",
       required: true,
-      label: "Name",
+      label: "Label",
+      admin: {
+        description: "Internal name to identify this edition in the admin, e.g. \"2027 Offdicial Selection Short Films\".",
+      },
     },
     {
       name: "initialDate",
@@ -46,19 +50,7 @@ export const DateEvent: CollectionConfig = {
       required: true,
       label: "End Date",
     },
-    {
-      name: "city",
-      type: "text",
-      required: true,
-      label: "City",
-    },
-    {
-      name: "country",
-      type: "text",
-      required: true,
-      label: "Country",
-    },
   ],
 };
 
-export default DateEvent;
+export default ShortFilmsNextEdition;

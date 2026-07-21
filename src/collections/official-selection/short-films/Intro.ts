@@ -1,22 +1,22 @@
 import type { CollectionConfig } from "payload";
 
-export const OnlineScheduleIntro: CollectionConfig = {
-  slug: "online-schedule-intro",
+export const ShortFilmsIntro: CollectionConfig = {
+  slug: "short-films-intro",
   labels: {
-    singular: "Schedule - Introduction",
-    plural: "Schedule - Introduction",
+    singular: "Short Films - Introduction",
+    plural: "Short Films - Introduction",
   },
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label"],
-    description: "Intro text shown at the top of the Online Screening Schedule page.",
-    group: "Online Screening Schedule",
+    description: "Intro text shown at the top of the Official Selection Short Films page.",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
     create: async ({ req }) => {
       if (!req.user) return false;
-      const { totalDocs } = await req.payload.count({ collection: "online-schedule-intro" });
+      const { totalDocs } = await req.payload.count({ collection: "short-films-intro" });
       return totalDocs === 0;
     },
     update: ({ req: { user } }) => Boolean(user),
@@ -29,7 +29,7 @@ export const OnlineScheduleIntro: CollectionConfig = {
       required: true,
       label: "Label",
       admin: {
-        description: "Internal name to identify this intro in the admin, e.g. \"2027 Online Screening Schedule\".",
+        description: "Internal name to identify this intro in the admin, e.g. \"2027 Online Sessions\".",
       },
     },
     {
@@ -41,4 +41,4 @@ export const OnlineScheduleIntro: CollectionConfig = {
   ],
 };
 
-export default OnlineScheduleIntro;
+export default ShortFilmsIntro;

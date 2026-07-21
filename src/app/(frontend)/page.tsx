@@ -55,11 +55,9 @@ export default async function HomePage() {
       typeof doc.photo === "object" && doc.photo?.url ? doc.photo.url : "",
   }));
 
-  // --- Patrocinadores reales, solo los activos, ordenados ---
+  // --- Patrocinadores reales ---
   const sponsorsResult = await payload.find({
     collection: "sponsors",
-    where: { isActive: { equals: true } },
-    sort: "order",
     depth: 1,
   });
 

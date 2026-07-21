@@ -9,8 +9,8 @@ export const Sponsors: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'order', 'isActive'],
-    description: 'Sponsors for the festival. The order field determines the order of appearance on the site.',
+    defaultColumns: ['name'],
+    description: 'Sponsors for the festival.',
     group: 'Home',
   },
   access: {
@@ -40,18 +40,6 @@ export const Sponsors: CollectionConfig = {
       name: 'websiteUrl',
       type: 'text',
       label: 'Website URL (optional)',
-    },
-    {
-      name: 'order',
-      type: 'number',
-      required: true,
-      label: 'Order of Appearance',
-    },
-    {
-      name: 'isActive',
-      type: 'checkbox',
-      defaultValue: true,
-      label: 'Visible on the site',
     },
   ],
   hooks: {

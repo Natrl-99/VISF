@@ -1,16 +1,16 @@
 import type { CollectionConfig } from "payload";
 
-export const OnlineScheduleIntro: CollectionConfig = {
-  slug: "online-schedule-intro",
+export const ScreeningIntro: CollectionConfig = {
+  slug: "screening-intro",
   labels: {
-    singular: "Schedule - Introduction",
-    plural: "Schedule - Introduction",
+    singular: "Screening Schedule - Introduction",
+    plural: "Screening Schedule - Introduction",
   },
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label"],
-    description: "Intro text shown at the top of the Online Screening Schedule page.",
-    group: "Online Screening Schedule",
+    description: "Intro text shown at the top of the Screening Schedule page.",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
@@ -41,4 +41,4 @@ export const OnlineScheduleIntro: CollectionConfig = {
   ],
 };
 
-export default OnlineScheduleIntro;
+export default ScreeningIntro;

@@ -8,10 +8,10 @@ export const Winners: CollectionConfig = {
   },
   admin: {
     useAsTitle: "year",
-    defaultColumns: ["year", "isActive"],
+    defaultColumns: ["year"],
     description:
       "Award winners by festival edition. Each entry is one year; add one row per award category, repeating the category for ties or multiple winners.",
-    group: "Winners",
+    group: "Official Selection",
   },
   access: {
     read: () => true,
@@ -26,16 +26,6 @@ export const Winners: CollectionConfig = {
       required: true,
       unique: true,
       label: "Year",
-    },
-    {
-      name: "isActive",
-      type: "checkbox",
-      defaultValue: true,
-      label: "Visible on the site",
-      admin: {
-        description:
-          "If unchecked, this year will not be shown on the site, but will remain in the database.",
-      },
     },
     {
       name: "awards",
