@@ -85,7 +85,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.75)' }} />
-          <ul className="relative text-white text-xs lg:text-sm space-y-2">
+          <ul className="font-visf-headline relative text-white text-xs lg:w-[323px] lg:text-[20px] lg:font-light lg:leading-[26px] space-y-2">
             {items.map((item) => (
               <li key={item}>{item}</li>
             ))}
