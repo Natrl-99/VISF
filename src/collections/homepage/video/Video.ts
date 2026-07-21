@@ -95,7 +95,7 @@ export const Video: CollectionConfig = {
 
           const mediaDoc = await req.payload.create({
             collection: "media",
-            data: { alt: `${doc.title} thumbnail`, prefix: "thumbnails" },
+            data: { prefix: "thumbnails" },
             file: {
               data: buffer,
               mimetype: "image/jpeg",

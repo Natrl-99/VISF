@@ -39,11 +39,9 @@ const videoBannerData = {
 export default async function HomePage() {
   const payload = await getPayloadClient();
 
-  // --- Jurado real, solo los activos, ordenados ---
+  // --- Jurado real ---
   const juryResult = await payload.find({
     collection: "jury-members",
-    where: { isActive: { equals: true } },
-    sort: "order",
     depth: 1, // para que "photo" venga con la URL ya resuelta, no solo el ID
   });
 

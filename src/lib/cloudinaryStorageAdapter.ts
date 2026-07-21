@@ -19,6 +19,12 @@ const toAssetFolder = (subfolder?: string) => (subfolder ? `${BASE_FOLDER}/${sub
 // asset_folder (Media Library placement) is decoupled from public_id (the
 // delivery URL) — so it can be moved between folders later without touching
 // the URL. See setMediaAssetFolder below.
+//
+// The extension must be stripped: Cloudinary delivery URLs always parse
+// whatever follows the last dot as the requested format and strip it before
+// looking up the public_id, so a public_id containing a literal extension
+// (e.g. "VISF/photo.jpg") is unreachable via its own delivery URL — a request
+// for it gets normalized to "VISF/photo" and 404s.
 const toPublicId = (filename: string) => {
   const base = path.parse(filename).name
   return `${BASE_FOLDER}/${base}`
