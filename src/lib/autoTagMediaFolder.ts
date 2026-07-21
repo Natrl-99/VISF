@@ -39,3 +39,55 @@ export const createMediaFolderHook = (
 
     return doc;
   };
+
+// Same as createMediaFolderHook, but for an upload relation nested inside an
+// array field (e.g. Gallery's `photos.photo`), where each row needs its own
+// folder move.
+export const createArrayMediaFolderHook = (
+  arrayField: string,
+  relationField: string,
+  subfolder: string,
+): CollectionAfterChangeHook =>
+  async ({ doc, previousDoc, req }) => {
+    const rows: Record<string, unknown>[] = Array.isArray(doc[arrayField]) ? doc[arrayField] : [];
+    const previousRows: Record<string, unknown>[] = Array.isArray(previousDoc?.[arrayField])
+      ? previousDoc[arrayField]
+      : [];
+    const previousMediaIds = new Set(
+      previousRows.map((row) =>
+        typeof row[relationField] === "object"
+          ? (row[relationField] as { id?: unknown })?.id
+          : row[relationField],
+      ),
+    );
+
+    for (const row of rows) {
+      const mediaId =
+        typeof row[relationField] === "object"
+          ? (row[relationField] as { id?: string })?.id
+          : (row[relationField] as string | undefined);
+
+      if (!mediaId || previousMediaIds.has(mediaId)) {
+        continue;
+      }
+
+      try {
+        const mediaDoc = await req.payload.findByID({ collection: "media", id: mediaId, req });
+        if (mediaDoc.prefix !== subfolder) {
+          await setMediaAssetFolder(mediaDoc.filename, subfolder);
+          await req.payload.update({
+            collection: "media",
+            id: mediaId,
+            data: { prefix: subfolder },
+            req,
+          });
+        }
+      } catch (err) {
+        req.payload.logger.error(
+          `Failed to move ${arrayField}.${relationField} media ${mediaId} to the ${subfolder} folder: ${err}`,
+        );
+      }
+    }
+
+    return doc;
+  };

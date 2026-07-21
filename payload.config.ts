@@ -9,6 +9,8 @@ import Users from "./src/collections/users/Users";
 import Media from "./src/collections/media/Media";
 //jury
 import Jury from "./src/collections/homepage/jury/Jury";
+//gallery
+import Gallery from "./src/collections/gallery/gallery";
 //sponsor
 import Sponsors from "./src/collections/homepage/sponsors/Sponsors";
 
@@ -55,6 +57,7 @@ export default buildConfig({
     Users,
     Media,
     Jury,
+    Gallery,
     Sponsors,
     Introduction,
     DateEvent,
