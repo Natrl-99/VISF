@@ -159,7 +159,7 @@ export default async function HomePage() {
 
       <JurySection members={juryData} />
 
-      <CompetitionsSection imageUrl="https://picsum.photos/seed/visf-speaker/900/900?grayscale" />
+      <CompetitionsSection />
 
       <Footer sponsors={sponsorsData} />
     </main>

@@ -1,3 +1,8 @@
+'use client'
+
+import { useState } from 'react'
+import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
+
 const MAIN_COMPETITIONS = [
   'Narrative Shorts Competition',
   'Foreign Shorts Competition',
@@ -22,71 +27,84 @@ const TECHNICAL_LEFT = [
   'Best Cinematography',
 ]
 
-const TECHNICAL_RIGHT = [
-  'Best Acting Ensemble',
-  'Best Production Design',
-  'Best Actress',
-  'Best Screenwriting',
-  'Best Original Score',
-  'Best Sound Design',
-]
+const CARD_IMAGE = '/banner.png'
 
-type CompetitionsSectionProps = {
-  imageUrl: string
+type FlipCardProps = {
+  titleLines: string[]
+  items: string[]
 }
 
-export default function CompetitionsSection({ imageUrl }: CompetitionsSectionProps) {
+function FlipCard({ titleLines, items }: FlipCardProps) {
+  const [flipped, setFlipped] = useState(false)
+
   return (
-    <section className="font-visf-text px-6 pb-16 max-w-5xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Título — Main Competitions */}
-        <div className="relative rounded-visf-card overflow-hidden">
-          <img src={imageUrl} alt="" className="w-full h-[220px] object-cover" />
+    <button
+      type="button"
+      onClick={() => setFlipped((prev) => !prev)}
+      aria-pressed={flipped}
+      className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] text-left"
+      style={{ perspective: '1500px' }}
+    >
+      <div
+        className="relative w-full h-full transition-transform duration-700"
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        }}
+      >
+        <div
+          className="absolute inset-0 rounded-visf-card overflow-hidden"
+          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+        >
+          <GrayscaleHoverImage
+            src={CARD_IMAGE}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="font-visf-headline absolute bottom-5 left-5 text-white text-2xl font-medium">
-            MAIN
-            <br />
-            COMPETITIONS
+          <p className="font-visf-headline absolute bottom-5 left-5 lg:bottom-8 lg:left-8 lg:w-[394px] text-white text-2xl lg:text-[48px] font-medium leading-tight lg:leading-[49px]">
+            {titleLines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </p>
         </div>
 
-        {/* Título — Technical and Performance Categories */}
-        <div className="relative rounded-visf-card overflow-hidden">
-          <img src={imageUrl} alt="" className="w-full h-[220px] object-cover" />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="font-visf-headline absolute bottom-5 left-5 text-white text-2xl font-medium leading-tight">
-            TECHNICAL
-            <br />
-            AND PERFORMANCE CATEGORIES
-          </p>
-        </div>
-
-        {/* Lista — Main Competitions */}
-        <div className="relative rounded-visf-card overflow-hidden p-6">
-          <img src={imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div
+          className="absolute inset-0 rounded-visf-card overflow-hidden p-6"
+          style={{
+            transform: 'rotateY(180deg)',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        >
+          <GrayscaleHoverImage
+            src={CARD_IMAGE}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.75)' }} />
-          <ul className="relative text-white text-xs space-y-2">
-            {MAIN_COMPETITIONS.map((c) => (
-              <li key={c}>{c}</li>
+          <ul className="font-visf-headline relative text-white text-xs lg:w-[323px] lg:text-[20px] lg:font-light lg:leading-[26px] space-y-2">
+            {items.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
+      </div>
+    </button>
+  )
+}
 
-        {/* Lista — Technical categories (2 columnas) */}
-        <div className="relative rounded-visf-card overflow-hidden p-6 grid grid-cols-2 gap-x-4">
-          <img src={imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.75)' }} />
-          <ul className="relative text-white text-xs space-y-2">
-            {TECHNICAL_LEFT.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-          <ul className="relative text-white text-xs space-y-2 text-right">
-            {TECHNICAL_RIGHT.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ul>
-        </div>
+export default function CompetitionsSection() {
+  return (
+    <section className="font-visf-text px-[35px] pb-16 max-w-[1440px] mx-auto">
+      <div className="flex flex-col sm:flex-row gap-[30px]">
+        <FlipCard titleLines={['MAIN', 'COMPETITIONS']} items={MAIN_COMPETITIONS} />
+        <FlipCard
+          titleLines={['TECHNICAL', 'AND PERFORMANCE CATEGORIES']}
+          items={TECHNICAL_LEFT}
+        />
       </div>
     </section>
   )
