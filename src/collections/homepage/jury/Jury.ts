@@ -9,8 +9,8 @@ export const Jury: CollectionConfig = {
   },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["photo", "name", "bio", "isActive"],
-    description: 'Jury members for the festival. The order field determines the order of appearance on the site.',
+    defaultColumns: ["name", "bio", "photo"],
+    description: "Jury members for the festival.",
     group: "Home",
   },
   access: {
@@ -27,30 +27,19 @@ export const Jury: CollectionConfig = {
       label: "Name",
     },
     {
-      name: "photo",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-      label: "Photo",
-      admin: {
-        description:
-          "800x800px recommended.",
-      },
-    },
-    {
       name: "bio",
       type: "textarea",
       required: true,
       label: "Biography",
     },
     {
-      name: "isActive",
-      type: "checkbox",
-      defaultValue: true,
-      label: "Visible on the site",
+      name: "photo",
+      type: "upload",
+      relationTo: "media",
+      required: true,
+      label: "Photo",
       admin: {
-        description:
-          "If unchecked, the jury member will not be displayed on the site, but will remain in the database.",
+        description: "800x800px recommended.",
       },
     },
   ],

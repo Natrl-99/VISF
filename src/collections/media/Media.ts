@@ -15,17 +15,15 @@ export const Media: CollectionConfig = {
   upload: true,
   fields: [
     {
-      name: 'alt',
-      type: 'text',
-      label: 'Texto alternativo (accesibilidad)',
-    },
-    {
       name: 'prefix',
       type: 'text',
       label: 'Carpeta en Cloudinary',
       admin: {
         description:
           "Subcarpeta dentro de VISF en Cloudinary (ej: jury, sponsors, banner). Dejar en blanco para VISF directamente.",
+      },
+      access: {
+        read: ({ req }) => req.user?.role === 'admin',
       },
     },
   ],

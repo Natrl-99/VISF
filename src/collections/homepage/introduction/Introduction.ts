@@ -14,7 +14,11 @@ export const Introduction: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user),
+    create: async ({ req }) => {
+      if (!req.user) return false;
+      const { totalDocs } = await req.payload.count({ collection: "introduction" });
+      return totalDocs === 0;
+    },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },
