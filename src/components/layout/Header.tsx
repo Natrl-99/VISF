@@ -89,6 +89,10 @@ export default function Header() {
                 <Link key={label} href="/official-selection" className="text-sm font-semibold uppercase text-neutral-800">
                   {label}
                 </Link>
+              ) : label === 'Online Sessions' ? (
+                <Link key={label} href="/online-sessions" className="text-sm font-semibold uppercase text-neutral-800">
+                  {label}
+                </Link>
               ) : label === 'Gallery' ? (
                 <Link key={label} href="/gallery" className="text-sm font-semibold uppercase text-neutral-800">
                   {label}
