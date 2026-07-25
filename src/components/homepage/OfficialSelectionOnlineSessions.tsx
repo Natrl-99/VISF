@@ -23,7 +23,7 @@ export default function OfficialSelectionOnlineSessions({
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute bottom-6 left-6 text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
+          <p className="absolute bottom-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
             OFFICIAL
             <br />
             <span className="text-visf-accent">SELECTION</span>
@@ -40,8 +40,8 @@ export default function OfficialSelectionOnlineSessions({
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute top-6 left-6 text-white text-lg sm:text-xl lg:text-[28px] font-medium leading-none">
-            <span className="text-visf-accent">S</span> ONLINE
+          <p className="absolute top-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
+            <span className="text-visf-accent">VISF</span> ONLINE
             <br />
             SESSIONS
           </p>

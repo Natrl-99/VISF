@@ -10,20 +10,22 @@ type HeroProps = {
 export default function Hero({ imageUrl, sponsors }: HeroProps) {
   return (
     <div className="group relative w-full h-[672px] overflow-hidden">
-      <GrayscaleHoverImage
-        src={imageUrl}
-        alt=""
-        loading="eager"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      <SubmitFilmButton className="absolute inset-0 block">
+        <GrayscaleHoverImage
+          src={imageUrl}
+          alt=""
+          loading="eager"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </SubmitFilmButton>
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
             "linear-gradient(to top, rgba(0,0,0,0.32), transparent 55%)",
         }}
       />
-      <SubmitFilmButton className="font-visf-text absolute left-6 sm:left-12 lg:left-[92px] bottom-10 sm:bottom-16 lg:bottom-[108px] text-white font-bold text-[36px] sm:text-[60px] lg:text-[85px] leading-[33px] sm:leading-[54px] lg:leading-[77px] uppercase hover:underline">
+      <SubmitFilmButton className="font-visf-text absolute left-6 sm:left-12 lg:left-[92px] bottom-10 sm:bottom-16 lg:bottom-[108px] text-white font-bold text-[36px] sm:text-[60px] lg:text-[85px] leading-[33px] sm:leading-[54px] lg:leading-[77px] uppercase">
         <span className="block">Submissions</span>
         <span className="block">Open</span>
       </SubmitFilmButton>

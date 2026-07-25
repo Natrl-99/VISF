@@ -39,13 +39,13 @@ export default function JurySection({ members }: JurySectionProps) {
       </div>
 
       <div className="w-full lg:flex-1 lg:min-w-0">
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 border-b border-neutral-200 pb-3 mb-5">
+        <nav className="flex flex-wrap gap-x-10 gap-y-3 pb-3 mb-5">
           {sortedMembers.map((member, idx) => (
             <button
               key={member.id}
               onClick={() => setSelectedIdx(idx)}
-              className={`font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[20px] lg:leading-[29px] whitespace-nowrap ${
-                idx === selectedIdx ? 'underline' : ''
+              className={`font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[20px] lg:leading-[29px] hover:underline whitespace-nowrap ${
+                idx === selectedIdx ? 'underline' : 'text-visf-gray'
               }`}
             >
               {member.name.toUpperCase()}
