@@ -1,8 +1,8 @@
 import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
-import WinnersSection from '@/components/winners/WinnersSection'
+import WinnersSection, { type WinnersYear } from '@/components/winners/WinnersSection'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
-import type { PayloadSponsor } from '@/types/cms'
+import type { PayloadSponsor, PayloadWinnersYear } from '@/types/cms'
 
 export default async function WinnersPage() {
   const payload = await getPayloadClient()
@@ -19,6 +19,25 @@ export default async function WinnersPage() {
     websiteUrl: doc.websiteUrl,
   }))
 
+  const winnersResult = await payload.find({
+    collection: 'winners',
+    depth: 1,
+    sort: '-year',
+    limit: 4,
+  })
+
+  const winnersData: WinnersYear[] = (winnersResult.docs as PayloadWinnersYear[]).map((doc) => ({
+    id: String(doc.id),
+    year: doc.year,
+    awards: doc.awards.map((award) => ({
+      id: String(award.id),
+      category: typeof award.category === 'object' ? award.category.name : award.category,
+      movieTitle: award.movieTitle,
+      director: award.director,
+      country: award.country,
+    })),
+  }))
+
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <div className="flex-1">
@@ -30,7 +49,7 @@ export default async function WinnersPage() {
           <span className="text-visf-accent">WINNERS</span>
         </h1>
 
-        <WinnersSection />
+        <WinnersSection years={winnersData} />
       </div>
 
       <Footer sponsors={sponsorsData} />

@@ -57,6 +57,7 @@ export default async function OnlineSessionsLineUpPage() {
     collection: "online-sessions-blocks",
     depth: 0,
     limit: 0,
+    sort: "createdAt",
   });
 
   const programsData: Program[] = (
