@@ -154,50 +154,52 @@ export default async function HomePage() {
   }));
 
   return (
-    <main className="bg-white">
-      <section className="relative bg-neutral-950 text-white">
-        {/*Navbar*/}
-        <Header />
-        {/*Hero Banner*/}
-        <Hero imageUrl={heroData.imageUrl} sponsors={sponsorsData} />
-      </section>
+    <main className="bg-white min-h-screen flex flex-col">
+      <div className="flex-1">
+        <section className="relative bg-neutral-950 text-white">
+          {/*Navbar*/}
+          <Header />
+          {/*Hero Banner*/}
+          <Hero imageUrl={heroData.imageUrl} sponsors={sponsorsData} />
+        </section>
 
-      <IntroSection
-        imageUrl={introSectionData.imageUrl}
-        dateLabel={
-          dateEventsData[0].initialDate.getDate() +
-          "-" +
-          dateEventsData[0].endDate.getDate() +
-          " " +
-          dateEventsData[0].endDate.toLocaleString("default", {
-            month: "short",
-          }) +
-          ", " +
-          dateEventsData[0].endDate.getFullYear()
-        }
-        locationLabel={
-          dateEventsData[0].city + ", " + dateEventsData[0].country
-        }
-        introText={introData.text}
-      />
+        <IntroSection
+          imageUrl={introSectionData.imageUrl}
+          dateLabel={
+            dateEventsData[0].initialDate.getDate() +
+            "-" +
+            dateEventsData[0].endDate.getDate() +
+            " " +
+            dateEventsData[0].endDate.toLocaleString("default", {
+              month: "short",
+            }) +
+            ", " +
+            dateEventsData[0].endDate.getFullYear()
+          }
+          locationLabel={
+            dateEventsData[0].city + ", " + dateEventsData[0].country
+          }
+          introText={introData.text}
+        />
 
-      <OfficialSelectionOnlineSessions
-        officialSelectionImageUrl="/banner.png"
-        onlineSessionsImageUrl="/banner.png"
-      />
+        <OfficialSelectionOnlineSessions
+          officialSelectionImageUrl="/banner.png"
+          onlineSessionsImageUrl="/banner.png"
+        />
 
-      <VideoBanner
-        headline={videoBannerData.headline}
-        posterUrl={videoBannerData.posterUrl}
-        videoUrl={videoBannerData.videoUrl}
-      />
+        <VideoBanner
+          headline={videoBannerData.headline}
+          posterUrl={videoBannerData.posterUrl}
+          videoUrl={videoBannerData.videoUrl}
+        />
 
-      <JurySection members={juryData} />
+        <JurySection members={juryData} />
 
-      <CompetitionsSection
-        competitions={competitionsData}
-        categories={categoriesData}
-      />
+        <CompetitionsSection
+          competitions={competitionsData}
+          categories={categoriesData}
+        />
+      </div>
 
       <Footer sponsors={sponsorsData} />
     </main>
