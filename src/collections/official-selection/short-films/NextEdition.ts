@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { validateEndDateAfterInitialDate } from "@/lib/validateDateRange";
 
 export const ShortFilmsNextEdition: CollectionConfig = {
   slug: "short-films-next-edition",
@@ -49,6 +50,7 @@ export const ShortFilmsNextEdition: CollectionConfig = {
       },
       required: true,
       label: "End Date",
+      validate: validateEndDateAfterInitialDate,
     },
   ],
 };

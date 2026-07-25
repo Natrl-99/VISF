@@ -14,6 +14,7 @@ import CompetitionsSection, {
   type Category as CategoryProp,
 } from "@/components/homepage/CompetitionsSection";
 import { getPayloadClient } from "@/lib/fetchFromCMS";
+import { formatDateEventRange } from "@/lib/formatDateEventRange";
 // Tipos escritos a mano — alternativa temporal mientras se resuelve el
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
 // contexto). Cuando el archivo autogenerado esté disponible, se reemplaza
@@ -80,8 +81,8 @@ export default async function HomePage() {
   type DateEventProp = {
     id: string;
     name: string;
-    initialDate: Date;
-    endDate: Date;
+    initialDate: string;
+    endDate: string;
     city: string;
     country: string;
   };
@@ -97,8 +98,8 @@ export default async function HomePage() {
   ).map((doc) => ({
     id: String(doc.id),
     name: doc.name,
-    initialDate: new Date(doc.initialDate),
-    endDate: new Date(doc.endDate),
+    initialDate: doc.initialDate,
+    endDate: doc.endDate,
     city: doc.city,
     country: doc.country,
   }));
@@ -164,17 +165,10 @@ export default async function HomePage() {
 
       <IntroSection
         imageUrl={introSectionData.imageUrl}
-        dateLabel={
-          dateEventsData[0].initialDate.getDate() +
-          "-" +
-          dateEventsData[0].endDate.getDate() +
-          " " +
-          dateEventsData[0].endDate.toLocaleString("default", {
-            month: "short",
-          }) +
-          ", " +
-          dateEventsData[0].endDate.getFullYear()
-        }
+        dateLabel={formatDateEventRange(
+          dateEventsData[0].initialDate,
+          dateEventsData[0].endDate,
+        )}
         locationLabel={
           dateEventsData[0].city + ", " + dateEventsData[0].country
         }
