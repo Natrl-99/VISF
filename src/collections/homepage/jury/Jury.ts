@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { createMediaFolderHook } from "@/lib/autoTagMediaFolder";
+import { createMediaCleanupHook, createMediaCleanupOnDeleteHook } from "@/lib/cleanupOrphanedMedia";
 
 export const Jury: CollectionConfig = {
   slug: "jury-members",
@@ -44,7 +45,8 @@ export const Jury: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createMediaFolderHook("photo", "jury")],
+    afterChange: [createMediaFolderHook("photo", "jury"), createMediaCleanupHook("photo")],
+    afterDelete: [createMediaCleanupOnDeleteHook("photo")],
   },
 };
 

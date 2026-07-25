@@ -1,5 +1,10 @@
 import type { CollectionConfig } from "payload";
 import { createArrayMediaFolderHook } from "@/lib/autoTagMediaFolder";
+import { validateDurationFormat } from "@/lib/validateDuration";
+import {
+  createArrayMediaCleanupHook,
+  createArrayMediaCleanupOnDeleteHook,
+} from "@/lib/cleanupOrphanedMedia";
 
 export const ShortFilmsBlocks: CollectionConfig = {
   slug: "short-films-blocks",
@@ -79,6 +84,7 @@ export const ShortFilmsBlocks: CollectionConfig = {
           admin: {
             description: "e.g. \"3:05\".",
           },
+          validate: validateDurationFormat,
         },
         {
           name: "description",
@@ -90,7 +96,11 @@ export const ShortFilmsBlocks: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createArrayMediaFolderHook("movies", "poster", "posters")],
+    afterChange: [
+      createArrayMediaFolderHook("movies", "poster", "posters"),
+      createArrayMediaCleanupHook("movies", "poster"),
+    ],
+    afterDelete: [createArrayMediaCleanupOnDeleteHook("movies", "poster")],
   },
 };
 

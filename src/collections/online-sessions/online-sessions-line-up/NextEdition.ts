@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { validateEndDateAfterInitialDate } from "@/lib/validateDateRange";
 
 export const NextEdition: CollectionConfig = {
   slug: "online-sessions-next-edition",
@@ -49,6 +50,7 @@ export const NextEdition: CollectionConfig = {
       },
       required: true,
       label: "End Date",
+      validate: validateEndDateAfterInitialDate,
     },
   ],
 };

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { validateDurationFormat } from "@/lib/validateDuration";
 
 export const OnlineSessionsBlocks: CollectionConfig = {
   slug: "online-sessions-blocks",
@@ -71,6 +72,7 @@ export const OnlineSessionsBlocks: CollectionConfig = {
           admin: {
             description: "e.g. \"3:05\".",
           },
+          validate: validateDurationFormat,
         },
         {
           name: "description",

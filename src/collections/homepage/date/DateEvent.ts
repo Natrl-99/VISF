@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { validateEndDateAfterInitialDate } from "@/lib/validateDateRange";
 
 export const DateEvent: CollectionConfig = {
   slug: "date-event",
@@ -46,6 +47,7 @@ export const DateEvent: CollectionConfig = {
       },
       required: true,
       label: "End Date",
+      validate: validateEndDateAfterInitialDate,
     },
     {
       name: "city",

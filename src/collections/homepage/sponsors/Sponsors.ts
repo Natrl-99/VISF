@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { createMediaFolderHook } from '@/lib/autoTagMediaFolder'
+import { createMediaCleanupHook, createMediaCleanupOnDeleteHook } from '@/lib/cleanupOrphanedMedia'
 
 export const Sponsors: CollectionConfig = {
   slug: 'sponsors',
@@ -43,7 +44,8 @@ export const Sponsors: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createMediaFolderHook('logo', 'sponsors')],
+    afterChange: [createMediaFolderHook('logo', 'sponsors'), createMediaCleanupHook('logo')],
+    afterDelete: [createMediaCleanupOnDeleteHook('logo')],
   },
 }
 

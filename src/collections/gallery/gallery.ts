@@ -1,5 +1,9 @@
 import type { CollectionConfig } from "payload";
 import { createArrayMediaFolderHook } from "@/lib/autoTagMediaFolder";
+import {
+  createArrayMediaCleanupHook,
+  createArrayMediaCleanupOnDeleteHook,
+} from "@/lib/cleanupOrphanedMedia";
 
 export const Gallery: CollectionConfig = {
   slug: "gallery",
@@ -48,7 +52,11 @@ export const Gallery: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createArrayMediaFolderHook("photos", "photo", "gallery")],
+    afterChange: [
+      createArrayMediaFolderHook("photos", "photo", "gallery"),
+      createArrayMediaCleanupHook("photos", "photo"),
+    ],
+    afterDelete: [createArrayMediaCleanupOnDeleteHook("photos", "photo")],
   },
 };
 
