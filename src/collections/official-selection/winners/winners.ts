@@ -10,12 +10,16 @@ export const Winners: CollectionConfig = {
     useAsTitle: "year",
     defaultColumns: ["year"],
     description:
-      "Award winners by festival edition. Each entry is one year; add one row per award category, repeating the category for ties or multiple winners.",
+      "Award winners by festival edition. Each entry is one year; add one row per award category, repeating the category for ties or multiple winners. Limited to 4 years — remove an older one to add a new edition.",
     group: "Official Selection",
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user),
+    create: async ({ req }) => {
+      if (!req.user) return false;
+      const { totalDocs } = await req.payload.count({ collection: "winners" });
+      return totalDocs < 4;
+    },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },

@@ -59,6 +59,7 @@ export default async function ShortFilmsPage() {
     collection: "short-films-blocks",
     depth: 1,
     limit: 0,
+    sort: "createdAt",
   });
 
   const programsData: Program[] = (
