@@ -29,6 +29,8 @@ type FlipCardProps = {
 
 function FlipCard({ titleLines, items }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
+  const firstColumn = items.slice(0, 10);
+  const secondColumn = items.length > 10 ? items.slice(10) : [];
 
   return (
     <button
@@ -87,11 +89,20 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
             className="absolute inset-0"
             style={{ background: "rgba(0,0,0,0.75)" }}
           />
-          <ul className="font-visf-headline relative text-white text-xs lg:w-[323px] lg:text-[20px] lg:font-light lg:leading-[26px] space-y-2">
-            {items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <div className="absolute inset-0 p-4 sm:p-6 lg:p-6 flex flex-col justify-between gap-2">
+            <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
+              {firstColumn.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            {secondColumn.length > 0 && (
+              <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto self-end text-right text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
+                {secondColumn.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </button>

@@ -31,14 +31,13 @@ export default function IntroSection({
 
         <SectionIntroText text={introText} className="mb-6" />
 
-        <SubmitFilmButton className="inline-block text-xs font-semibold bg-visf-accent px-4 py-3 rounded-md hover:underline">
-          SUBMIT
-          <br />
-          YOUR FILM
+        <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
+          <span className="block whitespace-nowrap">SUBMIT</span>
+          <span className="block whitespace-nowrap">YOUR FILM</span>
         </SubmitFilmButton>
       </div>
 
-      <div className="group relative w-full sm:w-[420px] lg:w-[784px] h-[300px] sm:h-[380px] lg:h-[523px] rounded-visf-card overflow-hidden shrink-0">
+      <div className="group relative w-full sm:w-[420px] lg:w-auto lg:flex-1 lg:max-w-[784px] min-w-0 h-[300px] sm:h-[380px] lg:h-[523px] rounded-visf-card overflow-hidden shrink-0 lg:shrink">
         <GrayscaleHoverImage
           src={imageUrl}
           alt=""
@@ -46,11 +45,11 @@ export default function IntroSection({
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/[0.56] opacity-[0.71]" />
-        <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 text-right">
-          <p className="font-visf-headline text-white text-xl sm:text-2xl lg:text-[48px] lg:leading-[49px] font-bold uppercase">
+        <div className="absolute bottom-5 left-5 right-5 lg:bottom-8 lg:left-8 lg:right-8 text-right">
+          <p className="font-visf-headline text-white text-xl sm:text-2xl lg:text-[clamp(24px,3.3vw,48px)] lg:leading-[1.02] font-bold uppercase">
             {dateLabel}
           </p>
-          <p className="font-visf-headline text-white text-sm sm:text-base lg:text-[48px] lg:leading-[49px] font-extralight uppercase">
+          <p className="font-visf-headline text-white text-sm sm:text-base lg:text-[clamp(24px,3.3vw,48px)] lg:leading-[1.02] font-extralight uppercase">
             {locationLabel}
           </p>
         </div>
