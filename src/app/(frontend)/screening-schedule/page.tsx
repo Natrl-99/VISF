@@ -34,7 +34,7 @@ export default async function ScreeningSchedulePage() {
           Our upcoming LIVE EVENT will take place in November 2026, at the Cinema in Verona
         </p>
 
-        <section className="mt-8 lg:mt-14 flex flex-col gap-8 lg:gap-10">
+        <section className="mt-8 lg:mt-14 pb-8 lg:pb-14 flex flex-col gap-8 lg:gap-10">
           <ScreeningBlock
             chapterLabel="Chapter 1"
             blockName="Innocence"
