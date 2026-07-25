@@ -15,10 +15,10 @@ export const Winners: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: async ({ req }) => {
-      if (!req.user) return false;
-      const { totalDocs } = await req.payload.count({ collection: "winners" });
-      return totalDocs < 4;
+    create: async({ req }) => {
+      if(!req.user) return false;
+      const {totalDocs} = await req.payload.count({collection: "winners"});
+      return totalDocs < 20;
     },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
