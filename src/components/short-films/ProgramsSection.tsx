@@ -38,7 +38,13 @@ const PROGRAMS: Program[] = Array.from({ length: 7 }, (_, i) => ({
   ],
 }))
 
-export default function ProgramsSection() {
+type ProgramsSectionProps = {
+  showPoster?: boolean
+}
+
+// Shared with online-sessions-line-up, which reuses this layout without posters.
+// Defaults to true so short-films (the original consumer) keeps its current look.
+export default function ProgramsSection({ showPoster = true }: ProgramsSectionProps) {
   const [selectedIdx, setSelectedIdx] = useState(0)
   const selected = PROGRAMS[selectedIdx]
 
@@ -68,9 +74,11 @@ export default function ProgramsSection() {
             key={`${selected.label}-${idx}`}
             className="font-visf-text flex flex-col lg:flex-row gap-4 lg:gap-10 items-start"
           >
-            <div className="w-[160px] h-[237px] lg:w-[235px] lg:h-[349px] lg:shrink-0 overflow-hidden">
-              <img src="/banner.png" alt={film.name} className="w-full h-full object-cover" />
-            </div>
+            {showPoster && (
+              <div className="w-[160px] h-[237px] lg:w-[235px] lg:h-[349px] lg:shrink-0 overflow-hidden">
+                <img src="/banner.png" alt={film.name} className="w-full h-full object-cover" />
+              </div>
+            )}
 
             <div className="text-left space-y-2 max-w-sm lg:max-w-[900px]">
               <p className="font-bold text-base sm:text-lg lg:text-[20px] leading-snug">
