@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "submitFilm": "Iscrivi il tuo film",
+    "officialSelection": "Selezione Ufficiale",
+    "onlineSessions": "Sessioni Online",
+    "meetTheJury": "La Giuria",
+    "categories": "Categorie",
+    "gallery": "Galleria"
+  },
+  "header": {
+    "openMenu": "Apri il menu",
+    "closeMenu": "Chiudi",
+    "backToHome": "VISF — Torna alla home",
+    "logoAlt": "VISF — Verona International Short Film Festival"
+  },
+  "footer": {
+    "rules": "REGOLAMENTO",
+    "contactUs": "CONTATTI"
+  },
+  "cta": {
+    "submitFilm": "ISCRIVI IL TUO FILM",
+    "tickets": "BIGLIETTI"
+  },
+  "common": {
+    "nextEdition": "PROSSIMA EDIZIONE",
+    "intro": "INTRO"
+  },
+  "home": {
+    "heroLine1": "Iscrizioni",
+    "heroLine2": "Aperte",
+    "introHeadlineLine1": "DOVE",
+    "introHeadlineLine2": "IL",
+    "introHeadlineAccent": "CINEMA",
+    "introHeadlineLine3Rest": "INDIPENDENTE TROVA IL SUO",
+    "introHeadlineLine4": "PUBBLICO",
+    "introSubmitLine1": "ISCRIVI",
+    "introSubmitLine2": "IL TUO FILM",
+    "officialSelectionCardLine1": "SELEZIONE",
+    "officialSelectionCardAccent": "UFFICIALE",
+    "onlineSessionsCardAccentVisf": "VISF",
+    "onlineSessionsCardLine1Rest": "SESSIONI",
+    "onlineSessionsCardLine2": "ONLINE",
+    "videoBannerHeadline": "ISCRIVI IL TUO FILM ORA",
+    "competitionsTitleLine1": "COMPETIZIONI",
+    "competitionsTitleLine2": "PRINCIPALI",
+    "categoriesTitleLine1": "CATEGORIE",
+    "categoriesTitleLine2": "TECNICHE E PERFORMATIVE",
+    "viewGalleryAriaLabel": "Vai alla galleria"
+  },
+  "jury": {
+    "headingAccent": "INCONTRA",
+    "headingRest": "LA GIURIA",
+    "intro": "La nostra prestigiosa giuria riunisce leader del settore, visionari creativi e professionisti esperti provenienti dal mondo del design e dell'innovazione. Ogni giurato è stato selezionato con cura per la propria competenza, i propri risultati e l'impegno nel riconoscere lavori eccellenti.\n\nGrazie a prospettive diverse e a una conoscenza approfondita, valuteranno ogni candidatura in base a creatività, originalità, esecuzione, impatto ed eccellenza, garantendo un processo di giudizio equo e trasparente. La loro esperienza collettiva contribuisce a celebrare i progetti e i talenti che stanno plasmando il futuro del settore."
+  },
+  "winnersPage": {
+    "titleLine1": "ELENCO DEI",
+    "titleAccent": "VINCITORI"
+  },
+  "officialSelectionPage": {
+    "h1Line1": "SELEZIONE",
+    "h1Accent": "UFFICIALE",
+    "shortFilmsCardLine1": "SELEZIONE UFFICIALE",
+    "shortFilmsCardLine2": "CORTOMETRAGGI",
+    "screeningScheduleCardLine1": "PROGRAMMA",
+    "screeningScheduleCardLine2": "PROIEZIONI",
+    "winnersCard": "VINCITORI"
+  },
+  "onlineSessionsPage": {
+    "h1Line1": "SESSIONI",
+    "h1Accent": "ONLINE",
+    "lineUpCardLine1": "SESSIONI",
+    "lineUpCardLine2": "ONLINE",
+    "lineUpCardLine3": "LINE UP",
+    "screeningScheduleCardLine1": "PROGRAMMA",
+    "screeningScheduleCardLine2": "PROIEZIONI",
+    "joinScreeningCardLine1": "PARTECIPA ALLA",
+    "joinScreeningCardLine2": "PROIEZIONE"
+  },
+  "onlineScreeningSchedulePage": {
+    "h1Line1": "PROGRAMMA",
+    "h1Line2": "PROIEZIONI",
+    "h1Accent": "ONLINE"
+  },
+  "onlineSessionsLineUpPage": {
+    "h1Line1": "SESSIONI",
+    "h1Line2": "ONLINE",
+    "h1Accent": "LINE UP"
+  },
+  "screeningSchedulePage": {
+    "h1Line1": "PROGRAMMA",
+    "h1Accent": "PROIEZIONI"
+  },
+  "shortFilmsPage": {
+    "h1Line1": "SESSIONI",
+    "h1Accent": "LINE UP"
+  }
+}

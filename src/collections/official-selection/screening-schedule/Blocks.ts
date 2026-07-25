@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const ScreeningBlocks: CollectionConfig = {
   slug: "screening-blocks",
@@ -34,6 +35,7 @@ export const ScreeningBlocks: CollectionConfig = {
       type: "text",
       required: true,
       label: "Block Title",
+      localized: true,
     },
     {
       name: "date",
@@ -68,10 +70,14 @@ export const ScreeningBlocks: CollectionConfig = {
           type: "text",
           required: true,
           label: "Title",
+          localized: true,
         },
       ],
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default ScreeningBlocks;

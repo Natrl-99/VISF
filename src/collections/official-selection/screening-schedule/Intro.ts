@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const ScreeningIntro: CollectionConfig = {
   slug: "screening-intro",
@@ -37,8 +38,12 @@ export const ScreeningIntro: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Intro Text",
+      localized: true,
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default ScreeningIntro;

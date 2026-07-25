@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const ShortFilmsIntro: CollectionConfig = {
   slug: "short-films-intro",
@@ -37,8 +38,12 @@ export const ShortFilmsIntro: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Intro Text",
+      localized: true,
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default ShortFilmsIntro;

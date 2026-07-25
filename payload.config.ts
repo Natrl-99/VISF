@@ -58,6 +58,10 @@ export default buildConfig({
     },
   },
   secret: process.env.PAYLOAD_SECRET || "",
+  localization: {
+    locales: ["en", "it"],
+    defaultLocale: "en",
+  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",

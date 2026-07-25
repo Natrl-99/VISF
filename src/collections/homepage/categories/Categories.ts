@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const Categories: CollectionConfig = {
   slug: "categories",
@@ -28,6 +29,7 @@ export const Categories: CollectionConfig = {
       type: "text",
       required: true,
       label: "Category Name",
+      localized: true,
     },
     {
       name: "isActive",
@@ -39,6 +41,9 @@ export const Categories: CollectionConfig = {
       }
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default Categories;

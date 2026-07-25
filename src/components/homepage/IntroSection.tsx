@@ -2,8 +2,11 @@ import Link from 'next/link'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
 import SubmitFilmButton from '@/components/ui/SubmitFilmButton'
 import SectionIntroText from '@/components/ui/SectionIntroText'
+import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 type IntroSectionProps = {
+  lang: string
+  dict: Dictionary
   imageUrl: string
   dateLabel: string
   locationLabel: string
@@ -11,6 +14,8 @@ type IntroSectionProps = {
 }
 
 export default function IntroSection({
+  lang,
+  dict,
   imageUrl,
   dateLabel,
   locationLabel,
@@ -20,20 +25,21 @@ export default function IntroSection({
     <section className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-8 sm:pr-12 lg:pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[32px] sm:text-[40px] lg:text-[48px] font-medium leading-[1.02] mb-5 uppercase">
-          WHERE
+          {dict.home.introHeadlineLine1}
           <br />
-          INDEPENDENT
+          {dict.home.introHeadlineLine2}
           <br />
-          <span className="text-visf-accent uppercase">CINEMA</span> FINDS ITS
+          <span className="text-visf-accent uppercase">{dict.home.introHeadlineAccent}</span>{' '}
+          {dict.home.introHeadlineLine3Rest}
           <br />
-          AUDIENCE
+          {dict.home.introHeadlineLine4}
         </h2>
 
         <SectionIntroText text={introText} className="mb-6" />
 
         <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
-          <span className="block whitespace-nowrap">SUBMIT</span>
-          <span className="block whitespace-nowrap">YOUR FILM</span>
+          <span className="block whitespace-nowrap">{dict.home.introSubmitLine1}</span>
+          <span className="block whitespace-nowrap">{dict.home.introSubmitLine2}</span>
         </SubmitFilmButton>
       </div>
 
@@ -53,7 +59,11 @@ export default function IntroSection({
             {locationLabel}
           </p>
         </div>
-        <Link href="/gallery" className="absolute inset-0" aria-label="View gallery" />
+        <Link
+          href={`/${lang}/gallery`}
+          className="absolute inset-0"
+          aria-label={dict.home.viewGalleryAriaLabel}
+        />
       </div>
     </section>
   )

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 import path from "path";
 import os from "os";
 import fs from "fs/promises";
@@ -58,7 +59,7 @@ export const Video: CollectionConfig = {
     bulkUpload: false,
   },
   fields: [
-    { name: "title", type: "text", required: true, label: "Title" },
+    { name: "title", type: "text", required: true, label: "Title", localized: true },
     {
       name: "thumbnail",
       type: "upload",
@@ -72,6 +73,7 @@ export const Video: CollectionConfig = {
   ],
   hooks: {
     afterChange: [
+      createDeepLAutofillHook(),
       async ({ doc, previousDoc, req, context }) => {
         if (
           context?.skipThumbnailGeneration ||

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const Competition: CollectionConfig = {
   slug: "competition",
@@ -24,6 +25,7 @@ export const Competition: CollectionConfig = {
       type: "text",
       required: true,
       label: "Competition Name",
+      localized: true,
     },
     {
       name: "isActive",
@@ -35,6 +37,9 @@ export const Competition: CollectionConfig = {
       }
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default Competition;

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const OnlineScheduleIntro: CollectionConfig = {
   slug: "online-schedule-intro",
@@ -37,8 +38,12 @@ export const OnlineScheduleIntro: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Intro Text",
+      localized: true,
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default OnlineScheduleIntro;

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Stack_Sans_Text } from 'next/font/google'
-import './../globals.css'
+import { notFound } from 'next/navigation'
+import { hasLocale } from './dictionaries'
+import './../../globals.css'
 
 
 const stackSansText = Stack_Sans_Text({
@@ -15,13 +17,15 @@ export const metadata: Metadata = {
   description: 'Where independent cinema finds its audience.',
 }
 
-export default function FrontendLayout({
+export default async function FrontendLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+  params,
+}: LayoutProps<'/[lang]'>) {
+  const { lang } = await params
+  if (!hasLocale(lang)) notFound()
+
   return (
-    <html lang="en" className={stackSansText.variable}>
+    <html lang={lang} className={stackSansText.variable}>
       <body suppressHydrationWarning>{children}</body>
     </html>
   )

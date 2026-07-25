@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { validateEndDateAfterInitialDate } from "@/lib/validateDateRange";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const DateEvent: CollectionConfig = {
   slug: "date-event",
@@ -29,6 +30,7 @@ export const DateEvent: CollectionConfig = {
       type: "text",
       required: true,
       label: "Name",
+      localized: true,
     },
     {
       name: "initialDate",
@@ -54,6 +56,7 @@ export const DateEvent: CollectionConfig = {
       type: "text",
       required: true,
       label: "City",
+      localized: true,
     },
     {
       name: "country",
@@ -62,6 +65,9 @@ export const DateEvent: CollectionConfig = {
       label: "Country",
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default DateEvent;
