@@ -7,6 +7,15 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
     group: 'Admin',
   },
+  // Restricted to admins only — editors shouldn't see or manage the Users
+  // collection at all, which also hides the "Admin" group from the
+  // dashboard/nav for them (Payload only lists entities the user can read).
+  access: {
+    read: ({ req }) => req.user?.role === 'admin',
+    create: ({ req }) => req.user?.role === 'admin',
+    update: ({ req }) => req.user?.role === 'admin',
+    delete: ({ req }) => req.user?.role === 'admin',
+  },
   fields: [
     {
       name: 'role',

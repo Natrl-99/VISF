@@ -2,7 +2,20 @@ import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import ScreeningBlock from '@/components/screening-schedule/ScreeningBlock'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
-import type { PayloadSponsor } from '@/types/cms'
+import type { PayloadSponsor, PayloadScreeningIntro, PayloadScreeningBlock } from '@/types/cms'
+
+// screening-blocks stores "date" and "time" as full ISO datetime strings
+// (Payload's day-only/time-only pickers only affect admin UI, not storage),
+// so they need reformatting into the short display form used on the card.
+function formatBlockDate(iso: string): string {
+  const date = new Date(iso)
+  return `${date.getUTCDate()} ${date.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' }).toLowerCase()}`
+}
+
+function formatBlockTime(iso: string): string {
+  const date = new Date(iso)
+  return `${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`
+}
 
 export default async function ScreeningSchedulePage() {
   const payload = await getPayloadClient()
@@ -19,6 +32,24 @@ export default async function ScreeningSchedulePage() {
     websiteUrl: doc.websiteUrl,
   }))
 
+  const introResult = await payload.find({
+    collection: 'screening-intro',
+    limit: 1,
+    depth: 0,
+  })
+
+  const introDoc = (introResult.docs as PayloadScreeningIntro[])[0]
+  const introText = introDoc?.text ?? ''
+
+  const blocksResult = await payload.find({
+    collection: 'screening-blocks',
+    sort: 'date',
+    depth: 0,
+    limit: 0,
+  })
+
+  const blocksData = blocksResult.docs as PayloadScreeningBlock[]
+
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <div className="flex-1">
@@ -31,45 +62,20 @@ export default async function ScreeningSchedulePage() {
         </h1>
 
         <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
-          Our upcoming LIVE EVENT will take place in November 2026, at the Cinema in Verona
+          {introText}
         </p>
 
         <section className="mt-8 lg:mt-14 pb-8 lg:pb-14 flex flex-col gap-8 lg:gap-10">
-          <ScreeningBlock
-            chapterLabel="Chapter 1"
-            blockName="Innocence"
-            date="12 july"
-            time="11:30"
-            movies={[
-              'The Spectacle',
-              'Attock',
-              'Baby Boy',
-              'Shutterspeed',
-              'Bird Boy',
-              'Hometime',
-              'Mania',
-              'Polliwog',
-              'Bench',
-              'Waiting To Be Picked Up',
-            ]}
-          />
-
-          <ScreeningBlock
-            chapterLabel="Chapter 2"
-            blockName="Bravery"
-            date="28 july"
-            time="14:45"
-            movies={[
-              'J.J',
-              'Marta',
-              'Rester',
-              'I Felt I Had To Be Here',
-              'Horizon',
-              'Those Who Move',
-              'In The Box',
-              'Monsieur Figaro',
-            ]}
-          />
+          {blocksData.map((block) => (
+            <ScreeningBlock
+              key={block.id}
+              chapterLabel={block.name}
+              blockName={block.title}
+              date={formatBlockDate(block.date)}
+              time={formatBlockTime(block.time)}
+              movies={block.movies.map((movie) => movie.title)}
+            />
+          ))}
         </section>
       </div>
 

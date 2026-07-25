@@ -44,10 +44,16 @@ import ScreeningBlocks from "@/collections/official-selection/screening-schedule
 export default buildConfig({
   admin: {
     user: Users.slug,
+    theme: "light",
     components: {
       graphics: {
         Logo: "@/app/(payload)/admin/components/Logo#Logo",
         Icon: "@/app/(payload)/admin/components/Icon#Icon",
+      },
+      views: {
+        dashboard: {
+          Component: "@/app/(payload)/admin/components/Dashboard#Dashboard",
+        },
       },
     },
   },
@@ -61,14 +67,14 @@ export default buildConfig({
   collections: [
     Users,
     Media,
-    Jury,
-    Gallery,
-    Sponsors,
     Introduction,
     DateEvent,
     Video,
-    Competition,
+    Jury,
     Categories,
+    Competition,
+    Sponsors,
+    Gallery,
     Winners,
     NextEdition,
     OnlineSessionsIntro,

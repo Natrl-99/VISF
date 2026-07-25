@@ -3,14 +3,14 @@ import type { CollectionConfig } from "payload";
 export const OnlineScheduleIntro: CollectionConfig = {
   slug: "online-schedule-intro",
   labels: {
-    singular: "Schedule - Introduction",
-    plural: "Schedule - Introduction",
+    singular: "Online Screening Schedule - Introduction",
+    plural: "Online Screening Schedule - Introduction",
   },
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label"],
     description: "Intro text shown at the top of the Online Screening Schedule page.",
-    group: "Online Screening Schedule",
+    group: "Online Sessions",
   },
   access: {
     read: () => true,

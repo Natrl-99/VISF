@@ -2,9 +2,13 @@ import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import ScreeningBlock from '@/components/screening-schedule/ScreeningBlock'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
-import type { PayloadSponsor } from '@/types/cms'
+import type {
+  PayloadSponsor,
+  PayloadOnlineScheduleIntro,
+  PayloadOnlineScheduleBlock,
+} from '@/types/cms'
 
-export default async function ScreeningSchedulePage() {
+export default async function OnlineScreeningSchedulePage() {
   const payload = await getPayloadClient()
 
   const sponsorsResult = await payload.find({
@@ -18,6 +22,23 @@ export default async function ScreeningSchedulePage() {
     logoUrl: typeof doc.logo === 'object' && doc.logo?.url ? doc.logo.url : null,
     websiteUrl: doc.websiteUrl,
   }))
+
+  const introResult = await payload.find({
+    collection: 'online-schedule-intro',
+    limit: 1,
+    depth: 0,
+  })
+
+  const introDoc = (introResult.docs as PayloadOnlineScheduleIntro[])[0]
+  const introText = introDoc?.text ?? ''
+
+  const blocksResult = await payload.find({
+    collection: 'online-schedule-blocks',
+    depth: 0,
+    limit: 0,
+  })
+
+  const blocksData = blocksResult.docs as PayloadOnlineScheduleBlock[]
 
   return (
     <main className="bg-white min-h-screen flex flex-col">
@@ -33,41 +54,18 @@ export default async function ScreeningSchedulePage() {
         </h1>
 
         <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
-          Our upcoming LIVE EVENT will take place in November 2026, at the Cinema in Verona
+          {introText}
         </p>
 
         <section className="mt-8 lg:mt-14 pb-8 lg:pb-14 flex flex-col gap-8 lg:gap-10">
-          <ScreeningBlock
-            chapterLabel="Chapter 1"
-            blockName="Innocence"
-            movies={[
-              'The Spectacle',
-              'Attock',
-              'Baby Boy',
-              'Shutterspeed',
-              'Bird Boy',
-              'Hometime',
-              'Mania',
-              'Polliwog',
-              'Bench',
-              'Waiting To Be Picked Up',
-            ]}
-          />
-
-          <ScreeningBlock
-            chapterLabel="Chapter 2"
-            blockName="Bravery"
-            movies={[
-              'J.J',
-              'Marta',
-              'Rester',
-              'I Felt I Had To Be Here',
-              'Horizon',
-              'Those Who Move',
-              'In The Box',
-              'Monsieur Figaro',
-            ]}
-          />
+          {blocksData.map((block) => (
+            <ScreeningBlock
+              key={block.id}
+              chapterLabel={block.name}
+              blockName={block.title}
+              movies={block.movies.map((movie) => movie.title)}
+            />
+          ))}
         </section>
       </div>
 

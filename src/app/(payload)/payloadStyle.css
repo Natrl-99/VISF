@@ -2,3 +2,57 @@
 @import "tailwindcss/utilities.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*
+  Re-hues Payload's default "success" color scale (its primary interactive
+  color — buttons, active nav, focus rings) from ~199deg to 210deg, matching
+  --color-visf-accent's hue (see globals.css). Saturation is scaled down
+  slightly (x0.9) to read closer to VISF's pastel brand tone. Payload's
+  original lightness curve per stop is kept untouched so button/focus
+  contrast stays exactly as accessible as stock Payload.
+
+  This block is intentionally NOT inside a `@layer` — Payload's own
+  definitions live in `@layer payload-default`, and unlayered CSS always
+  wins over layered CSS regardless of source order, so this overrides both
+  light and dark admin themes without needing a dark-mode-specific block
+  (dark mode just re-indexes these same --color-success-* stops).
+*/
+:root {
+  --color-success-50: rgb(238, 243, 248);
+  --color-success-100: rgb(219, 232, 247);
+  --color-success-150: rgb(191, 214, 245);
+  --color-success-200: rgb(161, 199, 248);
+  --color-success-250: rgb(131, 182, 242);
+  --color-success-300: rgb(104, 164, 234);
+  --color-success-350: rgb(74, 147, 227);
+  --color-success-400: rgb(45, 130, 214);
+  --color-success-450: rgb(27, 114, 195);
+  --color-success-500: rgb(29, 105, 178);
+  --color-success-550: rgb(20, 92, 160);
+  --color-success-600: rgb(18, 84, 146);
+  --color-success-650: rgb(17, 74, 129);
+  --color-success-700: rgb(22, 69, 116);
+  --color-success-750: rgb(21, 60, 101);
+  --color-success-800: rgb(22, 53, 86);
+  --color-success-850: rgb(21, 46, 73);
+  --color-success-900: rgb(21, 37, 56);
+  --color-success-950: rgb(23, 30, 38);
+}
+
+/*
+  Payload's primary buttons (Save, Create, etc.) don't use --theme-success
+  at all — .btn--style-primary sets its own local --bg-color/--color from
+  the neutral --theme-elevation-* scale (see @payloadcms/ui's Button
+  component CSS). This is the actual visible "brand color" surface, so it
+  needs its own override on top of the --color-success-* rehue above.
+
+  --theme-success-500 is used (not a literal hex) because it isn't
+  redefined in Payload's dark-theme block, so it resolves to the same
+  value in light and dark mode — safe to pair with a hardcoded white
+  --color without needing a separate dark-mode override.
+*/
+.btn--style-primary {
+  --bg-color: var(--theme-success-500);
+  --hover-bg: var(--theme-success-450);
+  --color: #fff;
+}
