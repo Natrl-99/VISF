@@ -3,15 +3,15 @@ import type { CollectionConfig } from "payload";
 export const OnlineScheduleBlocks: CollectionConfig = {
   slug: "online-schedule-blocks",
   labels: {
-    singular: "Schedule - Block",
-    plural: "Schedule - Blocks",
+    singular: "Online Screening Schedule - Block",
+    plural: "Online Screening Schedule - Blocks",
   },
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "title"],
     description:
       "Blocks for the Online Screening Schedule page. The order field determines the order of the blocks.",
-    group: "Online Screening Schedule",
+    group: "Online Sessions",
   },
   access: {
     read: () => true,

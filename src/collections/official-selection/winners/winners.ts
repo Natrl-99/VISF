@@ -4,7 +4,7 @@ export const Winners: CollectionConfig = {
   slug: "winners",
   labels: {
     singular: "Winners Year",
-    plural: "List of Winners",
+    plural: "Winners - List of Winners",
   },
   admin: {
     useAsTitle: "year",

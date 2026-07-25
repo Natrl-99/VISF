@@ -9,7 +9,10 @@ import VideoBanner from "@/components/homepage/VideoBanner";
 import JurySection, {
   type JuryMember as JuryMemberProp,
 } from "@/components/homepage/JurySection";
-import CompetitionsSection from "@/components/homepage/CompetitionsSection";
+import CompetitionsSection, {
+  type Competition as CompetitionProp,
+  type Category as CategoryProp,
+} from "@/components/homepage/CompetitionsSection";
 import { getPayloadClient } from "@/lib/fetchFromCMS";
 // Tipos escritos a mano — alternativa temporal mientras se resuelve el
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
@@ -20,6 +23,8 @@ import type {
   PayloadSponsor,
   PayloadDateEvent,
   PayloadIntroduction,
+  PayloadCompetition,
+  PayloadCategory,
 } from "@/types/cms";
 
 const heroData = {
@@ -116,6 +121,38 @@ export default async function HomePage() {
     ? { id: String(introDoc.id), text: introDoc.text }
     : { id: "", text: "" };
 
+  // --- Main competitions ---
+  const competitionsResult = await payload.find({
+    collection: "competition",
+    where: { isActive: { equals: true } },
+    depth: 0,
+    limit: 0,
+  });
+
+  const competitionsData: CompetitionProp[] = (
+    competitionsResult.docs as PayloadCompetition[]
+  ).map((doc) => ({
+    id: String(doc.id),
+    name: doc.name,
+    isActive: doc.isActive,
+  }));
+
+  // --- Technical and performance categories ---
+  const categoriesResult = await payload.find({
+    collection: "categories",
+    where: { isActive: { equals: true } },
+    depth: 0,
+    limit: 0,
+  });
+
+  const categoriesData: CategoryProp[] = (
+    categoriesResult.docs as PayloadCategory[]
+  ).map((doc) => ({
+    id: String(doc.id),
+    name: doc.name,
+    isActive: doc.isActive,
+  }));
+
   return (
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
@@ -157,7 +194,10 @@ export default async function HomePage() {
 
       <JurySection members={juryData} />
 
-      <CompetitionsSection />
+      <CompetitionsSection
+        competitions={competitionsData}
+        categories={categoriesData}
+      />
 
       <Footer sponsors={sponsorsData} />
     </main>
