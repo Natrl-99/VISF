@@ -19,8 +19,10 @@ export default async function ScreeningSchedulePage() {
   }))
 
   return (
-    <main className="bg-white">
-      <Header />
+    <main className="bg-white min-h-screen flex flex-col">
+      <div className="flex-1">
+        <Header />
+      </div>
       <Footer sponsors={sponsorsData} />
     </main>
   )
