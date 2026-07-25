@@ -1,8 +1,8 @@
 type ScreeningBlockProps = {
   chapterLabel: string
   blockName: string
-  date: string
-  time: string
+  date?: string
+  time?: string
   movies: string[]
 }
 
@@ -25,13 +25,17 @@ export default function ScreeningBlock({
       </div>
 
       <div className="text-left space-y-4">
-        <p className="uppercase font-bold text-base sm:text-lg lg:text-[30px] leading-snug lg:leading-[24px]">
-          {date}
-        </p>
-        <p className="font-bold text-base sm:text-lg lg:text-[30px] leading-snug lg:leading-[24px]">
-          {time}
-        </p>
-        <p className="font-extralight text-sm sm:text-base lg:text-[25px] leading-relaxed lg:leading-[24px]">
+        {date && (
+          <p className="uppercase font-bold text-base sm:text-lg lg:text-[30px] leading-snug lg:leading-[24px]">
+            {date}
+          </p>
+        )}
+        {time && (
+          <p className="font-bold text-base sm:text-lg lg:text-[30px] leading-snug lg:leading-[24px]">
+            {time}
+          </p>
+        )}
+        <p className="font-extralight text-sm sm:text-base lg:text-[25px] leading-loose lg:leading-[40px]">
           {movies.map((movie, index) => (
             <span key={movie}>
               {movie}
