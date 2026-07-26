@@ -128,12 +128,14 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
     dateEventsResult.docs as PayloadDateEvent[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name,
+    name: doc.name ?? "",
     initialDate: doc.initialDate,
     endDate: doc.endDate,
-    city: doc.city,
+    city: doc.city ?? "",
     country: doc.country,
   }));
+
+  const dateEventDoc = dateEventsData[0];
 
   const introDoc = (introResult.docs as PayloadIntroduction[])[0];
 
@@ -170,12 +172,13 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         lang={lang}
         dict={dict}
         imageUrl={introSectionData.imageUrl}
-        dateLabel={formatDateEventRange(
-          dateEventsData[0].initialDate,
-          dateEventsData[0].endDate,
-        )}
+        dateLabel={
+          dateEventDoc
+            ? formatDateEventRange(dateEventDoc.initialDate, dateEventDoc.endDate)
+            : ""
+        }
         locationLabel={
-          dateEventsData[0].city + ", " + dateEventsData[0].country
+          dateEventDoc ? dateEventDoc.city + ", " + dateEventDoc.country : ""
         }
         introText={introData.text}
       />
