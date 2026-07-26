@@ -15,6 +15,7 @@ import CompetitionsSection, {
 } from "@/components/homepage/CompetitionsSection";
 import { getPayloadClient } from "@/lib/fetchFromCMS";
 import { formatDateEventRange } from "@/lib/formatDateEventRange";
+import { getDictionary, type Locale } from "./dictionaries";
 // Tipos escritos a mano — alternativa temporal mientras se resuelve el
 // bug de `payload generate:types` en Windows (ver types/cms.ts para más
 // contexto). Cuando el archivo autogenerado esté disponible, se reemplaza
@@ -37,35 +38,81 @@ const introSectionData = {
 };
 
 const videoBannerData = {
-  headline: "SUBMIT YOUR FILM NOW",
   posterUrl: "https://picsum.photos/seed/visf-video/1600/700?grayscale",
   videoUrl: null as string | null,
 };
 
-export default async function HomePage() {
+export default async function HomePage({ params }: PageProps<'/[lang]'>) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
   const payload = await getPayloadClient();
 
-  // --- Jurado real ---
-  const juryResult = await payload.find({
-    collection: "jury-members",
-    depth: 1, // para que "photo" venga con la URL ya resuelta, no solo el ID
-  });
+  type DateEventProp = {
+    id: string;
+    name: string;
+    initialDate: string;
+    endDate: string;
+    city: string;
+    country: string;
+  };
+
+  type IntroProp = {
+    id: string;
+    text: string;
+  };
+
+  // Independent queries — run in parallel instead of paying for 6 sequential
+  // round trips to the DB on every request.
+  const [juryResult, sponsorsResult, dateEventsResult, introResult, competitionsResult, categoriesResult] =
+    await Promise.all([
+      payload.find({
+        collection: "jury-members",
+        depth: 1, // para que "photo" venga con la URL ya resuelta, no solo el ID
+        sort: "createdAt",
+        locale: lang,
+      }),
+      payload.find({
+        collection: "sponsors",
+        depth: 1,
+        locale: lang,
+      }),
+      payload.find({
+        collection: "date-event",
+        sort: "initialDate",
+        depth: 0,
+        locale: lang,
+      }),
+      payload.find({
+        collection: "introduction",
+        limit: 1,
+        depth: 0,
+        locale: lang,
+      }),
+      payload.find({
+        collection: "competition",
+        where: { isActive: { equals: true } },
+        depth: 0,
+        limit: 0,
+        locale: lang,
+      }),
+      payload.find({
+        collection: "categories",
+        where: { isActive: { equals: true } },
+        depth: 0,
+        limit: 0,
+        locale: lang,
+      }),
+    ]);
 
   const juryData: JuryMemberProp[] = (
     juryResult.docs as PayloadJuryMember[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name,
-    bio: doc.bio,
+    name: doc.name ?? "",
+    bio: doc.bio ?? "",
     photoUrl:
       typeof doc.photo === "object" && doc.photo?.url ? doc.photo.url : "",
   }));
-
-  // --- Patrocinadores reales ---
-  const sponsorsResult = await payload.find({
-    collection: "sponsors",
-    depth: 1,
-  });
 
   const sponsorsData: SponsorProp[] = (
     sponsorsResult.docs as PayloadSponsor[]
@@ -77,80 +124,38 @@ export default async function HomePage() {
     websiteUrl: doc.websiteUrl,
   }));
 
-  // --- Próximas fechas de evento, ordenadas por fecha inicial ---
-  type DateEventProp = {
-    id: string;
-    name: string;
-    initialDate: string;
-    endDate: string;
-    city: string;
-    country: string;
-  };
-
-  const dateEventsResult = await payload.find({
-    collection: "date-event",
-    sort: "initialDate",
-    depth: 0,
-  });
-
   const dateEventsData: DateEventProp[] = (
     dateEventsResult.docs as PayloadDateEvent[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name,
+    name: doc.name ?? "",
     initialDate: doc.initialDate,
     endDate: doc.endDate,
-    city: doc.city,
+    city: doc.city ?? "",
     country: doc.country,
   }));
 
-  // ---- Introducción del festival (texto) ----
-  type IntroProp = {
-    id: string;
-    text: string;
-  };
-
-  const introResult = await payload.find({
-    collection: "introduction",
-    limit: 1,
-    depth: 0,
-  });
+  const dateEventDoc = dateEventsData[0];
 
   const introDoc = (introResult.docs as PayloadIntroduction[])[0];
 
   const introData: IntroProp = introDoc
-    ? { id: String(introDoc.id), text: introDoc.text }
+    ? { id: String(introDoc.id), text: introDoc.text ?? "" }
     : { id: "", text: "" };
-
-  // --- Main competitions ---
-  const competitionsResult = await payload.find({
-    collection: "competition",
-    where: { isActive: { equals: true } },
-    depth: 0,
-    limit: 0,
-  });
 
   const competitionsData: CompetitionProp[] = (
     competitionsResult.docs as PayloadCompetition[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name,
+    name: doc.name ?? "",
     isActive: doc.isActive,
   }));
-
-  // --- Technical and performance categories ---
-  const categoriesResult = await payload.find({
-    collection: "categories",
-    where: { isActive: { equals: true } },
-    depth: 0,
-    limit: 0,
-  });
 
   const categoriesData: CategoryProp[] = (
     categoriesResult.docs as PayloadCategory[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name,
+    name: doc.name ?? "",
     isActive: doc.isActive,
   }));
 
@@ -158,42 +163,48 @@ export default async function HomePage() {
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
         {/*Navbar*/}
-        <Header />
+        <Header lang={lang} dict={dict} />
         {/*Hero Banner*/}
-        <Hero imageUrl={heroData.imageUrl} sponsors={sponsorsData} />
+        <Hero imageUrl={heroData.imageUrl} sponsors={sponsorsData} dict={dict} />
       </section>
 
       <IntroSection
+        lang={lang}
+        dict={dict}
         imageUrl={introSectionData.imageUrl}
-        dateLabel={formatDateEventRange(
-          dateEventsData[0].initialDate,
-          dateEventsData[0].endDate,
-        )}
+        dateLabel={
+          dateEventDoc
+            ? formatDateEventRange(dateEventDoc.initialDate, dateEventDoc.endDate)
+            : ""
+        }
         locationLabel={
-          dateEventsData[0].city + ", " + dateEventsData[0].country
+          dateEventDoc ? dateEventDoc.city + ", " + dateEventDoc.country : ""
         }
         introText={introData.text}
       />
 
       <OfficialSelectionOnlineSessions
+        lang={lang}
+        dict={dict}
         officialSelectionImageUrl="/banner.png"
         onlineSessionsImageUrl="/banner.png"
       />
 
       <VideoBanner
-        headline={videoBannerData.headline}
+        headline={dict.home.videoBannerHeadline}
         posterUrl={videoBannerData.posterUrl}
         videoUrl={videoBannerData.videoUrl}
       />
 
-      <JurySection members={juryData} />
+      <JurySection members={juryData} dict={dict} />
 
       <CompetitionsSection
         competitions={competitionsData}
         categories={categoriesData}
+        dict={dict}
       />
 
-      <Footer sponsors={sponsorsData} />
+      <Footer sponsors={sponsorsData} dict={dict} />
     </main>
   );
 }

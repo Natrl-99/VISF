@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 import { createMediaFolderHook } from "@/lib/autoTagMediaFolder";
 import { createMediaCleanupHook, createMediaCleanupOnDeleteHook } from "@/lib/cleanupOrphanedMedia";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const Jury: CollectionConfig = {
   slug: "jury-members",
@@ -26,12 +27,14 @@ export const Jury: CollectionConfig = {
       type: "text",
       required: true,
       label: "Name",
+      localized: true,
     },
     {
       name: "bio",
       type: "textarea",
       required: true,
       label: "Biography",
+      localized: true,
     },
     {
       name: "photo",
@@ -45,7 +48,7 @@ export const Jury: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createMediaFolderHook("photo", "jury"), createMediaCleanupHook("photo")],
+    afterChange: [createDeepLAutofillHook(), createMediaFolderHook("photo", "jury"), createMediaCleanupHook("photo")],
     afterDelete: [createMediaCleanupOnDeleteHook("photo")],
   },
 };

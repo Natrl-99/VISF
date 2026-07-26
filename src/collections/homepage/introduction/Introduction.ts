@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const Introduction: CollectionConfig = {
   slug: "introduction",
@@ -28,8 +29,12 @@ export const Introduction: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Introduction Text",
+      localized: true,
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default Introduction;

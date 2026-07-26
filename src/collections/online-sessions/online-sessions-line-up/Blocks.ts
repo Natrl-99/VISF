@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { validateDurationFormat } from "@/lib/validateDuration";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const OnlineSessionsBlocks: CollectionConfig = {
   slug: "online-sessions-blocks",
@@ -35,6 +36,7 @@ export const OnlineSessionsBlocks: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Block Intro",
+      localized: true,
     },
     {
       name: "movies",
@@ -51,12 +53,14 @@ export const OnlineSessionsBlocks: CollectionConfig = {
           type: "text",
           required: true,
           label: "Title",
+          localized: true,
         },
         {
           name: "director",
           type: "text",
           required: true,
           label: "Director",
+          localized: true,
         },
         {
           name: "country",
@@ -79,10 +83,14 @@ export const OnlineSessionsBlocks: CollectionConfig = {
           type: "textarea",
           required: true,
           label: "Movie Description",
+          localized: true,
         },
       ],
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default OnlineSessionsBlocks;

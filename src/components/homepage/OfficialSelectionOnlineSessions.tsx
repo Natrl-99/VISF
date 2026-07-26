@@ -1,12 +1,17 @@
 import Link from 'next/link'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
+import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 type OfficialSelectionOnlineSessionsProps = {
+  lang: string
+  dict: Dictionary
   officialSelectionImageUrl: string
   onlineSessionsImageUrl: string
 }
 
 export default function OfficialSelectionOnlineSessions({
+  lang,
+  dict,
   officialSelectionImageUrl,
   onlineSessionsImageUrl,
 }: OfficialSelectionOnlineSessionsProps) {
@@ -14,7 +19,7 @@ export default function OfficialSelectionOnlineSessions({
     <section className="font-visf-headline px-[35px] pb-16 max-w-[1440px] mx-auto">
       <div className="flex flex-col sm:flex-row gap-[30px]">
         <Link
-          href="/official-selection"
+          href={`/${lang}/official-selection`}
           className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
         >
           <GrayscaleHoverImage
@@ -24,14 +29,14 @@ export default function OfficialSelectionOnlineSessions({
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
           <p className="absolute bottom-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
-            OFFICIAL
+            {dict.home.officialSelectionCardLine1}
             <br />
-            <span className="text-visf-accent">SELECTION</span>
+            <span className="text-visf-accent">{dict.home.officialSelectionCardAccent}</span>
           </p>
         </Link>
 
         <Link
-          href="/online-sessions"
+          href={`/${lang}/online-sessions`}
           className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
         >
           <GrayscaleHoverImage
@@ -41,9 +46,10 @@ export default function OfficialSelectionOnlineSessions({
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
           <p className="absolute top-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
-            <span className="text-visf-accent">VISF</span> ONLINE
+            <span className="text-visf-accent">{dict.home.onlineSessionsCardAccentVisf}</span>{' '}
+            {dict.home.onlineSessionsCardLine1Rest}
             <br />
-            SESSIONS
+            {dict.home.onlineSessionsCardLine2}
           </p>
         </Link>
       </div>

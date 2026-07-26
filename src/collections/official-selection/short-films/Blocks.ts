@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 import { createArrayMediaFolderHook } from "@/lib/autoTagMediaFolder";
 import { validateDurationFormat } from "@/lib/validateDuration";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 import {
   createArrayMediaCleanupHook,
   createArrayMediaCleanupOnDeleteHook,
@@ -40,6 +41,7 @@ export const ShortFilmsBlocks: CollectionConfig = {
       type: "textarea",
       required: true,
       label: "Block Intro",
+      localized: true,
     },
     {
       name: "movies",
@@ -56,6 +58,7 @@ export const ShortFilmsBlocks: CollectionConfig = {
           type: "text",
           required: true,
           label: "Title",
+          localized: true,
         },
         {
           name: "poster",
@@ -69,6 +72,7 @@ export const ShortFilmsBlocks: CollectionConfig = {
           type: "text",
           required: true,
           label: "Director",
+          localized: true,
         },
         {
           name: "country",
@@ -91,12 +95,14 @@ export const ShortFilmsBlocks: CollectionConfig = {
           type: "textarea",
           required: true,
           label: "Movie Description",
+          localized: true,
         },
       ],
     },
   ],
   hooks: {
     afterChange: [
+      createDeepLAutofillHook(),
       createArrayMediaFolderHook("movies", "poster", "posters"),
       createArrayMediaCleanupHook("movies", "poster"),
     ],

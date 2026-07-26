@@ -8,6 +8,7 @@ import ProgramsSection, {
 } from "@/components/short-films/ProgramsSection";
 import { getPayloadClient } from "@/lib/fetchFromCMS";
 import { formatEditionDateRange } from "@/lib/formatEditionDateRange";
+import { getDictionary, type Locale } from "../dictionaries";
 import type {
   PayloadSponsor,
   PayloadOnlineSessionsIntro,
@@ -15,13 +16,39 @@ import type {
   PayloadOnlineSessionsBlocks,
 } from "@/types/cms";
 
-export default async function OnlineSessionsLineUpPage() {
+export default async function OnlineSessionsLineUpPage({
+  params,
+}: PageProps<'/[lang]/online-sessions-line-up'>) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
   const payload = await getPayloadClient();
 
-  const sponsorsResult = await payload.find({
-    collection: "sponsors",
-    depth: 1,
-  });
+  const [sponsorsResult, nextEditionResult, introResult, blocksResult] = await Promise.all([
+    payload.find({
+      collection: "sponsors",
+      depth: 1,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "online-sessions-next-edition",
+      limit: 1,
+      depth: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "online-sessions-intro",
+      limit: 1,
+      depth: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "online-sessions-blocks",
+      depth: 0,
+      limit: 0,
+      sort: "createdAt",
+      locale: lang,
+    }),
+  ]);
 
   const sponsorsData: SponsorProp[] = (
     sponsorsResult.docs as PayloadSponsor[]
@@ -33,70 +60,51 @@ export default async function OnlineSessionsLineUpPage() {
     websiteUrl: doc.websiteUrl,
   }));
 
-  const nextEditionResult = await payload.find({
-    collection: "online-sessions-next-edition",
-    limit: 1,
-    depth: 0,
-  });
-
   const nextEditionDoc = (nextEditionResult.docs as PayloadNextEdition[])[0];
   const nextEditionLabel = nextEditionDoc
     ? formatEditionDateRange(nextEditionDoc.initialDate, nextEditionDoc.endDate)
     : "";
 
-  const introResult = await payload.find({
-    collection: "online-sessions-intro",
-    limit: 1,
-    depth: 0,
-  });
-
   const introDoc = (introResult.docs as PayloadOnlineSessionsIntro[])[0];
   const introText = introDoc?.text ?? "";
-
-  const blocksResult = await payload.find({
-    collection: "online-sessions-blocks",
-    depth: 0,
-    limit: 0,
-    sort: "createdAt",
-  });
 
   const programsData: Program[] = (
     blocksResult.docs as PayloadOnlineSessionsBlocks[]
   ).map((block) => ({
     id: String(block.id),
     label: block.name,
-    intro: block.intro,
+    intro: block.intro ?? "",
     films: block.movies.map((movie) => ({
       id: String(movie.id),
-      title: movie.title,
-      director: movie.director,
-      country: movie.country,
+      title: movie.title ?? "",
+      director: movie.director ?? "",
+      country: movie.country ?? "",
       duration: movie.duration,
-      description: movie.description,
+      description: movie.description ?? "",
     })),
   }));
 
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <div className="flex-1">
-        <Header />
+        <Header lang={lang} dict={dict} />
 
         <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
-          ONLINE
+          {dict.onlineSessionsLineUpPage.h1Line1}
           <br />
-          SESSIONS
+          {dict.onlineSessionsLineUpPage.h1Line2}
           <br />
-          <span className="text-visf-accent">LINE UP</span>
+          <span className="text-visf-accent">{dict.onlineSessionsLineUpPage.h1Accent}</span>
         </h1>
 
         <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
-          NEXT EDITION
+          {dict.common.nextEdition}
           <br />
           {nextEditionLabel}
         </p>
 
         <p className="font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[25px] lg:leading-[29px] whitespace-nowrap px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14">
-          INTRO
+          {dict.common.intro}
         </p>
 
         <SectionIntroTextWide
@@ -107,7 +115,7 @@ export default async function OnlineSessionsLineUpPage() {
         <ProgramsSection programs={programsData} showPoster={false} />
       </div>
 
-      <Footer sponsors={sponsorsData} />
+      <Footer sponsors={sponsorsData} dict={dict} />
     </main>
   );
 }

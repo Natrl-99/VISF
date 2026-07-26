@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { createMediaFolderHook } from '@/lib/autoTagMediaFolder'
 import { createMediaCleanupHook, createMediaCleanupOnDeleteHook } from '@/lib/cleanupOrphanedMedia'
+import { createDeepLAutofillHook } from '@/lib/deeplAutofillHook'
 
 export const Sponsors: CollectionConfig = {
   slug: 'sponsors',
@@ -26,6 +27,7 @@ export const Sponsors: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Sponsor Name',
+      localized: true,
     },
     {
       name: 'logo',
@@ -44,7 +46,7 @@ export const Sponsors: CollectionConfig = {
     },
   ],
   hooks: {
-    afterChange: [createMediaFolderHook('logo', 'sponsors'), createMediaCleanupHook('logo')],
+    afterChange: [createDeepLAutofillHook(), createMediaFolderHook('logo', 'sponsors'), createMediaCleanupHook('logo')],
     afterDelete: [createMediaCleanupOnDeleteHook('logo')],
   },
 }

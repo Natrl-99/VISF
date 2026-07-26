@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import GrayscaleHoverImage from "@/components/ui/GrayscaleHoverImage";
+import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
 
 export type Competition = {
   id: string;
@@ -18,6 +19,7 @@ export type Category = {
 type CompetitionsSectionProps = {
   competitions: Competition[];
   categories: Category[];
+  dict: Dictionary;
 };
 
 const CARD_IMAGE = "/banner.png";
@@ -91,14 +93,14 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
           />
           <div className="absolute inset-0 p-4 sm:p-6 lg:p-6 flex flex-col justify-between gap-2">
             <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
-              {firstColumn.map((item) => (
-                <li key={item}>{item}</li>
+              {firstColumn.map((item, index) => (
+                <li key={index}>{item}</li>
               ))}
             </ul>
             {secondColumn.length > 0 && (
               <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto self-end text-right text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
-                {secondColumn.map((item) => (
-                  <li key={item}>{item}</li>
+                {secondColumn.map((item, index) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
             )}
@@ -112,6 +114,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
 export default function CompetitionsSection({
   competitions,
   categories,
+  dict,
 }: CompetitionsSectionProps) {
   const sortedCompetitions = useMemo(
     () => [...competitions].sort((a, b) => a.name.localeCompare(b.name)),
@@ -127,11 +130,11 @@ export default function CompetitionsSection({
     <section className="font-visf-text px-[35px] pb-16 max-w-[1440px] mx-auto">
       <div className="flex flex-col sm:flex-row gap-[30px]">
         <FlipCard
-          titleLines={["MAIN", "COMPETITIONS"]}
+          titleLines={[dict.home.competitionsTitleLine1, dict.home.competitionsTitleLine2]}
           items={sortedCompetitions.map((competition) => competition.name)}
         />
         <FlipCard
-          titleLines={["TECHNICAL", "AND PERFORMANCE CATEGORIES"]}
+          titleLines={[dict.home.categoriesTitleLine1, dict.home.categoriesTitleLine2]}
           items={sortedCategories.map((category) => category.name)}
         />
       </div>

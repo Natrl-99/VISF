@@ -4,6 +4,7 @@ import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
 import BuyTicketsButton from '@/components/ui/BuyTicketsButton'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
+import { getDictionary, type Locale } from '../dictionaries'
 import type { PayloadSponsor } from '@/types/cms'
 
 const CARD_CLASSNAME =
@@ -11,12 +12,15 @@ const CARD_CLASSNAME =
 const CAPTION_CLASSNAME =
   'absolute bottom-6 left-6 lg:bottom-8 lg:left-8 text-white text-2xl sm:text-3xl lg:text-[48px] font-medium leading-tight lg:leading-[49px]'
 
-export default async function OfficialSelectionPage() {
+export default async function OfficialSelectionPage({ params }: PageProps<'/[lang]/official-selection'>) {
+  const { lang } = await params
+  const dict = await getDictionary(lang as Locale)
   const payload = await getPayloadClient()
 
   const sponsorsResult = await payload.find({
     collection: 'sponsors',
     depth: 1,
+    locale: lang,
   })
 
   const sponsorsData: SponsorProp[] = (sponsorsResult.docs as PayloadSponsor[]).map((doc) => ({
@@ -29,17 +33,17 @@ export default async function OfficialSelectionPage() {
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <div className="flex-1">
-        <Header />
+        <Header lang={lang} dict={dict} />
 
         <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
-          ONLINE
+          {dict.officialSelectionPage.h1Line1}
           <br />
-          <span className="text-visf-accent">SESSIONS</span>
+          <span className="text-visf-accent">{dict.officialSelectionPage.h1Accent}</span>
         </h1>
 
         <section className="font-visf-headline px-4 sm:px-6 lg:px-[59px] pb-16 max-w-[1440px] mx-auto mt-8 lg:mt-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[31px]">
-            <Link href="/online-sessions-line-up" className={CARD_CLASSNAME}>
+            <Link href={`/${lang}/short-films`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
                 src="/banner.png"
                 alt=""
@@ -47,11 +51,9 @@ export default async function OfficialSelectionPage() {
               />
               <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
               <p className={CAPTION_CLASSNAME}>
-                ONLINE
+                {dict.officialSelectionPage.shortFilmsCardLine1}
                 <br />
-                SESSIONS
-                <br />
-                LINE UP
+                {dict.officialSelectionPage.shortFilmsCardLine2}
               </p>
             </Link>
 
@@ -62,10 +64,10 @@ export default async function OfficialSelectionPage() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-              <p className={CAPTION_CLASSNAME}>TICKETS</p>
+              <p className={CAPTION_CLASSNAME}>{dict.cta.tickets}</p>
             </BuyTicketsButton>
 
-            <Link href="/online-screening-schedule" className={CARD_CLASSNAME}>
+            <Link href={`/${lang}/screening-schedule`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
                 src="/banner.png"
                 alt=""
@@ -73,30 +75,26 @@ export default async function OfficialSelectionPage() {
               />
               <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
               <p className={CAPTION_CLASSNAME}>
-                SCREENING
+                {dict.officialSelectionPage.screeningScheduleCardLine1}
                 <br />
-                SCHEDULE
+                {dict.officialSelectionPage.screeningScheduleCardLine2}
               </p>
             </Link>
 
-            <Link href="/join-the-screening" className={CARD_CLASSNAME}>
+            <Link href={`/${lang}/winners`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
                 src="/banner.png"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-              <p className={CAPTION_CLASSNAME}>
-                JOIN THE
-                <br />
-                SCREENING
-              </p>
+              <p className={CAPTION_CLASSNAME}>{dict.officialSelectionPage.winnersCard}</p>
             </Link>
           </div>
         </section>
       </div>
 
-      <Footer sponsors={sponsorsData} />
+      <Footer sponsors={sponsorsData} dict={dict} />
     </main>
   )
 }

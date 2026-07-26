@@ -37,7 +37,7 @@ export default function ScreeningBlock({
         )}
         <p className="font-extralight text-sm sm:text-base lg:text-[25px] leading-loose lg:leading-[40px]">
           {movies.map((movie, index) => (
-            <span key={movie}>
+            <span key={index}>
               {movie}
               {index < movies.length - 1 && <span className="font-bold"> • </span>}
             </span>

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const Winners: CollectionConfig = {
   slug: "winners",
@@ -61,12 +62,14 @@ export const Winners: CollectionConfig = {
           type: "text",
           required: true,
           label: "Movie Title",
+          localized: true,
         },
         {
           name: "director",
           type: "text",
           required: true,
           label: "Director",
+          localized: true,
         },
         {
           name: "country",
@@ -81,6 +84,9 @@ export const Winners: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default Winners;

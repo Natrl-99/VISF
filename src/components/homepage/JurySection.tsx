@@ -1,7 +1,8 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import SectionIntroText from '@/components/ui/SectionIntroText'
+import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 export type JuryMember = {
   id: string
@@ -12,35 +13,31 @@ export type JuryMember = {
 
 type JurySectionProps = {
   members: JuryMember[]
+  dict: Dictionary
 }
 
-const INTRO_TEXT = `Our distinguished jury brings together industry leaders, creative visionaries, and experienced professionals from across the design and innovation landscape. Each juror has been carefully selected for their expertise, achievements, and commitment to recognizing outstanding work.
-
-With diverse perspectives and deep knowledge, they will evaluate every submission based on creativity, originality, execution, impact, and excellence, ensuring a fair and transparent judging process. Their collective experience helps celebrate the projects and talent that are shaping the future of the industry.`
-
-export default function JurySection({ members }: JurySectionProps) {
-  const sortedMembers = useMemo(
-    () => [...members].sort((a, b) => a.name.localeCompare(b.name)),
-    [members],
-  )
+// Order comes from the query (sort: "createdAt") rather than a client-side
+// name sort — sorting by a translated field would put members in a different
+// order per locale depending on how each name was translated.
+export default function JurySection({ members, dict }: JurySectionProps) {
   const [selectedIdx, setSelectedIdx] = useState(0)
-  const selected = sortedMembers[selectedIdx]
+  const selected = members[selectedIdx]
 
   return (
     <section className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[40px] font-medium leading-[1.05] mb-4">
-          <span className="text-visf-accent  decoration-current">MEET</span>
+          <span className="text-visf-accent  decoration-current">{dict.jury.headingAccent}</span>
           <br />
-          THE JURY
+          {dict.jury.headingRest}
         </h2>
 
-        <SectionIntroText text={INTRO_TEXT} />
+        <SectionIntroText text={dict.jury.intro} />
       </div>
 
       <div className="w-full lg:flex-1 lg:min-w-0">
         <nav className="flex flex-wrap gap-x-10 gap-y-3 pb-3 mb-5">
-          {sortedMembers.map((member, idx) => (
+          {members.map((member, idx) => (
             <button
               key={member.id}
               onClick={() => setSelectedIdx(idx)}

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 
 export const OnlineScheduleBlocks: CollectionConfig = {
   slug: "online-schedule-blocks",
@@ -34,6 +35,7 @@ export const OnlineScheduleBlocks: CollectionConfig = {
       type: "text",
       required: true,
       label: "Block Title",
+      localized: true,
     },
     {
       name: "movies",
@@ -50,16 +52,21 @@ export const OnlineScheduleBlocks: CollectionConfig = {
           type: "text",
           required: true,
           label: "Title",
+          localized: true,
         },
         {
           name: "director",
           type: "text",
           required: true,
           label: "Director",
+          localized: true,
         },
       ],
     },
   ],
+  hooks: {
+    afterChange: [createDeepLAutofillHook()],
+  },
 };
 
 export default OnlineScheduleBlocks;
