@@ -7,6 +7,7 @@
   licencia web. Mientras tanto, usamos "Helvetica Neue" como fallback,
   porque es el pariente visual más cercano a Neue Haas Grotesk.
 */
+
 @theme {
   --color-visf-accent: #bad4ee;
   --color-visf-ink: #111111;
