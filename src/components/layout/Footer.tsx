@@ -19,14 +19,21 @@ function withProtocol(url: string) {
 
 export default function Footer({ sponsors, dict }: FooterProps) {
   return (
-    <footer className="font-visf-text px-6 py-8 bg-visf-accent">
+    <footer className="font-visf-text px-4 sm:px-6 lg:px-[38px] py-8 bg-visf-accent">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
-          <p className="text-xs font-light mb-1">{dict.footer.rules}</p>
-          <p className="text-xs font-light mb-3">{dict.footer.contactUs}</p>
+          <p className="text-[16px] leading-[14px] font-light mb-1">{dict.footer.rules}</p>
+          <p className="text-[16px] leading-[14px] font-light mb-3">{dict.footer.contactUs}</p>
           <div className="flex gap-3 text-neutral-800">
-            <FaInstagram size={16} />
-            <FaVimeoV size={16} />
+            <a
+              href="https://www.instagram.com/visfverona?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram size={20} />
+            </a>
+            <FaVimeoV size={20} />
           </div>
         </div>
 
