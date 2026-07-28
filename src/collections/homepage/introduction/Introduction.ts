@@ -4,8 +4,8 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const Introduction: CollectionConfig = {
   slug: "introduction",
   labels: {
-    singular: "Introduction",
-    plural: "Introduction",
+    singular: "Introduction Text",
+    plural: "Introduction Text ",
   },
   admin: {
     useAsTitle: "text",

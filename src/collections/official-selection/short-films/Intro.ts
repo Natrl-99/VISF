@@ -4,8 +4,8 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const ShortFilmsIntro: CollectionConfig = {
   slug: "short-films-intro",
   labels: {
-    singular: "Short Films - Introduction",
-    plural: "Short Films - Introduction",
+    singular: "Short Films - Introduction Text",
+    plural: "Short Films - Introduction Text",
   },
   admin: {
     useAsTitle: "text",

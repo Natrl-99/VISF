@@ -4,8 +4,8 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const OnlineScheduleIntro: CollectionConfig = {
   slug: "online-schedule-intro",
   labels: {
-    singular: "Screening Schedule - Introduction",
-    plural: "Screening Schedule - Introduction",
+    singular: "Screening Schedule - Introduction Text",
+    plural: "Screening Schedule - Introduction Text",
   },
   admin: {
     useAsTitle: "label",
