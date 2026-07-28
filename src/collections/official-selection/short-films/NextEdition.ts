@@ -4,8 +4,8 @@ import { validateEndDateAfterInitialDate } from "@/lib/validateDateRange";
 export const ShortFilmsNextEdition: CollectionConfig = {
   slug: "short-films-next-edition",
   labels: {
-    singular: "Short Films - Next Edition",
-    plural: "Short Films - Next Edition",
+    singular: "Short Films - Next Edition Date",
+    plural: "Short Films - Next Edition Date",
   },
   admin: {
     useAsTitle: "label",

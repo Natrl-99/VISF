@@ -13,7 +13,9 @@ export const Media: CollectionConfig = {
     description:
       "All the images used around the website — homepage, jury photos, sponsor logos, the gallery, and more. You'll usually upload images from inside the section that uses them (like Jury or Sponsors) rather than from here directly.",
   },
-  upload: true,
+  upload: {
+    pasteURL: false,
+  },
   fields: [
     {
       // Set automatically by createMediaFolderHook / createArrayMediaFolderHook

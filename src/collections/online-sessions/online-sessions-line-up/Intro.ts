@@ -4,8 +4,8 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const OnlineSessionsIntro: CollectionConfig = {
   slug: "online-sessions-intro",
   labels: {
-    singular: "Line Up - Introduction",
-    plural: "Line Up - Introduction",
+    singular: "Line Up - Introduction Text",
+    plural: "Line Up - Introduction Text",
   },
   admin: {
     useAsTitle: "label",

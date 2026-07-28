@@ -49,6 +49,7 @@ export const Video: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   upload: {
+    pasteURL: false,
     mimeTypes: ["video/mp4", "video/webm"],
     adminThumbnail: ({ doc }) => {
       const thumbnail = doc.thumbnail as
