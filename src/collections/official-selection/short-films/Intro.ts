@@ -8,9 +8,9 @@ export const ShortFilmsIntro: CollectionConfig = {
     plural: "Short Films - Introduction",
   },
   admin: {
-    useAsTitle: "label",
-    defaultColumns: ["label"],
-    description: "Intro text shown at the top of the Official Selection Short Films page.",
+    useAsTitle: "text",
+    defaultColumns: ["text"],
+    description: "The welcome paragraph shown at the top of the Official Selection Short Films page.",
     group: "Official Selection",
   },
   access: {
@@ -24,15 +24,6 @@ export const ShortFilmsIntro: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
-    {
-      name: "label",
-      type: "text",
-      required: true,
-      label: "Label",
-      admin: {
-        description: "Internal name to identify this intro in the admin, e.g. \"2027 Online Sessions\".",
-      },
-    },
     {
       name: "text",
       type: "textarea",

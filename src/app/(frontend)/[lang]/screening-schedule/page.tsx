@@ -5,17 +5,13 @@ import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
 import type { PayloadSponsor, PayloadScreeningIntro, PayloadScreeningBlock } from '@/types/cms'
 
-// screening-blocks stores "date" and "time" as full ISO datetime strings
-// (Payload's day-only/time-only pickers only affect admin UI, not storage),
-// so they need reformatting into the short display form used on the card.
+// screening-blocks stores "date" as a full ISO datetime string
+// (Payload's day-only picker only affects admin UI, not storage),
+// so it needs reformatting into the short display form used on the card.
+// "time" is stored as free text and is displayed as entered.
 function formatBlockDate(iso: string): string {
   const date = new Date(iso)
   return `${date.getUTCDate()} ${date.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' }).toLowerCase()}`
-}
-
-function formatBlockTime(iso: string): string {
-  const date = new Date(iso)
-  return `${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`
 }
 
 export default async function ScreeningSchedulePage({ params }: PageProps<'/[lang]/screening-schedule'>) {
@@ -78,7 +74,7 @@ export default async function ScreeningSchedulePage({ params }: PageProps<'/[lan
               chapterLabel={block.name}
               blockName={block.title}
               date={formatBlockDate(block.date)}
-              time={formatBlockTime(block.time)}
+              time={block.time}
               movies={block.movies.map((movie) => movie.title)}
             />
           ))}

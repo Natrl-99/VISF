@@ -31,7 +31,6 @@ export interface PayloadIntroduction {
 //Date Event
 export interface PayloadDateEvent {
   id: string;
-  name: string;
   initialDate: string;
   endDate: string;
   city: string;
@@ -41,7 +40,7 @@ export interface PayloadDateEvent {
 //Video Banner
 export interface PayloadVideo {
   id: string;
-  title: string;
+  filename: string;
   url: string;
   thumbnail: MediaRef | null;
 }
@@ -50,14 +49,12 @@ export interface PayloadVideo {
 export interface PayloadCompetition {
   id: string;
   name: string;
-  isActive: boolean;
 }
 
 //Categories
 export interface PayloadCategory {
   id: string;
   name: string;
-  isActive: boolean;
 }
 
 // The "category" field is a "relationship" to the categories collection — depending on the query "depth", Payload returns it as just the ID (string) or as the fully resolved PayloadCategory document.
@@ -126,7 +123,6 @@ export interface PayloadOnlineScheduleBlock {
 //Official Selection Short Films
 export interface PayloadShortFilmsIntro {
   id: string;
-  label: string;
   text: string;
 }
 export interface PayloadShortFilmsNextEdition {
@@ -154,7 +150,6 @@ export interface PayloadShortFilmsBlocks {
 //Screening Schedule
 export interface PayloadScreeningIntro {
   id: string;
-  label: string;
   text: string;
 }
 export interface PayloadScreeningMovie {

@@ -69,27 +69,32 @@ export default buildConfig({
   }),
   editor: lexicalEditor({}),
   collections: [
+    //Users
     Users,
+    //Media
     Media,
+    //Homepage
     Introduction,
     DateEvent,
     Video,
     Jury,
-    Categories,
     Competition,
+    Categories,
     Sponsors,
     Gallery,
-    Winners,
-    NextEdition,
-    OnlineSessionsIntro,
-    OnlineSessionsBlocks,
-    OnlineScheduleIntro,
-    OnlineScheduleBlocks,
+    //Official Selection
     ShortFilmsNextEdition,
     ShortFilmsIntro,
     ShortFilmsBlocks,
     ScreeningIntro,
     ScreeningBlocks,
+    Winners,
+    //Online Sessions
+    NextEdition,
+    OnlineSessionsIntro,
+    OnlineSessionsBlocks,
+    OnlineScheduleIntro,
+    OnlineScheduleBlocks,
   ],
   plugins: [
     cloudStoragePlugin({

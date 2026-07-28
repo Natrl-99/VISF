@@ -4,14 +4,14 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const Competition: CollectionConfig = {
   slug: "competition",
   labels: {
-    singular: "Competition",
-    plural: "Competitions",
+    singular: "Main Competition",
+    plural: "Main Competitions",
   },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "isActive"],
-    description: "Competition for the festival.",
-    group: "Home",
+    defaultColumns: ["name"], 
+    description: "The festival's competitions or sections (e.g. main competition, shorts competition), shown on the homepage.",
+    group: "Homepage",
   },
   access: {
     read: () => true,
@@ -26,15 +26,6 @@ export const Competition: CollectionConfig = {
       required: true,
       label: "Competition Name",
       localized: true,
-    },
-    {
-      name: "isActive",
-      type: "checkbox",
-      label: "Is Active",
-      defaultValue: true,
-      admin: {
-        description: "Check this box to make the competition active."
-      }
     },
   ],
   hooks: {

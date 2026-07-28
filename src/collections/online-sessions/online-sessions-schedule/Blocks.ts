@@ -4,14 +4,14 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const OnlineScheduleBlocks: CollectionConfig = {
   slug: "online-schedule-blocks",
   labels: {
-    singular: "Online Screening Schedule - Block",
-    plural: "Online Screening Schedule - Blocks",
+    singular: "Screening Schedule - Block",
+    plural: "Screening Schedule - Blocks",
   },
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "title"],
     description:
-      "Blocks for the Online Screening Schedule page. The order field determines the order of the blocks.",
+      "The screening blocks shown on the Online Screening Schedule page — each one has a name, a title, and the films playing in it, and they're shown in the order they were created.",
     group: "Online Sessions",
   },
   access: {

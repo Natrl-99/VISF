@@ -4,13 +4,13 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const OnlineScheduleIntro: CollectionConfig = {
   slug: "online-schedule-intro",
   labels: {
-    singular: "Online Screening Schedule - Introduction",
-    plural: "Online Screening Schedule - Introduction",
+    singular: "Screening Schedule - Introduction",
+    plural: "Screening Schedule - Introduction",
   },
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label"],
-    description: "Intro text shown at the top of the Online Screening Schedule page.",
+    description: "The welcome paragraph shown at the top of the Online Screening Schedule page.",
     group: "Online Sessions",
   },
   access: {

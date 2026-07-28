@@ -11,7 +11,7 @@ export const ScreeningBlocks: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name", "title", "date", "time"],
     description:
-      "Blocks for the Screening Schedule page. The order field determines the order of the blocks.",
+      "The individual screening time slots on the Official Selection Screening Schedule page — each one has a date, a time, a title, and the films playing then. They're shown in date order automatically.",
     group: "Official Selection",
   },
   access: {
@@ -48,11 +48,11 @@ export const ScreeningBlocks: CollectionConfig = {
     },
     {
       name: "time",
-      type: "date",
+      type: "text",
       required: true,
       label: "Time",
       admin: {
-        date: { pickerAppearance: "timeOnly", displayFormat: "HH:mm" },
+        description: "Free text, e.g. \"19:30\".",
       },
     },
     {

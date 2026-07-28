@@ -6,14 +6,14 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const Jury: CollectionConfig = {
   slug: "jury-members",
   labels: {
-    singular: "Jury Member",
-    plural: "Jury Members",
+    singular: "Meet the Jury",
+    plural: "Meet the Jury",
   },
   admin: {
     useAsTitle: "name",
     defaultColumns: ["name", "bio", "photo"],
-    description: "Jury members for the festival.",
-    group: "Home",
+    description: "The jury members shown on the homepage, each with a photo, name, and short bio.",
+    group: "Homepage",
   },
   access: {
     read: () => true,
