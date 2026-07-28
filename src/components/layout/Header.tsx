@@ -23,9 +23,10 @@ export default function Header({ lang, dict }: HeaderProps) {
     { key: 'submit', label: dict.nav.submitFilm, href: null },
     { key: 'official-selection', label: dict.nav.officialSelection, href: `/${lang}/official-selection` },
     { key: 'online-sessions', label: dict.nav.onlineSessions, href: `/${lang}/online-sessions` },
-    { key: 'jury', label: dict.nav.meetTheJury, href: null },
+    { key: 'jury', label: dict.nav.meetTheJury, href: `/${lang}#jury` },
     { key: 'categories', label: dict.nav.categories, href: null },
     { key: 'gallery', label: dict.nav.gallery, href: `/${lang}/gallery` },
+    { key: 'contact', label: dict.nav.contactUs, href: null },
   ] as const
 
   return (
@@ -83,29 +84,36 @@ export default function Header({ lang, dict }: HeaderProps) {
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
-          <button onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-xs font-semibold text-neutral-500 mb-8">
+          <button onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-s text-neutral-500 mb-8">
             <X size={14} /> {dict.header.closeMenu}
           </button>
           <nav className="flex flex-col gap-4">
             {NAV_LINKS.map((item) =>
               item.key === 'submit' ? (
-                <SubmitFilmButton key={item.key} className="text-sm font-semibold uppercase text-neutral-800 text-left">
+                <SubmitFilmButton key={item.key} className="text-base uppercase text-neutral-800 text-left">
                   {item.label}
                 </SubmitFilmButton>
               ) : item.href ? (
-                <Link key={item.key} href={item.href} className="text-sm font-semibold uppercase text-neutral-800">
+                <Link key={item.key} href={item.href} className="text-base uppercase text-neutral-800">
                   {item.label}
                 </Link>
               ) : (
-                <a key={item.key} href="#" className="text-sm font-semibold uppercase text-neutral-800">
+                <a key={item.key} href="#" className="text-base uppercase text-neutral-800">
                   {item.label}
                 </a>
               )
             )}
           </nav>
           <div className="flex gap-3 mt-10 text-neutral-700">
-            <FaInstagram size={16} />
-            <FaVimeoV size={16} />
+            <a
+              href="https://www.instagram.com/visfverona?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram size={24} />
+            </a>
+            <FaVimeoV size={24} />
           </div>
         </div>
       </div>

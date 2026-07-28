@@ -24,7 +24,10 @@ export default function JurySection({ members, dict }: JurySectionProps) {
   const selected = members[selectedIdx]
 
   return (
-    <section className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
+    <section
+      id="jury"
+      className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16"
+    >
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[40px] font-medium leading-[1.05] mb-4">
           <span className="text-visf-accent  decoration-current">{dict.jury.headingAccent}</span>

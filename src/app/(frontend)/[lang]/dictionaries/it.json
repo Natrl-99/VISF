@@ -5,11 +5,12 @@
     "onlineSessions": "Sessioni Online",
     "meetTheJury": "La Giuria",
     "categories": "Categorie",
-    "gallery": "Galleria"
+    "gallery": "Galleria",
+    "contactUs": "Contattaci"
   },
   "header": {
     "openMenu": "Apri il menu",
-    "closeMenu": "Chiudi",
+    "closeMenu": "CHIUDI",
     "backToHome": "VISF — Torna alla home",
     "logoAlt": "VISF — Verona International Short Film Festival"
   },
@@ -93,5 +94,10 @@
   "shortFilmsPage": {
     "h1Line1": "SESSIONI",
     "h1Accent": "LINE UP"
+  },
+  "galleryPage": {
+    "h1": "GALLERIA",
+    "h2": "SCOPRI IL FESTIVAL",
+    "photoAlt": "Foto del festival VISF"
   }
 }

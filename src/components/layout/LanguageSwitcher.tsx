@@ -13,7 +13,7 @@ export default function LanguageSwitcher({ currentLang }: LanguageSwitcherProps)
   const pathname = usePathname()
 
   return (
-    <span className="text-xs font-medium leading-tight text-black sm:text-sm sm:leading-6 lg:text-base lg:leading-9">
+    <span className="text-xs leading-tight text-black sm:text-sm sm:leading-6 lg:text-base lg:leading-9">
       {LOCALES.map((locale, i) => {
         const segments = pathname.split('/')
         segments[1] = locale
@@ -25,7 +25,7 @@ export default function LanguageSwitcher({ currentLang }: LanguageSwitcherProps)
             <Link
               href={href}
               aria-current={locale === currentLang ? 'true' : undefined}
-              className={locale === currentLang ? 'font-bold underline' : 'hover:underline'}
+              className={locale === currentLang ? 'font-bold underline' : 'font-normal hover:underline'}
             >
               {locale === 'en' ? 'ENG' : 'IT'}
             </Link>

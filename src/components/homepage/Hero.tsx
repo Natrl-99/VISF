@@ -27,7 +27,7 @@ export default function Hero({ imageUrl, sponsors, dict }: HeroProps) {
             "linear-gradient(to top, rgba(0,0,0,0.32), transparent 55%)",
         }}
       />
-      <SubmitFilmButton className="font-visf-text absolute left-6 sm:left-12 lg:left-[92px] bottom-10 sm:bottom-16 lg:bottom-[108px] text-white font-bold text-[36px] sm:text-[60px] lg:text-[85px] leading-[33px] sm:leading-[54px] lg:leading-[77px] uppercase">
+      <SubmitFilmButton className="font-visf-text absolute left-6 sm:left-12 lg:left-[92px] bottom-16 sm:bottom-24 lg:bottom-[160px] text-white font-bold text-[36px] sm:text-[60px] lg:text-[85px] leading-[33px] sm:leading-[54px] lg:leading-[77px] uppercase">
         <span className="block">{dict.home.heroLine1}</span>
         <span className="block">{dict.home.heroLine2}</span>
       </SubmitFilmButton>
@@ -39,7 +39,7 @@ export default function Hero({ imageUrl, sponsors, dict }: HeroProps) {
               key={sp.id}
               src={sp.logoUrl}
               alt={sp.name}
-              className="h-15 w-15 object-contain opacity-70 grayscale invert"
+              className="h-20 w-28 lg:h-28 lg:w-40 object-contain"
             />
           ) : (
             <span
