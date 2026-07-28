@@ -12,8 +12,8 @@ export const Sponsors: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name'],
-    description: 'Sponsors for the festival.',
-    group: 'Home',
+    description: 'The festival\'s sponsors and their logos, shown on the homepage and in the footer.',
+    group: 'Homepage',
   },
   access: {
     read: () => true,

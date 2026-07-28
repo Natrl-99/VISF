@@ -17,7 +17,7 @@ export const ShortFilmsBlocks: CollectionConfig = {
     useAsTitle: "name",
     defaultColumns: ["name"],
     description:
-      "Blocks for the Official Selection Short Films. The order field determines the order of the blocks.",
+      "The groups of films shown on the Official Selection Short Films page (e.g. \"Block 1\", \"Program A\"). Each block has its own name, intro text, and list of films, and they're shown in the order they were created.",
     group: "Official Selection",
   },
   access: {

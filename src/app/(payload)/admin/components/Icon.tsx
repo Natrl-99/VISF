@@ -3,14 +3,15 @@ import Image from "next/image";
 
 export function Icon() {
   return (
-    <div>
+    <div className="flex items-center gap-1 whitespace-nowrap">
       <Image
-        className="w-10 h-5"
+        className="w-4 h-4"
         src="/ICON-VISF-BLACK.png"
         alt="VISF Icon"
-        width={48}
-        height={48}
+        width={16}
+        height={16}
       />
+      <span className="text-xs leading-none">Home</span>
     </div>
   );
 }

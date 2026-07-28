@@ -10,7 +10,7 @@ export const OnlineSessionsIntro: CollectionConfig = {
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label"],
-    description: "Intro text shown at the top of the Online Sessions Line Up page.",
+    description: "The welcome paragraph shown at the top of the Online Sessions Line Up page.",
     group: "Online Sessions",
   },
   access: {

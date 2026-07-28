@@ -10,7 +10,7 @@ export const NextEdition: CollectionConfig = {
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label", "initialDate", "endDate"],
-    description: "Next edition announcement shown on the Online Sessions Line Up page.",
+    description: "The 'save the date' announcement for the next Online Sessions Line Up edition, shown on that page.",
     group: "Online Sessions",
   },
   access: {

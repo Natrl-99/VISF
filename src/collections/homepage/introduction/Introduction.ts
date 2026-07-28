@@ -10,8 +10,8 @@ export const Introduction: CollectionConfig = {
   admin: {
     useAsTitle: "text",
     defaultColumns: ["text"],
-    description: "Introduction text for the festival.",
-    group: "Home",
+    description: "The short welcome paragraph shown near the top of the homepage, just under the festival dates.",
+    group: "Homepage",
   },
   access: {
     read: () => true,

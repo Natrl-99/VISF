@@ -9,7 +9,7 @@ import type {
 // unlinking it in one place actually orphans it, or it's still in use
 // somewhere else (e.g. the same image reused in two Gallery slots).
 const MEDIA_REFERENCES = [
-  { collection: "gallery", where: "photos.photo" },
+  { collection: "gallery", where: "photo" },
   { collection: "jury-members", where: "photo" },
   { collection: "sponsors", where: "logo" },
   { collection: "short-films-blocks", where: "movies.poster" },
@@ -85,8 +85,8 @@ export const createMediaCleanupOnDeleteHook =
   };
 
 // Same as createMediaCleanupHook, but for an upload relation nested inside an
-// array field (e.g. Gallery's `photos.photo`, Short Films' `movies.poster`),
-// where individual rows can be added, removed, or swapped independently.
+// array field (e.g. Short Films' `movies.poster`), where individual rows can
+// be added, removed, or swapped independently.
 export const createArrayMediaCleanupHook =
   (arrayField: string, relationField: string): CollectionAfterChangeHook =>
   async ({ doc, previousDoc, req }) => {

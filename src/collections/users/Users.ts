@@ -5,6 +5,8 @@ export const Users: CollectionConfig = {
   auth: true,
   admin: {
     useAsTitle: 'email',
+    description:
+      'The people who can log in to this admin panel. Give most staff the "Editor" role — only trusted admins should be "Administrator", since that role can change what others are allowed to do.',
     group: 'Admin',
   },
   // Restricted to admins only — editors shouldn't see or manage the Users

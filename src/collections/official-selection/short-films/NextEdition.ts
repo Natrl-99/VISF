@@ -10,7 +10,7 @@ export const ShortFilmsNextEdition: CollectionConfig = {
   admin: {
     useAsTitle: "label",
     defaultColumns: ["label", "initialDate", "endDate"],
-    description: "Next edition announcement shown on the Official Selection Short Films page.",
+    description: "The 'save the date' announcement for the next Official Selection Short Films edition, shown on that page.",
     group: "Official Selection",
   },
   access: {

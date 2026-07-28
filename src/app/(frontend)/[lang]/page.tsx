@@ -49,7 +49,6 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 
   type DateEventProp = {
     id: string;
-    name: string;
     initialDate: string;
     endDate: string;
     city: string;
@@ -90,14 +89,12 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
       }),
       payload.find({
         collection: "competition",
-        where: { isActive: { equals: true } },
         depth: 0,
         limit: 0,
         locale: lang,
       }),
       payload.find({
         collection: "categories",
-        where: { isActive: { equals: true } },
         depth: 0,
         limit: 0,
         locale: lang,
@@ -128,7 +125,6 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
     dateEventsResult.docs as PayloadDateEvent[]
   ).map((doc) => ({
     id: String(doc.id),
-    name: doc.name ?? "",
     initialDate: doc.initialDate,
     endDate: doc.endDate,
     city: doc.city ?? "",
@@ -148,7 +144,6 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
   ).map((doc) => ({
     id: String(doc.id),
     name: doc.name ?? "",
-    isActive: doc.isActive,
   }));
 
   const categoriesData: CategoryProp[] = (
@@ -156,7 +151,6 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
   ).map((doc) => ({
     id: String(doc.id),
     name: doc.name ?? "",
-    isActive: doc.isActive,
   }));
 
   return (

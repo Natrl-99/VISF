@@ -33,9 +33,10 @@ export const Video: CollectionConfig = {
     plural: "Video",
   },
   admin: {
-    useAsTitle: "title",
-    defaultColumns: ["title", "thumbnail"],
-    group: "Home",
+    useAsTitle: "filename",
+    defaultColumns: ["filename", "thumbnail"],
+    description: "The video that plays in the video banner on the homepage. Only one is allowed — to change it, edit this existing entry instead of creating a new one.",
+    group: "Homepage",
   },
   access: {
     read: () => true,
@@ -59,7 +60,6 @@ export const Video: CollectionConfig = {
     bulkUpload: false,
   },
   fields: [
-    { name: "title", type: "text", required: true, label: "Title", localized: true },
     {
       name: "thumbnail",
       type: "upload",

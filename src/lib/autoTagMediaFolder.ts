@@ -41,8 +41,8 @@ export const createMediaFolderHook = (
   };
 
 // Same as createMediaFolderHook, but for an upload relation nested inside an
-// array field (e.g. Gallery's `photos.photo`), where each row needs its own
-// folder move.
+// array field (e.g. Short Films' `movies.poster`), where each row needs its
+// own folder move.
 export const createArrayMediaFolderHook = (
   arrayField: string,
   relationField: string,

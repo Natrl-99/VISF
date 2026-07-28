@@ -11,7 +11,7 @@ export const Winners: CollectionConfig = {
     useAsTitle: "year",
     defaultColumns: ["year"],
     description:
-      "Award winners by festival edition. Each entry is one year; add one row per award category, repeating the category for ties or multiple winners. Limited to 4 years — remove an older one to add a new edition.",
+      "The award winners shown on the website, grouped by festival year. Create one entry per year, then add one row underneath for each award category's winner. Only 4 years can be listed at once — delete an older year before adding a new one.",
     group: "Official Selection",
   },
   access: {
@@ -19,7 +19,7 @@ export const Winners: CollectionConfig = {
     create: async({ req }) => {
       if(!req.user) return false;
       const {totalDocs} = await req.payload.count({collection: "winners"});
-      return totalDocs < 20;
+      return totalDocs < 4;
     },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),

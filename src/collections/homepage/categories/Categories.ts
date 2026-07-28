@@ -4,14 +4,14 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const Categories: CollectionConfig = {
   slug: "categories",
   labels: {
-    singular: "Category",
-    plural: "Categories",
+    singular: "Technical and Performance Category",
+    plural: "Technical and Performance Categories",
   },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "isActive"],
-    description: "Category for the festival.",
-    group: "Home",
+    defaultColumns: ["name"],
+    description: "The award categories used across the festival (e.g. Best Film, Best Director). Shown on the homepage, and available to pick from when entering award winners.",
+    group: "Homepage",
   },
   access: {
     read: () => true,
@@ -30,15 +30,6 @@ export const Categories: CollectionConfig = {
       required: true,
       label: "Category Name",
       localized: true,
-    },
-    {
-      name: "isActive",
-      type: "checkbox",
-      label: "Is Active",
-      defaultValue: true,
-      admin: {
-        description: "Check this box to make the category active."
-      }
     },
   ],
   hooks: {

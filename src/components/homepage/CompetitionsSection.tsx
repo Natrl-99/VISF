@@ -7,13 +7,11 @@ import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
 export type Competition = {
   id: string;
   name: string;
-  isActive: boolean;
 };
 
 export type Category = {
   id: string;
   name: string;
-  isActive: boolean;
 };
 
 type CompetitionsSectionProps = {

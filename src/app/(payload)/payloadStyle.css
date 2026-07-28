@@ -56,3 +56,44 @@
   --hover-bg: var(--theme-success-450);
   --color: #fff;
 }
+
+/*
+  Payload's step-nav "home" slot (.step-nav__home) is hard-coded to
+  18x18px, and its child span truncates with `text-overflow: ellipsis`
+  at a narrow max-width — both sized for a bare icon, not an icon +
+  "Home" label. Widened here so the custom Icon graphics component
+  (admin/components/Icon.tsx) can render the label without it clipping
+  to "H...". Unlayered like the block above, so it wins over the
+  layered `@layer payload-default` rule without needing `!important`.
+*/
+.step-nav__home {
+  width: auto;
+  height: auto;
+}
+
+.step-nav__home span {
+  max-width: none;
+  overflow: visible;
+}
+
+/*
+  Payload appends a "— <locale>" suffix to every localized field's label
+  (see FieldLabel's `.localized` span in @payloadcms/ui) with no config
+  flag to turn it off — the only per-field override point is swapping the
+  whole Label component. Hiding it globally here instead, since editors
+  only ever work in one locale per session and the suffix reads as noise
+  on every localized field across every collection.
+*/
+.field-label .localized {
+  display: none;
+}
+
+/*
+  "Copy to locale" only has a per-collection admin.disableCopyToLocale
+  flag (see @payloadcms/ui's DocumentControls) — no global config toggle
+  exists to turn it off site-wide. Hiding its trigger button by id here
+  instead of setting the flag on every localized collection individually.
+*/
+#copy-locale-data__button {
+  display: none;
+}

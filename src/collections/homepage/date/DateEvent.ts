@@ -5,14 +5,14 @@ import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
 export const DateEvent: CollectionConfig = {
   slug: "date-event",
   labels: {
-    singular: "Date Event",
-    plural: "Date Event",
+    singular: "Event Date",
+    plural: "Event Date",
   },
   admin: {
-    useAsTitle: "name",
-    defaultColumns: ["name", "initialDate", "endDate", "city", "country"],
-    description: "Date of the festival.",
-    group: "Home",
+    useAsTitle: "city",
+    defaultColumns: ["city", "initialDate", "endDate", "country"],
+    description: "When and where the festival takes place. Shown at the top of the homepage, under the welcome text.",
+    group: "Homepage",
   },
   access: {
     read: () => true,
@@ -25,13 +25,6 @@ export const DateEvent: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
-    {
-      name: "name",
-      type: "text",
-      required: true,
-      label: "Name",
-      localized: true,
-    },
     {
       name: "initialDate",
       type: "date",
