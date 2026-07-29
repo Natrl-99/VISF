@@ -12,12 +12,16 @@ export const Sponsors: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name'],
-    description: 'The festival\'s sponsors and their logos, shown on the homepage and in the footer.',
+    description: 'The festival\'s sponsors and their logos, shown in the footer. Only 8 can be listed at once — delete one before adding a new one.',
     group: 'Homepage',
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => Boolean(user),
+    create: async ({ req }) => {
+      if (!req.user) return false
+      const { totalDocs } = await req.payload.count({ collection: 'sponsors' })
+      return totalDocs < 8
+    },
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },

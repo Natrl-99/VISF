@@ -34,13 +34,13 @@ export default function ProgramsSection({ programs, showPoster = true }: Program
   if (!selected) return null
 
   return (
-    <section className="px-4 sm:px-6 lg:px-[87px] mt-12 lg:mt-24 pb-8 lg:pb-14">
+    <section className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-12 lg:mt-24 pb-8 lg:pb-14">
       <nav className="flex flex-wrap gap-3 lg:gap-4">
         {programs.map((program, idx) => (
           <button
             key={program.id}
             onClick={() => setSelectedIdx(idx)}
-            className={`text-[25px] leading-none font-medium text-black px-5 py-2.5 rounded-visf-card whitespace-nowrap hover:bg-visf-accent ${
+            className={`text-base sm:text-lg lg:text-[25px] leading-none font-medium text-black px-5 py-2.5 rounded-visf-card whitespace-nowrap hover:bg-visf-accent ${
               idx === selectedIdx ? 'bg-visf-accent' : 'bg-neutral-200'
             }`}
           >
@@ -60,7 +60,7 @@ export default function ProgramsSection({ programs, showPoster = true }: Program
             className="font-visf-text flex flex-col lg:flex-row gap-4 lg:gap-10 items-start"
           >
             {showPoster && (
-              <div className="w-[160px] h-[237px] lg:w-[235px] lg:h-[349px] lg:shrink-0 overflow-hidden">
+              <div className="w-[160px] h-[237px] sm:w-[200px] sm:h-[297px] lg:w-[235px] lg:h-[349px] lg:shrink-0 overflow-hidden">
                 <img
                   src={film.posterUrl ?? '/banner.png'}
                   alt={film.title}

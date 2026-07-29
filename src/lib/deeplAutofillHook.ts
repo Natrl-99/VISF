@@ -25,15 +25,12 @@ async function buildLocalizedPatch(
     const enFieldValue = enValue?.[name];
 
     if ((field.type === "text" || field.type === "textarea") && field.localized) {
-      const itFieldValue = itValue?.[name];
-      if (typeof enFieldValue === "string" && enFieldValue.trim() && !itFieldValue) {
+      if (typeof enFieldValue === "string" && enFieldValue.trim()) {
         const translated = await translateText(enFieldValue);
-        if (translated) {
+        if (translated && translated !== itValue?.[name]) {
           patch[name] = translated;
           changed = true;
         }
-      } else if (itFieldValue !== undefined) {
-        patch[name] = itFieldValue;
       }
       continue;
     }
@@ -64,8 +61,9 @@ async function buildLocalizedPatch(
   return { patch, changed };
 }
 
-// Fills empty Italian values from the just-saved English ones via DeepL, without
-// ever overwriting Italian text an editor already entered — see FRONTEND i18n plan.
+// Overwrites Italian values with a fresh DeepL translation of the just-saved
+// English ones on every save — manual Italian edits do not persist across an
+// English save. See FRONTEND i18n plan.
 export function createDeepLAutofillHook(): CollectionAfterChangeHook {
   return async ({ doc, req, collection, operation, context }) => {
     if (context?.skipDeepLAutofill) return doc;

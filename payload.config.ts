@@ -33,6 +33,8 @@ import { OnlineSessionsBlocks } from "@/collections/online-sessions/online-sessi
 import { OnlineScheduleIntro } from "@/collections/online-sessions/online-sessions-schedule/Intro";
 import { OnlineScheduleBlocks } from "@/collections/online-sessions/online-sessions-schedule/Blocks";
 
+import { JoinURL } from "@/collections/online-sessions/join-the-screening/JoinURL";
+
 //cloudinary
 import { cloudinaryAdapter } from "./src/lib/cloudinaryStorageAdapter";
 import ShortFilmsNextEdition from "@/collections/official-selection/short-films/NextEdition";
@@ -45,6 +47,11 @@ export default buildConfig({
   admin: {
     user: Users.slug,
     theme: "light",
+    meta: {
+      icons: {
+        icon: "/cursor-visf.png",
+      },
+    },
     components: {
       graphics: {
         Logo: "@/app/(payload)/admin/components/Logo#Logo",
@@ -95,6 +102,7 @@ export default buildConfig({
     OnlineSessionsBlocks,
     OnlineScheduleIntro,
     OnlineScheduleBlocks,
+    JoinURL,
   ],
   plugins: [
     cloudStoragePlugin({

@@ -5,7 +5,7 @@ import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
 import BuyTicketsButton from '@/components/ui/BuyTicketsButton'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
-import type { PayloadSponsor } from '@/types/cms'
+import type { PayloadSponsor, PayloadJoinURL } from '@/types/cms'
 
 const CARD_CLASSNAME =
   'group relative w-full h-[280px] sm:h-[350px] lg:max-w-[648px] lg:h-[433px] rounded-visf-card overflow-hidden block'
@@ -17,11 +17,20 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
   const dict = await getDictionary(lang as Locale)
   const payload = await getPayloadClient()
 
-  const sponsorsResult = await payload.find({
-    collection: 'sponsors',
-    depth: 1,
-    locale: lang,
-  })
+  const [sponsorsResult, joinURLResult] = await Promise.all([
+    payload.find({
+      collection: 'sponsors',
+      depth: 1,
+      locale: lang,
+    }),
+    payload.find({
+      collection: 'online-sessions-join-url',
+      limit: 1,
+      depth: 0,
+    }),
+  ])
+
+  const joinScreeningUrl = (joinURLResult.docs as PayloadJoinURL[])[0]?.url
 
   const sponsorsData: SponsorProp[] = (sponsorsResult.docs as PayloadSponsor[]).map((doc) => ({
     id: String(doc.id),
@@ -35,7 +44,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
+        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
           {dict.onlineSessionsPage.h1Line1}
           <br />
           <span className="text-visf-accent">{dict.onlineSessionsPage.h1Accent}</span>
@@ -83,7 +92,12 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
               </p>
             </Link>
 
-            <Link href={`/${lang}/join-the-screening`} className={CARD_CLASSNAME}>
+            <a
+              href={joinScreeningUrl ?? '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={CARD_CLASSNAME}
+            >
               <GrayscaleHoverImage
                 src="/banner.png"
                 alt=""
@@ -95,7 +109,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
                 <br />
                 {dict.onlineSessionsPage.joinScreeningCardLine2}
               </p>
-            </Link>
+            </a>
           </div>
         </section>
       </div>

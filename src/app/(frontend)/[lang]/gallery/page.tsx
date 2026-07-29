@@ -37,11 +37,11 @@ export default async function GalleryPage({ params }: PageProps<'/[lang]/gallery
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-visf-accent text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
+        <h1 className="font-visf-headline font-medium leading-none text-visf-accent text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
           {dict.galleryPage.h1}
         </h1>
 
-        <h2 className="font-visf-headline font-medium text-black text-2xl leading-snug sm:text-3xl sm:leading-normal lg:text-[44px] lg:leading-[63px] tracking-normal lg:tracking-[2px] px-4 sm:px-6 lg:px-[87px] mt-1 lg:mt-2">
+        <h2 className="font-visf-headline font-medium text-black text-2xl leading-snug sm:text-3xl sm:leading-normal lg:text-[44px] lg:leading-[63px] tracking-normal lg:tracking-[2px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-1 lg:mt-2">
           {dict.galleryPage.h2}
         </h2>
 

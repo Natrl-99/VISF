@@ -26,10 +26,10 @@ export default function JurySection({ members, dict }: JurySectionProps) {
   return (
     <section
       id="jury"
-      className="font-visf-text pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16"
+      className="font-visf-text scroll-mt-20 sm:scroll-mt-24 lg:scroll-mt-36 pl-8 sm:pl-12 lg:pl-[90px] pr-[30px] py-16 max-w-[1440px] mx-auto flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16"
     >
       <div className="lg:w-[406px] lg:shrink-0">
-        <h2 className="font-visf-headline text-[40px] font-medium leading-[1.05] mb-4">
+        <h2 className="font-visf-headline text-[28px] sm:text-[34px] lg:text-[40px] font-medium leading-[1.05] mb-4">
           <span className="text-visf-accent  decoration-current">{dict.jury.headingAccent}</span>
           <br />
           {dict.jury.headingRest}
@@ -56,7 +56,7 @@ export default function JurySection({ members, dict }: JurySectionProps) {
         {selected && (
           <div className="bg-visf-accent rounded-visf-card p-8 sm:p-10 lg:p-12 flex flex-col sm:flex-row gap-8 lg:min-h-[683px]">
             <div className="flex-1">
-              <p className="font-visf-headline font-medium text-[20px] leading-[29px] mb-4">
+              <p className="font-visf-headline font-medium text-base sm:text-lg lg:text-[20px] leading-[29px] mb-4">
                 {selected.name}
               </p>
               <SectionIntroText text={selected.bio} />

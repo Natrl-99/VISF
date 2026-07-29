@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
+import { validateMaxWinnersPerCategory } from "@/lib/validateMaxWinnersPerCategory";
 
 export const Winners: CollectionConfig = {
   slug: "winners",
@@ -43,8 +44,9 @@ export const Winners: CollectionConfig = {
       },
       admin: {
         description:
-          "One row per award. Repeat the category for ties or multiple winners in the same category.",
+          "One row per award. Repeat the category for ties or multiple winners in the same category — up to 2 rows per category.",
       },
+      validate: validateMaxWinnersPerCategory,
       fields: [
         {
           name: "category",

@@ -15,6 +15,9 @@ const stackSansText = Stack_Sans_Text({
 export const metadata: Metadata = {
   title: 'VISF — Verona International Short Film Festival',
   description: 'Where independent cinema finds its audience.',
+  icons: {
+    icon: '/cursor-visf.png',
+  },
 }
 
 export default async function FrontendLayout({

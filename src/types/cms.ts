@@ -75,6 +75,12 @@ export interface PayloadWinnersYear {
   awards: PayloadAward[];
 }
 
+//Join the Screening
+export interface PayloadJoinURL {
+  id: string;
+  url: string;
+}
+
 //Online Sessions Line Up
 export interface PayloadNextEdition {
   id: string;

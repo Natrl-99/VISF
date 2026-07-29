@@ -27,6 +27,7 @@ import type {
   PayloadIntroduction,
   PayloadCompetition,
   PayloadCategory,
+  PayloadVideo,
 } from "@/types/cms";
 
 const heroData = {
@@ -37,10 +38,7 @@ const introSectionData = {
   imageUrl: "/banner.png",
 };
 
-const videoBannerData = {
-  posterUrl: "https://picsum.photos/seed/visf-video/1600/700?grayscale",
-  videoUrl: null as string | null,
-};
+const FALLBACK_VIDEO_BANNER_POSTER_URL = "https://picsum.photos/seed/visf-video/1600/700?grayscale";
 
 export default async function HomePage({ params }: PageProps<'/[lang]'>) {
   const { lang } = await params;
@@ -62,7 +60,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 
   // Independent queries — run in parallel instead of paying for 6 sequential
   // round trips to the DB on every request.
-  const [juryResult, sponsorsResult, dateEventsResult, introResult, competitionsResult, categoriesResult] =
+  const [juryResult, sponsorsResult, dateEventsResult, introResult, competitionsResult, categoriesResult, videoResult] =
     await Promise.all([
       payload.find({
         collection: "jury-members",
@@ -98,6 +96,11 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         depth: 0,
         limit: 0,
         locale: lang,
+      }),
+      payload.find({
+        collection: "video",
+        limit: 1,
+        depth: 1, // resolves "thumbnail" to its media URL instead of just an ID
       }),
     ]);
 
@@ -153,13 +156,20 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
     name: doc.name ?? "",
   }));
 
+  const videoDoc = (videoResult.docs as PayloadVideo[])[0];
+  const videoBannerUrl = videoDoc?.url ?? null;
+  const videoBannerPosterUrl =
+    typeof videoDoc?.thumbnail === "object" && videoDoc.thumbnail?.url
+      ? videoDoc.thumbnail.url
+      : FALLBACK_VIDEO_BANNER_POSTER_URL;
+
   return (
     <main className="bg-white">
       <section className="relative bg-neutral-950 text-white">
         {/*Navbar*/}
         <Header lang={lang} dict={dict} />
         {/*Hero Banner*/}
-        <Hero imageUrl={heroData.imageUrl} sponsors={sponsorsData} dict={dict} />
+        <Hero imageUrl={heroData.imageUrl} dict={dict} />
       </section>
 
       <IntroSection
@@ -185,9 +195,8 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
       />
 
       <VideoBanner
-        headline={dict.home.videoBannerHeadline}
-        posterUrl={videoBannerData.posterUrl}
-        videoUrl={videoBannerData.videoUrl}
+        posterUrl={videoBannerPosterUrl}
+        videoUrl={videoBannerUrl}
       />
 
       <JurySection members={juryData} dict={dict} />

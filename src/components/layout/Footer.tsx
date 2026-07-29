@@ -26,7 +26,12 @@ export default function Footer({ sponsors, dict }: FooterProps) {
           <SubmitFilmButton className="block text-[16px] leading-[14px] font-light mb-1 hover:underline">
             {dict.footer.rules}
           </SubmitFilmButton>
-          <p className="text-[16px] leading-[14px] font-light mb-3">{dict.footer.contactUs}</p>
+          <a
+            href="mailto:victormgb99@gmail.com" //mailto
+            className="block text-[16px] leading-[14px] font-light mb-3 hover:underline"
+          >
+            {dict.footer.contactUs}
+          </a>
           <div className="flex gap-3 text-neutral-800">
             <a
               href="https://www.instagram.com/visfverona?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
