@@ -27,7 +27,7 @@ export default function WinnersSection({ years }: WinnersSectionProps) {
   if (!selected) return null;
 
   return (
-    <section className="px-4 sm:px-6 lg:px-[87px] mt-8 lg:mt-14 pb-16">
+    <section className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-8 lg:mt-14 pb-16">
       <nav className="flex flex-wrap gap-x-10 sm:gap-x-14 lg:gap-x-20 gap-y-2 mb-10 lg:mb-16">
         {years.map((yearEntry, idx) => (
           <button

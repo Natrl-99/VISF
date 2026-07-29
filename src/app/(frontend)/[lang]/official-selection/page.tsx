@@ -35,7 +35,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
+        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
           {dict.officialSelectionPage.h1Line1}
           <br />
           <span className="text-visf-accent">{dict.officialSelectionPage.h1Accent}</span>

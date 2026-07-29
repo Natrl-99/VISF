@@ -14,7 +14,7 @@ export default function ScreeningBlock({
   movies,
 }: ScreeningBlockProps) {
   return (
-    <div className="font-visf-headline flex flex-col lg:flex-row gap-4 lg:gap-16 items-start px-4 sm:px-6 lg:px-[87px]">
+    <div className="font-visf-headline flex flex-col lg:flex-row gap-4 lg:gap-16 items-start px-4 sm:px-6 md:px-12 lg:px-[87px]">
       <div className="text-left lg:w-[220px] lg:shrink-0 lg:min-w-0 break-words space-y-4">
         <p className="font-bold text-base sm:text-lg lg:text-[30px] leading-snug lg:leading-[24px]">
           {chapterLabel}

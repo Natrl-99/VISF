@@ -37,7 +37,7 @@ export default function IntroSection({
 
         <SectionIntroText text={introText} className="mb-6" />
 
-        <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
+        <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs sm:text-sm font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
           <span className="block whitespace-nowrap">{dict.home.introSubmitLine1}</span>
           <span className="block whitespace-nowrap">{dict.home.introSubmitLine2}</span>
         </SubmitFilmButton>

@@ -24,7 +24,7 @@ export default function Header({ lang, dict }: HeaderProps) {
     { key: 'official-selection', label: dict.nav.officialSelection, href: `/${lang}/official-selection` },
     { key: 'online-sessions', label: dict.nav.onlineSessions, href: `/${lang}/online-sessions` },
     { key: 'jury', label: dict.nav.meetTheJury, href: `/${lang}#jury` },
-    { key: 'categories', label: dict.nav.categories, href: null },
+    { key: 'categories', label: dict.nav.categories, href: `/${lang}#categories` },
     { key: 'gallery', label: dict.nav.gallery, href: `/${lang}/gallery` },
     { key: 'contact', label: dict.nav.contactUs, href: null },
   ] as const
@@ -32,22 +32,24 @@ export default function Header({ lang, dict }: HeaderProps) {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 ${HEADER_HEIGHT} flex items-center justify-between bg-white px-4 sm:px-6 lg:px-12 font-visf-text text-black`}
+        className={`fixed inset-x-0 top-0 z-50 ${HEADER_HEIGHT} flex items-center gap-2 bg-white px-4 sm:px-6 lg:px-12 font-visf-text text-black`}
       >
-        <button
-          onClick={() => setMenuOpen(true)}
-          aria-label={dict.header.openMenu}
-          className="flex h-10 w-6 shrink-0 flex-col items-stretch justify-center gap-1.5 sm:h-12 sm:w-8 sm:gap-2 lg:w-[38px]"
-        >
-          <span className="h-px w-full bg-black" />
-          <span className="h-px w-full bg-black" />
-          <span className="h-px w-full bg-black" />
-        </button>
+        <div className="flex-1 flex justify-start">
+          <button
+            onClick={() => setMenuOpen(true)}
+            aria-label={dict.header.openMenu}
+            className="flex h-10 w-6 shrink-0 flex-col items-stretch justify-center gap-1.5 sm:h-12 sm:w-8 sm:gap-2 lg:w-[38px]"
+          >
+            <span className="h-px w-full bg-black" />
+            <span className="h-px w-full bg-black" />
+            <span className="h-px w-full bg-black" />
+          </button>
+        </div>
 
         <Link
           href={`/${lang}`}
           aria-label={dict.header.backToHome}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="shrink-0"
         >
           <Image
             src="/LOGO-VISF-BLACK.png"
@@ -59,9 +61,9 @@ export default function Header({ lang, dict }: HeaderProps) {
           />
         </Link>
 
-        <div className="flex flex-col items-end gap-1.5 sm:gap-2">
+        <div className="flex-1 flex flex-col items-end gap-1.5 sm:gap-2">
           <LanguageSwitcher currentLang={lang} />
-          <SubmitFilmButton className="text-[16px] leading-[14px] font-medium text-black bg-visf-accent px-3 py-1.5 rounded-[16px] whitespace-nowrap hover:underline">
+          <SubmitFilmButton className="text-xs sm:text-sm lg:text-[16px] leading-[14px] font-medium text-black bg-visf-accent px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[16px] whitespace-nowrap hover:underline">
             {dict.cta.submitFilm}
           </SubmitFilmButton>
         </div>

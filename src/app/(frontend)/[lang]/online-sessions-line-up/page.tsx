@@ -89,7 +89,7 @@ export default async function OnlineSessionsLineUpPage({
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 lg:px-[87px] pt-6 lg:pt-0">
+        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
           {dict.onlineSessionsLineUpPage.h1Line1}
           <br />
           {dict.onlineSessionsLineUpPage.h1Line2}
@@ -97,19 +97,19 @@ export default async function OnlineSessionsLineUpPage({
           <span className="text-visf-accent">{dict.onlineSessionsLineUpPage.h1Accent}</span>
         </h1>
 
-        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
+        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
           {dict.common.nextEdition}
           <br />
           {nextEditionLabel}
         </p>
 
-        <p className="font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[25px] lg:leading-[29px] whitespace-nowrap px-4 sm:px-6 lg:px-[87px] mt-6 lg:mt-14">
+        <p className="font-visf-headline font-medium text-sm leading-snug sm:text-base sm:leading-normal lg:text-[25px] lg:leading-[29px] whitespace-nowrap px-4 sm:px-6 md:px-12 lg:px-[87px] mt-6 lg:mt-14">
           {dict.common.intro}
         </p>
 
         <SectionIntroTextWide
           text={introText}
-          className="px-4 sm:px-6 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] lg:h-[188px] text-sm sm:text-base lg:text-[25px]"
+          className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] lg:h-[188px] text-sm sm:text-base lg:text-[25px]"
         />
 
         <ProgramsSection programs={programsData} showPoster={false} />

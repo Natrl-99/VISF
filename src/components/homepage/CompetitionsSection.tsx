@@ -63,7 +63,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
             className="absolute inset-0"
             style={{ background: "rgba(0,0,0,0.32)" }}
           />
-          <p className="font-visf-headline absolute bottom-5 left-5 lg:bottom-8 lg:left-8 lg:w-[394px] text-white text-2xl lg:text-[48px] font-medium leading-tight lg:leading-[49px]">
+          <p className="font-visf-headline absolute bottom-5 left-5 lg:bottom-8 lg:left-8 lg:w-[394px] text-white text-2xl sm:text-3xl lg:text-[48px] font-medium leading-tight lg:leading-[49px]">
             {titleLines.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -125,7 +125,10 @@ export default function CompetitionsSection({
   );
 
   return (
-    <section className="font-visf-text px-[35px] pb-16 max-w-[1440px] mx-auto">
+    <section
+      id="categories"
+      className="font-visf-text scroll-mt-20 sm:scroll-mt-24 lg:scroll-mt-36 px-[35px] pb-16 max-w-[1440px] mx-auto"
+    >
       <div className="flex flex-col sm:flex-row gap-[30px]">
         <FlipCard
           titleLines={[dict.home.competitionsTitleLine1, dict.home.competitionsTitleLine2]}
