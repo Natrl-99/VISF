@@ -45,6 +45,7 @@ export default function Footer({ sponsors, dict }: FooterProps) {
           </div>
         </div>
 
+
         <div className="flex flex-wrap items-center gap-6 opacity-70">
           {sponsors.map((sp) =>
             sp.logoUrl ? (
