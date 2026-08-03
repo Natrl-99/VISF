@@ -10,6 +10,7 @@ import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 const HEADER_HEIGHT = 'h-20 sm:h-24 lg:h-36'
+const CONTACT_EMAIL = 'victormgb99@gmail.com'
 
 type HeaderProps = {
   lang: string
@@ -82,9 +83,8 @@ export default function Header({ lang, dict }: HeaderProps) {
           className={`absolute inset-0 bg-black/40 transition-opacity ${menuOpen ? 'opacity-100' : 'opacity-0'}`}
         />
         <div
-          className={`absolute top-0 left-0 h-full w-64 bg-white p-6 transition-transform ${
-            menuOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`absolute top-0 left-0 h-full w-64 bg-white p-6 transition-transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           <button onClick={() => setMenuOpen(false)} className="flex items-center gap-2 text-s text-neutral-500 mb-8">
             <X size={14} /> {dict.header.closeMenu}
@@ -100,7 +100,7 @@ export default function Header({ lang, dict }: HeaderProps) {
                   {item.label}
                 </Link>
               ) : (
-                <a key={item.key} href="#" className="text-base uppercase text-neutral-800">
+                <a key={item.key} href={`mailto:${CONTACT_EMAIL}`} className="text-base uppercase text-neutral-800">
                   {item.label}
                 </a>
               )
@@ -114,7 +114,7 @@ export default function Header({ lang, dict }: HeaderProps) {
               aria-label="Instagram"
             >
               <FaInstagram size={24} />
-            </a>
+            </a> 
             <FaVimeoV size={24} />
           </div>
         </div>
