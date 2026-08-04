@@ -20,14 +20,18 @@ type CompetitionsSectionProps = {
   dict: Dictionary;
 };
 
-const CARD_IMAGE = "/banner.png";
+const CARD_COMPETITIONS = "/Homepage_MainCompetitions.jpg";
+const CARD_CATEGORIES = "/Homepage_Categories.jpg";
+
 
 type FlipCardProps = {
   titleLines: string[];
   items: string[];
+  frontImage: string;
+  backImage: string;
 };
 
-function FlipCard({ titleLines, items }: FlipCardProps) {
+function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const firstColumn = items.slice(0, 10);
   const secondColumn = items.length > 10 ? items.slice(10) : [];
@@ -55,7 +59,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
           }}
         >
           <GrayscaleHoverImage
-            src={CARD_IMAGE}
+            src={frontImage}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -81,7 +85,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
           }}
         >
           <GrayscaleHoverImage
-            src={CARD_IMAGE}
+            src={backImage}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -133,10 +137,14 @@ export default function CompetitionsSection({
         <FlipCard
           titleLines={[dict.home.competitionsTitleLine1, dict.home.competitionsTitleLine2]}
           items={sortedCompetitions.map((competition) => competition.name)}
+          frontImage={CARD_COMPETITIONS}
+          backImage={CARD_COMPETITIONS}
         />
         <FlipCard
           titleLines={[dict.home.categoriesTitleLine1, dict.home.categoriesTitleLine2]}
           items={sortedCategories.map((category) => category.name)}
+          frontImage={CARD_CATEGORIES}
+          backImage={CARD_CATEGORIES}
         />
       </div>
     </section>
