@@ -31,16 +31,16 @@
     "heroLine2": "Open",
     "introHeadlineLine1": "WHERE",
     "introHeadlineLine2": "INDEPENDENT",
-    "introHeadlineAccent": "CINEMA",
+    "introHeadlineAccentImage": "/Heading_JuryEN.png",
+    "introHeadlineAccentImageAlt": "CINEMA",
     "introHeadlineLine3Rest": "FINDS ITS",
     "introHeadlineLine4": "AUDIENCE",
     "introSubmitLine1": "SUBMIT",
     "introSubmitLine2": "YOUR FILM",
-    "officialSelectionCardLine1": "OFFICIAL",
-    "officialSelectionCardAccent": "SELECTION",
-    "onlineSessionsCardAccentVisf": "VISF",
-    "onlineSessionsCardLine1Rest": "ONLINE",
-    "onlineSessionsCardLine2": "SESSIONS",
+    "officialSelectionCardLine1Image": "/Heading_OfficialSelectionEN.png",
+    "officialSelectionCardLine1ImageAlt": "OFFICIAL",
+    "onlineSessionsCardAccentVisfImage": "/Heading_VisfonlineSessionsEN.png",
+    "onlineSessionsCardAccentVisfImageAlt": "VISF ONLINE SESSIONS",
     "competitionsTitleLine1": "MAIN",
     "competitionsTitleLine2": "COMPETITIONS",
     "categoriesTitleLine1": "TECHNICAL",
@@ -48,7 +48,8 @@
     "viewGalleryAriaLabel": "View gallery"
   },
   "jury": {
-    "headingAccent": "MEET",
+    "headingAccentImage": "/Heading_JuryEN.png",
+    "headingAccentImageAlt": "MEET",
     "headingRest": "THE JURY",
     "intro": "Our distinguished jury brings together industry leaders, creative visionaries, and experienced professionals from across the design and innovation landscape. Each juror has been carefully selected for their expertise, achievements, and commitment to recognizing outstanding work.\n\nWith diverse perspectives and deep knowledge, they will evaluate every submission based on creativity, originality, execution, impact, and excellence, ensuring a fair and transparent judging process. Their collective experience helps celebrate the projects and talent that are shaping the future of the industry."
   },
@@ -57,8 +58,8 @@
     "titleAccent": "WINNERS"
   },
   "officialSelectionPage": {
-    "h1Line1": "OFFICIAL",
-    "h1Accent": "SELECTION",
+    "h1Image": "/Heading_BlackOfficialSelectionblackEN.png",
+    "h1ImageAlt": "OFFICIAL SELECTION",
     "shortFilmsCardLine1": "OFFICIAL SELECTION",
     "shortFilmsCardLine2": "SHORT FILMS",
     "screeningScheduleCardLine1": "SCREENING",
@@ -66,8 +67,8 @@
     "winnersCard": "WINNERS"
   },
   "onlineSessionsPage": {
-    "h1Line1": "ONLINE",
-    "h1Accent": "SESSIONS",
+    "h1Image": "/Heading_BlackVisfonlineSessionsEN.png",
+    "h1ImageAlt": "VISF ONLINE SESSIONS",
     "lineUpCardLine1": "ONLINE",
     "lineUpCardLine2": "SESSIONS",
     "lineUpCardLine3": "LINE UP",
@@ -77,25 +78,24 @@
     "joinScreeningCardLine2": "SCREENING"
   },
   "onlineScreeningSchedulePage": {
-    "h1Line1": "ONLINE",
-    "h1Line2": "SCREENING",
-    "h1Accent": "SCHEDULE"
+    "h1Image": "/Heading_OnlineScreeningScheduleEN.png",
+    "h1ImageAlt": "ONLINE SCREENING SCHEDULE"
   },
   "onlineSessionsLineUpPage": {
-    "h1Line1": "ONLINE",
-    "h1Line2": "SESSIONS",
-    "h1Accent": "LINE UP"
+    "h1Image": "/Heading_OnlineSessionsLineUpEN.png",
+    "h1ImageAlt": "ONLINE SESSIONS LINE UP"
   },
   "screeningSchedulePage": {
-    "h1Line1": "SCREENING",
-    "h1Accent": "SCHEDULE"
+    "h1Image": "/Heading_ScreeningScheduleEN.png",
+    "h1ImageAlt": "SCREENING SCHEDULE"
   },
   "shortFilmsPage": {
     "h1Line1": "SESSIONS",
     "h1Accent": "LINE UP"
   },
   "galleryPage": {
-    "h1": "GALLERY",
+    "h1Image": "/Heading_GalleryEN.png",
+    "h1ImageAlt": "GALLERY",
     "h2": "DISCOVER THE FESTIVAL",
     "photoAlt": "VISF festival photo"
   },

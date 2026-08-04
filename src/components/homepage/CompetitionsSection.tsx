@@ -20,46 +20,18 @@ type CompetitionsSectionProps = {
   dict: Dictionary;
 };
 
-const CARD_IMAGE = "/banner.png";
+const CARD_COMPETITIONS = "/Homepage_MainCompetitions.jpg";
+const CARD_CATEGORIES = "/Homepage_Categories.jpg";
+
 
 type FlipCardProps = {
   titleLines: string[];
   items: string[];
+  frontImage: string;
+  backImage: string;
 };
 
-function splitColumns(items: string[]): { firstColumn: string[]; secondColumn: string[] } {
-  if (items.length <= 3) {
-    return { firstColumn: items, secondColumn: [] };
-  }
-  const half = Math.ceil(items.length / 2);
-  return { firstColumn: items.slice(0, half), secondColumn: items.slice(half) };
-}
-
-const OVERFLOW_FADE_STYLE = {
-  WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
-  maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
-} as const;
-
-function useOverflowFade() {
-  const ref = useRef<HTMLUListElement | null>(null);
-  const [hasOverflow, setHasOverflow] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const checkOverflow = () => setHasOverflow(el.scrollHeight > el.clientHeight + 1);
-    checkOverflow();
-
-    const resizeObserver = new ResizeObserver(checkOverflow);
-    resizeObserver.observe(el);
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  return { ref, hasOverflow };
-}
-
-function FlipCard({ titleLines, items }: FlipCardProps) {
+function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const { firstColumn, secondColumn } = splitColumns(items);
   const firstColumnFade = useOverflowFade();
@@ -88,7 +60,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
           }}
         >
           <GrayscaleHoverImage
-            src={CARD_IMAGE}
+            src={frontImage}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -114,7 +86,7 @@ function FlipCard({ titleLines, items }: FlipCardProps) {
           }}
         >
           <GrayscaleHoverImage
-            src={CARD_IMAGE}
+            src={backImage}
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -174,10 +146,14 @@ export default function CompetitionsSection({
         <FlipCard
           titleLines={[dict.home.competitionsTitleLine1, dict.home.competitionsTitleLine2]}
           items={sortedCompetitions.map((competition) => competition.name)}
+          frontImage={CARD_COMPETITIONS}
+          backImage={CARD_COMPETITIONS}
         />
         <FlipCard
           titleLines={[dict.home.categoriesTitleLine1, dict.home.categoriesTitleLine2]}
           items={sortedCategories.map((category) => category.name)}
+          frontImage={CARD_CATEGORIES}
+          backImage={CARD_CATEGORIES}
         />
       </div>
     </section>
