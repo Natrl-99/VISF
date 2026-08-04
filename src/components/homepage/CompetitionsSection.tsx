@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import GrayscaleHoverImage from "@/components/ui/GrayscaleHoverImage";
 import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
 
@@ -33,16 +33,15 @@ type FlipCardProps = {
 
 function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
-  const { firstColumn, secondColumn } = splitColumns(items);
-  const firstColumnFade = useOverflowFade();
-  const secondColumnFade = useOverflowFade();
+  const firstColumn = items.slice(0, 10);
+  const secondColumn = items.length > 10 ? items.slice(10) : [];
 
   return (
     <button
       type="button"
       onClick={() => setFlipped((prev) => !prev)}
       aria-pressed={flipped}
-      className="group relative w-full sm:w-1/2 h-107.5 sm:h-110 lg:h-[450px] lg:max-w-[675px] text-left"
+      className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] text-left"
       style={{ perspective: "1500px" }}
     >
       <div
@@ -95,21 +94,13 @@ function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
             style={{ background: "rgba(0,0,0,0.75)" }}
           />
           <div className="absolute inset-0 p-4 sm:p-6 lg:p-6 flex flex-col justify-between gap-2">
-            <ul
-              ref={firstColumnFade.ref}
-              className="font-visf-text relative flex-1 min-h-0 overflow-y-auto text-white text-sm sm:text-base lg:w-[279px] lg:text-base font-light leading-snug sm:leading-4.75 lg:leading-4.75 space-y-0"
-              style={firstColumnFade.hasOverflow ? OVERFLOW_FADE_STYLE : undefined}
-            >
+            <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
               {firstColumn.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
             {secondColumn.length > 0 && (
-              <ul
-                ref={secondColumnFade.ref}
-                className="font-visf-text relative flex-1 min-h-0 overflow-y-auto self-end text-right text-white text-sm sm:text-base lg:w-[279px] lg:text-base font-light leading-snug sm:leading-4.75 lg:leading-4.75 space-y-0"
-                style={secondColumnFade.hasOverflow ? OVERFLOW_FADE_STYLE : undefined}
-              >
+              <ul className="font-visf-text relative flex-1 min-h-0 overflow-y-auto self-end text-right text-white text-xs lg:w-[279px] lg:text-[14px] font-light lg:leading-[16px] space-y-0">
                 {secondColumn.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
