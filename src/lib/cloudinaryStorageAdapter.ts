@@ -44,10 +44,15 @@ export const cloudinaryAdapter: Adapter = ({ collection }) => {
 
   return {
     name: 'cloudinary',
+    // Without quality/fetch_format 'auto', Cloudinary serves the untouched
+    // upload as-is (original resolution, original format) — this was why
+    // production pages were downloading multi-MB originals for every image.
     generateURL: ({ filename }) =>
       cloudinary.url(toPublicId(filename), {
         secure: true,
         resource_type: resourceType,
+        quality: 'auto',
+        fetch_format: 'auto',
       }),
     handleDelete: async ({ filename }) => {
       await cloudinary.uploader.destroy(toPublicId(filename), {
@@ -70,10 +75,13 @@ export const cloudinaryAdapter: Adapter = ({ collection }) => {
       })
     },
     staticHandler: async (_req, { params: { filename } }) =>
+      // Kept in sync with generateURL above — same reasoning applies here.
       Response.redirect(
         cloudinary.url(toPublicId(filename), {
           secure: true,
           resource_type: resourceType,
+          quality: 'auto',
+          fetch_format: 'auto',
         }),
         302,
       ),
