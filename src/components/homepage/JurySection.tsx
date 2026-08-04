@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import SectionIntroText from '@/components/ui/SectionIntroText'
+import TitleImage from '@/components/ui/TitleImage'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 export type JuryMember = {
@@ -30,7 +31,15 @@ export default function JurySection({ members, dict }: JurySectionProps) {
     >
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[28px] sm:text-[34px] lg:text-[40px] font-medium leading-[1.05] mb-4">
-          <span className="text-visf-accent  decoration-current">{dict.jury.headingAccent}</span>
+          <span className="text-visf-accent  decoration-current">
+            <TitleImage
+              src={dict.jury.headingAccentImage}
+              alt={dict.jury.headingAccentImageAlt}
+              width={100}
+              height={60}
+              className="h-[28px] sm:h-[34px] lg:h-[40px] w-auto"
+            />
+          </span>
           <br />
           {dict.jury.headingRest}
         </h2>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
 import SubmitFilmButton from '@/components/ui/SubmitFilmButton'
 import SectionIntroText from '@/components/ui/SectionIntroText'
+import TitleImage from '@/components/ui/TitleImage'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 type IntroSectionProps = {
@@ -29,7 +30,15 @@ export default function IntroSection({
           <br />
           {dict.home.introHeadlineLine2}
           <br />
-          <span className="text-visf-accent uppercase">{dict.home.introHeadlineAccent}</span>{' '}
+          <span className="text-visf-accent uppercase inline-block align-baseline">
+            <TitleImage
+              src={dict.home.introHeadlineAccentImage}
+              alt={dict.home.introHeadlineAccentImageAlt}
+              width={200}
+              height={60}
+              className="h-[32px] sm:h-[40px] lg:h-[48px] w-auto inline-block align-baseline"
+            />
+          </span>{' '}
           {dict.home.introHeadlineLine3Rest}
           <br />
           {dict.home.introHeadlineLine4}

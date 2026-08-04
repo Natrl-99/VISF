@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import ScreeningBlock from '@/components/screening-schedule/ScreeningBlock'
+import TitleImage from '@/components/ui/TitleImage'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
 import type {
@@ -53,15 +54,19 @@ export default async function OnlineScreeningSchedulePage({
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
-          {dict.onlineScreeningSchedulePage.h1Line1}
-          <br />
-          {dict.onlineScreeningSchedulePage.h1Line2}
-          <br />
-          <span className="text-visf-accent">{dict.onlineScreeningSchedulePage.h1Accent}</span>
+        <h1 className="font-visf-headline font-medium leading-none px-4 sm:px-6 md:px-12 lg:px-[87px] pt-8 sm:pt-10 lg:pt-6">
+          <div className="h-[108px] sm:h-[144px] lg:h-[225px] overflow-hidden">
+            <TitleImage
+              src={dict.onlineScreeningSchedulePage.h1Image}
+              alt={dict.onlineScreeningSchedulePage.h1ImageAlt}
+              width={3648}
+              height={3467}
+              className="h-[192px] sm:h-[255px] lg:h-[398px] w-auto block -mt-[58px] sm:-mt-[78px] lg:-mt-[121px]"
+            />
+          </div>
         </h1>
 
-        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
+        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-0 lg:mt-0 max-w-sm lg:max-w-[745px]">
           {introText}
         </p>
 

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
+import TitleImage from '@/components/ui/TitleImage'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
 
 type OfficialSelectionOnlineSessionsProps = {
@@ -29,9 +30,13 @@ export default function OfficialSelectionOnlineSessions({
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
           <p className="absolute bottom-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
-            {dict.home.officialSelectionCardLine1}
-            <br />
-            <span className="text-visf-accent">{dict.home.officialSelectionCardAccent}</span>
+            <TitleImage
+              src={dict.home.officialSelectionCardLine1Image}
+              alt={dict.home.officialSelectionCardLine1ImageAlt}
+              width={300}
+              height={100}
+              className="h-[24px] sm:h-[30px] lg:h-[40px] w-auto block"
+            />
           </p>
         </Link>
 
@@ -46,10 +51,13 @@ export default function OfficialSelectionOnlineSessions({
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
           <p className="absolute top-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
-            <span className="text-visf-accent">{dict.home.onlineSessionsCardAccentVisf}</span>{' '}
-            {dict.home.onlineSessionsCardLine1Rest}
-            <br />
-            {dict.home.onlineSessionsCardLine2}
+            <TitleImage
+              src={dict.home.onlineSessionsCardAccentVisfImage}
+              alt={dict.home.onlineSessionsCardAccentVisfImageAlt}
+              width={365}
+              height={347}
+              className="h-[60px] sm:h-[75px] lg:h-[100px] w-auto block"
+            />
           </p>
         </Link>
       </div>

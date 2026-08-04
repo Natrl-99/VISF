@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import GalleryGrid, { type GalleryPhoto } from '@/components/gallery/GalleryGrid'
+import TitleImage from '@/components/ui/TitleImage'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
 import type { PayloadSponsor } from '@/types/cms'
@@ -37,8 +38,14 @@ export default async function GalleryPage({ params }: PageProps<'/[lang]/gallery
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-visf-accent text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
-          {dict.galleryPage.h1}
+        <h1 className="font-visf-headline font-medium leading-none text-visf-accent px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
+          <TitleImage
+            src={dict.galleryPage.h1Image}
+            alt={dict.galleryPage.h1ImageAlt}
+            width={1389}
+            height={283}
+            className="h-[36px] sm:h-[48px] lg:h-[79px] w-auto block"
+          />
         </h1>
 
         <h2 className="font-visf-headline font-medium text-black text-2xl leading-snug sm:text-3xl sm:leading-normal lg:text-[44px] lg:leading-[63px] tracking-normal lg:tracking-[2px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-1 lg:mt-2">
