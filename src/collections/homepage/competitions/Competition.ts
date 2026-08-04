@@ -15,11 +15,7 @@ export const Competition: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: async({ req }) => {
-      if(!req.user) return false;
-      const {totalDocs} = await req.payload.count({collection: "competition"});
-      return totalDocs < 20;
-    },
+    create: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },
