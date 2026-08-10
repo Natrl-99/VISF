@@ -31,6 +31,38 @@ type FlipCardProps = {
   backImage: string;
 };
 
+function splitColumns(items: string[]): { firstColumn: string[]; secondColumn: string[] } {
+  if (items.length <= 3) {
+    return { firstColumn: items, secondColumn: [] };
+  }
+  const half = Math.ceil(items.length / 2);
+  return { firstColumn: items.slice(0, half), secondColumn: items.slice(half) };
+}
+
+const OVERFLOW_FADE_STYLE = {
+  WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+  maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+} as const;
+
+function useOverflowFade() {
+  const ref = useRef<HTMLUListElement | null>(null);
+  const [hasOverflow, setHasOverflow] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const checkOverflow = () => setHasOverflow(el.scrollHeight > el.clientHeight + 1);
+    checkOverflow();
+
+    const resizeObserver = new ResizeObserver(checkOverflow);
+    resizeObserver.observe(el);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  return { ref, hasOverflow };
+}
+
 function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const { firstColumn, secondColumn } = splitColumns(items);
