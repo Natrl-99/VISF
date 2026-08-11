@@ -98,6 +98,7 @@ export default async function OnlineSessionsLineUpPage({
               width={12500}
               height={8334}
               className="h-[193px] sm:h-[257px] lg:h-[402px] w-auto block -mt-[49px] sm:-mt-[66px] lg:-mt-[103px]"
+              loading="eager"
             />
           </div>
         </h1>

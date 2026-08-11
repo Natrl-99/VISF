@@ -6,7 +6,7 @@ export function Icon() {
     <div className="flex items-center gap-1 whitespace-nowrap">
       <Image
         className="w-4 h-4"
-        src="/ICON-VISF-BLACK.png"
+        src="/brand/ICON-VISF-BLACK.png"
         alt="VISF Icon"
         width={16}
         height={16}

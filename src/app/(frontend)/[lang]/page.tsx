@@ -31,11 +31,11 @@ import type {
 } from "@/types/cms";
 
 const heroData = {
-  imageUrl: "/Homepage_Banner.jpg",
+  imageUrl: "/homepage/Homepage_Banner.jpg",
 };
 
 const introSectionData = {
-  imageUrl: "/Homepage_Intro.jpg",
+  imageUrl: "/homepage/Homepage_Intro.jpg",
 };
 
 const FALLBACK_VIDEO_BANNER_POSTER_URL = "https://picsum.photos/seed/visf-video/1600/700?grayscale";
@@ -190,8 +190,8 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
       <OfficialSelectionOnlineSessions
         lang={lang}
         dict={dict}
-        officialSelectionImageUrl="/Homepage_OfficialSelection.jpg"
-        onlineSessionsImageUrl="/Homepage_OnlineSessions.jpg"
+        officialSelectionImageUrl="/homepage/Homepage_OfficialSelection.jpg"
+        onlineSessionsImageUrl="/homepage/Homepage_OnlineSessions.jpg"
       />
 
       <VideoBanner

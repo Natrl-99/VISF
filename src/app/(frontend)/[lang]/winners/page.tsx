@@ -58,6 +58,7 @@ export default async function WinnersPage({ params }: PageProps<'/[lang]/winners
               width={12500}
               height={8334}
               className="h-[160px] sm:h-[214px] lg:h-[334px] w-auto block -mt-[48px] sm:-mt-[64px] lg:-mt-[100px]"
+              loading="eager"
             />
           </div>
         </h1>

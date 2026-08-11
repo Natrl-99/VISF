@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Maximize2, Minimize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 
 type VideoBannerProps = {
@@ -87,10 +88,13 @@ export default function VideoBanner({ posterUrl, videoUrl }: VideoBannerProps) {
           tall, narrow band loses too much of the frame on a phone. The
           ambient background video only takes over from sm: up, where the
           crop still reads fine. */}
-      <img
+      <Image
         src={posterUrl}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        sizes="100vw"
+        loading="eager"
+        className="object-cover"
       />
 
       {videoUrl && (

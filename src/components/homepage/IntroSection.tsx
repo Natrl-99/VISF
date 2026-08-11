@@ -30,23 +30,21 @@ export default function IntroSection({
           <br />
           {dict.home.introHeadlineLine2}
           <br />
-          <span className="text-visf-accent uppercase inline-block align-baseline">
+          <span className="text-visf-accent uppercase inline-block align-baseline h-[34px] sm:h-[42px] lg:h-[49px] w-[158px] sm:w-[197px] lg:w-[235px] overflow-hidden">
             <TitleImage
               src={dict.home.introHeadlineAccentImage}
               alt={dict.home.introHeadlineAccentImageAlt}
-              width={200}
-              height={60}
-              className="h-[32px] sm:h-[40px] lg:h-[48px] w-auto inline-block align-baseline"
+              width={4000}
+              height={4000}
+              className="h-[181px] sm:h-[226px] lg:h-[271px] w-auto max-w-none block -mt-[74px] sm:-mt-[93px] lg:-mt-[111px] -ml-[11px] sm:-ml-[14px] lg:-ml-[17px]"
             />
           </span>{' '}
-          {dict.home.introHeadlineLine3Rest}
-          <br />
-          {dict.home.introHeadlineLine4}
+          {dict.home.introHeadlineLine3Rest} {dict.home.introHeadlineLine4}
         </h2>
 
         <SectionIntroText text={introText} className="mb-6" />
 
-        <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs sm:text-sm font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
+        <SubmitFilmButton className="font-visf-headline inline-flex flex-col items-center justify-center text-center text-xs sm:text-sm font-medium uppercase leading-tight lg:text-[20px] lg:leading-[19px] bg-[url('/ui/submitButtonBackground.svg')] bg-no-repeat bg-[length:100%_100%] px-5 py-3 sm:px-6 sm:py-4 lg:px-7 lg:py-4 hover:underline">
           <span className="block whitespace-nowrap">{dict.home.introSubmitLine1}</span>
           <span className="block whitespace-nowrap">{dict.home.introSubmitLine2}</span>
         </SubmitFilmButton>

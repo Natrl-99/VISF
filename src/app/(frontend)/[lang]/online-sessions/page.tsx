@@ -52,7 +52,8 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
               alt={dict.onlineSessionsPage.h1ImageAlt}
               width={12500}
               height={8334}
-              className="h-[95px] sm:h-[127px] lg:h-[198px] w-auto block -mt-[23px] sm:-mt-[31px] lg:-mt-[48px]"
+              className="h-[161px] sm:h-[216px] lg:h-[338px] w-auto block -mt-[53px] sm:-mt-[72px] lg:-mt-[112px]"
+              loading="eager"
             />
           </div>
         </h1>
@@ -61,7 +62,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[31px]">
             <Link href={`/${lang}/online-sessions-line-up`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OnlineSessions_LineUp.jpg"
+                src="/online-sessions/OnlineSessions_LineUp.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -77,7 +78,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
 
             <BuyTicketsButton className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OnlineSessions_Tickets.jpg"
+                src="/online-sessions/OnlineSessions_Tickets.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -87,7 +88,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
 
             <Link href={`/${lang}/online-screening-schedule`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OnlineSessions_ScreeningSchedule.jpg"
+                src="/online-sessions/OnlineSessions_ScreeningSchedule.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -106,7 +107,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
               className={CARD_CLASSNAME}
             >
               <GrayscaleHoverImage
-                src="/OnlineSessions_JoinScreening.jpg"
+                src="/online-sessions/OnlineSessions_JoinScreening.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />

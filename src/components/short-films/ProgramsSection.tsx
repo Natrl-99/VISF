@@ -62,7 +62,7 @@ export default function ProgramsSection({ programs, showPoster = true }: Program
             {showPoster && (
               <div className="w-[160px] h-[237px] sm:w-[200px] sm:h-[297px] lg:w-[235px] lg:h-[349px] lg:shrink-0 overflow-hidden">
                 <img
-                  src={film.posterUrl ?? '/banner.png'}
+                  src={film.posterUrl ?? '/homepage/Homepage_Banner.jpg'}
                   alt={film.title}
                   className="w-full h-full object-cover"
                 />

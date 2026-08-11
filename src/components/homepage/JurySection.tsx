@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import SectionIntroText from '@/components/ui/SectionIntroText'
 import TitleImage from '@/components/ui/TitleImage'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
@@ -31,13 +32,13 @@ export default function JurySection({ members, dict }: JurySectionProps) {
     >
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[28px] sm:text-[34px] lg:text-[40px] font-medium leading-[1.05] mb-4">
-          <span className="text-visf-accent  decoration-current block h-[80px] sm:h-[98px] lg:h-[120px] w-[217px] sm:w-[266px] lg:w-[326px] overflow-hidden">
+          <span className="text-visf-accent  decoration-current block h-[64px] sm:h-[81px] lg:h-[105px] w-[171px] sm:w-[217px] lg:w-[282px] overflow-hidden">
             <TitleImage
               src={dict.jury.headingAccentImage}
               alt={dict.jury.headingAccentImageAlt}
               width={12500}
               height={8334}
-              className="h-[180px] sm:h-[221px] lg:h-[270px] w-auto max-w-none block -mt-[48px] sm:-mt-[59px] lg:-mt-[72px] -ml-[25px] sm:-ml-[31px] lg:-ml-[38px]"
+              className="h-[139px] sm:h-[177px] lg:h-[231px] w-auto max-w-none block -mt-[37px] sm:-mt-[47px] lg:-mt-[61px] -ml-[19px] sm:-ml-[25px] lg:-ml-[32px]"
             />
           </span>
         </h2>
@@ -68,11 +69,13 @@ export default function JurySection({ members, dict }: JurySectionProps) {
               </p>
               <SectionIntroText text={selected.bio} />
             </div>
-            <div className="w-[140px] h-[187px] sm:w-[220px] sm:h-[300px] lg:w-[317px] lg:h-[423px] rounded-visf-card overflow-hidden shrink-0">
-              <img
+            <div className="relative w-[140px] h-[187px] sm:w-[220px] sm:h-[300px] lg:w-[317px] lg:h-[423px] rounded-visf-card overflow-hidden shrink-0">
+              <Image
                 src={selected.photoUrl}
                 alt={selected.name}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 640px) 140px, (max-width: 1024px) 220px, 317px"
+                className="object-cover"
               />
             </div>
           </div>
