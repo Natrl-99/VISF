@@ -53,7 +53,7 @@ export default function Header({ lang, dict }: HeaderProps) {
           className="shrink-0"
         >
           <Image
-            src="/LOGO-VISF-BLACK.png"
+            src="/brand/LOGO-VISF-BLACK.png"
             alt={dict.header.logoAlt}
             width={238}
             height={118}

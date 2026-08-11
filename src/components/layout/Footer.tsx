@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaInstagram, FaVimeoV } from "react-icons/fa";
 import SubmitFilmButton from "@/components/ui/SubmitFilmButton";
 import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
@@ -54,12 +55,14 @@ export default function Footer({ sponsors, dict }: FooterProps) {
                 href={sp.websiteUrl ? withProtocol(sp.websiteUrl) : "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-16 w-24 items-center justify-center lg:h-18 lg:w-28"
+                className="relative h-16 w-24 lg:h-18 lg:w-28"
               >
-                <img
+                <Image
                   src={sp.logoUrl}
                   alt={sp.name}
-                  className="max-h-full max-w-full object-contain"
+                  fill
+                  sizes="(max-width: 1024px) 96px, 112px"
+                  className="object-contain"
                 />
               </a>
             ) : (

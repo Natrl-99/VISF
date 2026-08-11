@@ -66,6 +66,7 @@ export default async function ScreeningSchedulePage({ params }: PageProps<'/[lan
               width={12500}
               height={8334}
               className="h-[163px] sm:h-[217px] lg:h-[339px] w-auto block -mt-[56px] sm:-mt-[75px] lg:-mt-[117px]"
+              loading="eager"
             />
           </div>
         </h1>

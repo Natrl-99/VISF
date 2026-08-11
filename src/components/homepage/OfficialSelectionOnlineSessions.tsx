@@ -21,15 +21,17 @@ export default function OfficialSelectionOnlineSessions({
       <div className="flex flex-col sm:flex-row gap-[30px]">
         <Link
           href={`/${lang}/official-selection`}
-          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
+          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] block"
         >
-          <GrayscaleHoverImage
-            src={officialSelectionImageUrl}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <div className="absolute -bottom-[21px] sm:-bottom-[27px] lg:-bottom-[35px] right-6 h-[66px] sm:h-[84px] lg:h-[110px] overflow-hidden">
+          <div className="absolute inset-0 rounded-visf-card overflow-hidden">
+            <GrayscaleHoverImage
+              src={officialSelectionImageUrl}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
+          </div>
+          <div className="absolute bottom-2 sm:-bottom-[43px] lg:-bottom-[57px] right-6 h-[66px] sm:h-[84px] lg:h-[110px] overflow-hidden">
             <TitleImage
               src={dict.home.officialSelectionCardLine1Image}
               alt={dict.home.officialSelectionCardLine1ImageAlt}
@@ -42,21 +44,23 @@ export default function OfficialSelectionOnlineSessions({
 
         <Link
           href={`/${lang}/online-sessions`}
-          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] rounded-visf-card overflow-hidden block"
+          className="group relative w-full sm:w-1/2 h-[221px] sm:h-[292px] lg:h-[450px] lg:max-w-[675px] block"
         >
-          <GrayscaleHoverImage
-            src={onlineSessionsImageUrl}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <div className="absolute top-6 right-6 h-[90px] sm:h-[115px] lg:h-[150px] overflow-hidden">
+          <div className="absolute inset-0 rounded-visf-card overflow-hidden">
+            <GrayscaleHoverImage
+              src={onlineSessionsImageUrl}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
+          </div>
+          <div className="absolute top-2 sm:-top-[39px] lg:-top-[50px] right-6 h-[55px] sm:h-[69px] lg:h-[89px] overflow-hidden">
             <TitleImage
               src={dict.home.onlineSessionsCardAccentVisfImage}
               alt={dict.home.onlineSessionsCardAccentVisfImageAlt}
               width={12500}
               height={8334}
-              className="h-[223px] sm:h-[285px] lg:h-[372px] w-auto block -mt-[72px] sm:-mt-[92px] lg:-mt-[120px]"
+              className="h-[139px] sm:h-[177px] lg:h-[231px] w-auto block -mt-[47px] sm:-mt-[60px] lg:-mt-[79px]"
             />
           </div>
         </Link>

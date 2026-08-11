@@ -1,13 +1,19 @@
 import type { Metadata } from 'next'
-import { Stack_Sans_Text } from 'next/font/google'
+import localFont from 'next/font/local'
 import { redirect } from 'next/navigation'
 import { hasLocale } from './dictionaries'
 import './../../globals.css'
 
 
-const stackSansText = Stack_Sans_Text({
-  subsets: ['latin'],
-  weight: ['200', '300', '400', '500', '600', '700'],
+const stackSansText = localFont({
+  src: [
+    { path: './fonts/StackSansText-ExtraLight.ttf', weight: '200', style: 'normal' },
+    { path: './fonts/StackSansText-Light.ttf', weight: '300', style: 'normal' },
+    { path: './fonts/StackSansText-Regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/StackSansText-Medium.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/StackSansText-SemiBold.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/StackSansText-Bold.ttf', weight: '700', style: 'normal' },
+  ],
   variable: '--font-visf-text-loaded',
   display: 'swap',
 })
@@ -16,7 +22,7 @@ export const metadata: Metadata = {
   title: 'VISF — Verona International Short Film Festival',
   description: 'Where independent cinema finds its audience.',
   icons: {
-    icon: '/cursor-visf.png',
+    icon: '/ui/cursor-visf.png',
   },
 }
 

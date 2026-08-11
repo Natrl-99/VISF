@@ -44,6 +44,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
               width={12500}
               height={8334}
               className="h-[151px] sm:h-[202px] lg:h-[315px] w-auto block -mt-[45px] sm:-mt-[60px] lg:-mt-[93px]"
+              loading="eager"
             />
           </div>
         </h1>
@@ -52,7 +53,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[31px]">
             <Link href={`/${lang}/short-films`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OfficialSelection_ShortFilms.jpg"
+                src="/official-selection/OfficialSelection_ShortFilms.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -66,7 +67,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
 
             <BuyTicketsButton className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OfficialSelection_Tickets.jpg"
+                src="/official-selection/OfficialSelection_Tickets.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -76,7 +77,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
 
             <Link href={`/${lang}/screening-schedule`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OfficialSelection_ScreeningSchedule.jpg"
+                src="/official-selection/OfficialSelection_ScreeningSchedule.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -90,7 +91,7 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
 
             <Link href={`/${lang}/winners`} className={CARD_CLASSNAME}>
               <GrayscaleHoverImage
-                src="/OfficialSelection_Winners.jpg"
+                src="/official-selection/OfficialSelection_Winners.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />

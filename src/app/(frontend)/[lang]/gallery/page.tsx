@@ -29,7 +29,7 @@ export default async function GalleryPage({ params }: PageProps<'/[lang]/gallery
 
   const galleryPhotos: GalleryPhoto[] = Array.from({ length: PLACEHOLDER_PHOTO_COUNT }, (_, index) => ({
     id: String(index),
-    url: '/banner.png',
+    url: '/homepage/Homepage_Banner.jpg',
     alt: dict.galleryPage.photoAlt,
   }))
 
@@ -38,17 +38,20 @@ export default async function GalleryPage({ params }: PageProps<'/[lang]/gallery
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-visf-accent px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
-          <TitleImage
-            src={dict.galleryPage.h1Image}
-            alt={dict.galleryPage.h1ImageAlt}
-            width={1389}
-            height={283}
-            className="h-[36px] sm:h-[48px] lg:h-[79px] w-auto block"
-          />
+        <h1 className="font-visf-headline font-medium leading-none text-visf-accent px-4 sm:px-6 md:px-12 lg:px-[87px] pt-8 sm:pt-10 lg:pt-6">
+          <div className="h-[36px] sm:h-[48px] lg:h-[79px] overflow-hidden">
+            <TitleImage
+              src={dict.galleryPage.h1Image}
+              alt={dict.galleryPage.h1ImageAlt}
+              width={1389}
+              height={283}
+              className="h-[37px] sm:h-[50px] lg:h-[82px] w-auto block -mt-[3px] sm:-mt-[4px] lg:-mt-[6px] -ml-[8px] sm:-ml-[11px] lg:-ml-[19px]"
+              loading="eager"
+            />
+          </div>
         </h1>
 
-        <h2 className="font-visf-headline font-medium text-black text-2xl leading-snug sm:text-3xl sm:leading-normal lg:text-[44px] lg:leading-[63px] tracking-normal lg:tracking-[2px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-1 lg:mt-2">
+        <h2 className="font-visf-headline font-medium text-black text-2xl leading-snug sm:text-3xl sm:leading-normal lg:text-[44px] lg:leading-[63px] tracking-normal lg:tracking-[2px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-0 lg:mt-0.5">
           {dict.galleryPage.h2}
         </h2>
 

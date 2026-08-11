@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 /*
-  Design tokens extraídos directamente del Figma (nodo HOME, 108:162).
-  Fuentes: "Stack Sans" y "Neue Haas Grotesk Display Pro" son fuentes de
-  paga — pendiente confirmar con el cliente si tienen los archivos con
-  licencia web. Mientras tanto, usamos "Helvetica Neue" como fallback,
-  porque es el pariente visual más cercano a Neue Haas Grotesk.
+  Design tokens extracted directly from Figma (node HOME, 108:162).
+  "Stack Sans Text" is now licensed and loaded via next/font/local (see
+  src/app/(frontend)/[lang]/layout.tsx). "Neue Haas Grotesk Display Pro"
+  is still pending a web license — until then we fall back to "Helvetica
+  Neue" for that token, since it's the closest visual match.
 */
 
 @theme {
@@ -34,13 +34,13 @@ body {
 
 * {
   cursor:
-    url("/cursor-visf.png") 24 24,
+    url("/ui/cursor-visf.png") 24 24,
     pointer;
 }
 
 .cursor-visf-white,
 .cursor-visf-white * {
   cursor:
-    url("/cursor-visf-white.png") 24 24,
+    url("/ui/cursor-visf-white.png") 24 24,
     pointer;
 }

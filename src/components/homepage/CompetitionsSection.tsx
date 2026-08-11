@@ -20,8 +20,8 @@ type CompetitionsSectionProps = {
   dict: Dictionary;
 };
 
-const CARD_COMPETITIONS = "/Homepage_MainCompetitions.jpg";
-const CARD_CATEGORIES = "/Homepage_Categories.jpg";
+const CARD_COMPETITIONS = "/homepage/Homepage_MainCompetitions.jpg";
+const CARD_CATEGORIES = "/homepage/Homepage_Categories.jpg";
 
 
 type FlipCardProps = {
@@ -29,6 +29,7 @@ type FlipCardProps = {
   items: string[];
   frontImage: string;
   backImage: string;
+  frontImageLoading?: "eager" | "lazy";
 };
 
 function splitColumns(items: string[]): { firstColumn: string[]; secondColumn: string[] } {
@@ -63,7 +64,13 @@ function useOverflowFade() {
   return { ref, hasOverflow };
 }
 
-function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
+function FlipCard({
+  titleLines,
+  items,
+  frontImage,
+  backImage,
+  frontImageLoading = "lazy",
+}: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const { firstColumn, secondColumn } = splitColumns(items);
   const firstColumnFade = useOverflowFade();
@@ -94,6 +101,7 @@ function FlipCard({ titleLines, items, frontImage, backImage }: FlipCardProps) {
           <GrayscaleHoverImage
             src={frontImage}
             alt=""
+            loading={frontImageLoading}
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div
@@ -180,6 +188,7 @@ export default function CompetitionsSection({
           items={sortedCompetitions.map((competition) => competition.name)}
           frontImage={CARD_COMPETITIONS}
           backImage={CARD_COMPETITIONS}
+          frontImageLoading="eager"
         />
         <FlipCard
           titleLines={[dict.home.categoriesTitleLine1, dict.home.categoriesTitleLine2]}

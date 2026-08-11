@@ -62,6 +62,7 @@ export default async function OnlineScreeningSchedulePage({
               width={12500}
               height={8334}
               className="h-[177px] sm:h-[236px] lg:h-[369px] w-auto block -mt-[42px] sm:-mt-[57px] lg:-mt-[89px]"
+              loading="eager"
             />
           </div>
         </h1>
