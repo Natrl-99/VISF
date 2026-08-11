@@ -31,17 +31,15 @@ export default function JurySection({ members, dict }: JurySectionProps) {
     >
       <div className="lg:w-[406px] lg:shrink-0">
         <h2 className="font-visf-headline text-[28px] sm:text-[34px] lg:text-[40px] font-medium leading-[1.05] mb-4">
-          <span className="text-visf-accent  decoration-current">
+          <span className="text-visf-accent  decoration-current block h-[80px] sm:h-[98px] lg:h-[120px] w-[217px] sm:w-[266px] lg:w-[326px] overflow-hidden">
             <TitleImage
               src={dict.jury.headingAccentImage}
               alt={dict.jury.headingAccentImageAlt}
-              width={100}
-              height={60}
-              className="h-[28px] sm:h-[34px] lg:h-[40px] w-auto"
+              width={12500}
+              height={8334}
+              className="h-[180px] sm:h-[221px] lg:h-[270px] w-auto max-w-none block -mt-[48px] sm:-mt-[59px] lg:-mt-[72px] -ml-[25px] sm:-ml-[31px] lg:-ml-[38px]"
             />
           </span>
-          <br />
-          {dict.jury.headingRest}
         </h2>
 
         <SectionIntroText text={dict.jury.intro} />

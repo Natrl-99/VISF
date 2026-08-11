@@ -50,9 +50,9 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
             <TitleImage
               src={dict.onlineSessionsPage.h1Image}
               alt={dict.onlineSessionsPage.h1ImageAlt}
-              width={3648}
-              height={3467}
-              className="h-[188px] sm:h-[250px] lg:h-[390px] w-auto block -mt-[61px] sm:-mt-[81px] lg:-mt-[127px]"
+              width={12500}
+              height={8334}
+              className="h-[95px] sm:h-[127px] lg:h-[198px] w-auto block -mt-[23px] sm:-mt-[31px] lg:-mt-[48px]"
             />
           </div>
         </h1>

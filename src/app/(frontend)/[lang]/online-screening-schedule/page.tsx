@@ -59,9 +59,9 @@ export default async function OnlineScreeningSchedulePage({
             <TitleImage
               src={dict.onlineScreeningSchedulePage.h1Image}
               alt={dict.onlineScreeningSchedulePage.h1ImageAlt}
-              width={3648}
-              height={3467}
-              className="h-[192px] sm:h-[255px] lg:h-[398px] w-auto block -mt-[58px] sm:-mt-[78px] lg:-mt-[121px]"
+              width={12500}
+              height={8334}
+              className="h-[177px] sm:h-[236px] lg:h-[369px] w-auto block -mt-[42px] sm:-mt-[57px] lg:-mt-[89px]"
             />
           </div>
         </h1>
