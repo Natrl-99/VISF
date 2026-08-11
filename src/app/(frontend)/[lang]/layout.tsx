@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Stack_Sans_Text } from 'next/font/google'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { hasLocale } from './dictionaries'
 import './../../globals.css'
 
@@ -25,7 +25,12 @@ export default async function FrontendLayout({
   params,
 }: LayoutProps<'/[lang]'>) {
   const { lang } = await params
-  if (!hasLocale(lang)) notFound()
+  // Redirect rather than notFound() here: this layout is the one that
+  // renders <html>/<body>, so throwing before returning JSX leaves no
+  // document for a not-found.tsx boundary to render into. Redirecting
+  // into a valid locale (keeping the bad segment as a sub-path) lets the
+  // normal [lang]/not-found.tsx render a proper 404 instead of a 200.
+  if (!hasLocale(lang)) redirect(`/en/${lang}`)
 
   return (
     <html lang={lang} className={stackSansText.variable}>

@@ -34,6 +34,13 @@ body {
 
 * {
   cursor:
-    url("/cursor-visf.png") 32 32,
+    url("/cursor-visf.png") 24 24,
+    pointer;
+}
+
+.cursor-visf-white,
+.cursor-visf-white * {
+  cursor:
+    url("/cursor-visf-white.png") 24 24,
     pointer;
 }
