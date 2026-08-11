@@ -95,9 +95,9 @@ export default async function OnlineSessionsLineUpPage({
             <TitleImage
               src={dict.onlineSessionsLineUpPage.h1Image}
               alt={dict.onlineSessionsLineUpPage.h1ImageAlt}
-              width={3648}
-              height={3467}
-              className="h-[192px] sm:h-[255px] lg:h-[398px] w-auto block -mt-[58px] sm:-mt-[78px] lg:-mt-[121px]"
+              width={12500}
+              height={8334}
+              className="h-[193px] sm:h-[257px] lg:h-[402px] w-auto block -mt-[49px] sm:-mt-[66px] lg:-mt-[103px]"
             />
           </div>
         </h1>

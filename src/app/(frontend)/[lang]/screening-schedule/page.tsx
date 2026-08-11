@@ -63,9 +63,9 @@ export default async function ScreeningSchedulePage({ params }: PageProps<'/[lan
             <TitleImage
               src={dict.screeningSchedulePage.h1Image}
               alt={dict.screeningSchedulePage.h1ImageAlt}
-              width={3648}
-              height={3467}
-              className="h-[188px] sm:h-[250px] lg:h-[390px] w-auto block -mt-[61px] sm:-mt-[81px] lg:-mt-[127px]"
+              width={12500}
+              height={8334}
+              className="h-[163px] sm:h-[217px] lg:h-[339px] w-auto block -mt-[56px] sm:-mt-[75px] lg:-mt-[117px]"
             />
           </div>
         </h1>

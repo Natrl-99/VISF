@@ -29,15 +29,15 @@ export default function OfficialSelectionOnlineSessions({
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute bottom-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
+          <div className="absolute -bottom-[21px] sm:-bottom-[27px] lg:-bottom-[35px] right-6 h-[66px] sm:h-[84px] lg:h-[110px] overflow-hidden">
             <TitleImage
               src={dict.home.officialSelectionCardLine1Image}
               alt={dict.home.officialSelectionCardLine1ImageAlt}
-              width={300}
-              height={100}
-              className="h-[24px] sm:h-[30px] lg:h-[40px] w-auto block"
+              width={12500}
+              height={8334}
+              className="h-[139px] sm:h-[177px] lg:h-[231px] w-auto block -mt-[41px] sm:-mt-[52px] lg:-mt-[68px]"
             />
-          </p>
+          </div>
         </Link>
 
         <Link
@@ -50,15 +50,15 @@ export default function OfficialSelectionOnlineSessions({
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-          <p className="absolute top-6 right-6 text-right text-white text-2xl sm:text-3xl lg:text-[40px] font-medium leading-none">
+          <div className="absolute top-6 right-6 h-[90px] sm:h-[115px] lg:h-[150px] overflow-hidden">
             <TitleImage
               src={dict.home.onlineSessionsCardAccentVisfImage}
               alt={dict.home.onlineSessionsCardAccentVisfImageAlt}
-              width={365}
-              height={347}
-              className="h-[60px] sm:h-[75px] lg:h-[100px] w-auto block"
+              width={12500}
+              height={8334}
+              className="h-[223px] sm:h-[285px] lg:h-[372px] w-auto block -mt-[72px] sm:-mt-[92px] lg:-mt-[120px]"
             />
-          </p>
+          </div>
         </Link>
       </div>
     </section>

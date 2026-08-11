@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header'
 import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import WinnersSection, { type WinnersYear } from '@/components/winners/WinnersSection'
+import TitleImage from '@/components/ui/TitleImage'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
 import type { PayloadSponsor, PayloadWinnersYear } from '@/types/cms'
@@ -49,10 +50,16 @@ export default async function WinnersPage({ params }: PageProps<'/[lang]/winners
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
-          {dict.winnersPage.titleLine1}
-          <br />
-          <span className="text-visf-accent">{dict.winnersPage.titleAccent}</span>
+        <h1 className="font-visf-headline font-medium leading-none px-4 sm:px-6 md:px-12 lg:px-[87px] pt-8 sm:pt-10 lg:pt-6">
+          <div className="h-[72px] sm:h-[96px] lg:h-[150px] overflow-hidden">
+            <TitleImage
+              src={dict.winnersPage.titleImage}
+              alt={dict.winnersPage.titleImageAlt}
+              width={12500}
+              height={8334}
+              className="h-[160px] sm:h-[214px] lg:h-[334px] w-auto block -mt-[48px] sm:-mt-[64px] lg:-mt-[100px]"
+            />
+          </div>
         </h1>
 
         <WinnersSection years={winnersData} />
