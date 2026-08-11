@@ -50,7 +50,7 @@ export const Video: CollectionConfig = {
   },
   upload: {
     pasteURL: false,
-    mimeTypes: ["video/mp4", "video/webm", "video/x-matroska", "video/matroska"],
+    mimeTypes: ["video/mp4", "video/webm", "video/x-matroska", "video/matroska", "video/quicktime"],
     adminThumbnail: ({ doc }) => {
       const thumbnail = doc.thumbnail as
         { url?: string } | string | null | undefined;
