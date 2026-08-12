@@ -68,6 +68,18 @@ export const cloudinaryAdapter: Adapter = ({ collection }) => {
             asset_folder: toAssetFolder(subfolder),
             resource_type: resourceType,
             overwrite: true,
+            // Without this, the quality/fetch_format 'auto' derivative used by
+            // generateURL/staticHandler below is built lazily on first playback
+            // request, and Cloudinary returns 423 Locked to any request that
+            // arrives while that first transcode is still running. Requesting
+            // it eagerly here (synchronously — eager_async defaults to false)
+            // means it's already cached by the time the upload finishes.
+            // The SDK's default request timeout (60s) is too short for a
+            // real trailer-length video to synchronously transcode within,
+            // so it needs raising here — scoped to video only.
+            ...(resourceType === 'video'
+              ? { eager: [{ quality: 'auto', fetch_format: 'auto' }], timeout: 300000 }
+              : {}),
           },
           (error) => (error ? reject(error) : resolve()),
         )
