@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaInstagram, FaVimeoV } from "react-icons/fa";
 import SubmitFilmButton from "@/components/ui/SubmitFilmButton";
 import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
+import { CONTACT_EMAIL } from "@/lib/constants";
 
 export type Sponsor = {
   id: string;
@@ -28,7 +29,7 @@ export default function Footer({ sponsors, dict }: FooterProps) {
             {dict.footer.rules}
           </SubmitFilmButton>
           <a
-            href="mailto:victormgb99@gmail.com" //mailto
+            href={`mailto:${CONTACT_EMAIL}`}
             className="block text-[16px] leading-[14px] font-light mb-3 hover:underline"
           >
             {dict.footer.contactUs}

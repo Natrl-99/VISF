@@ -11,14 +11,15 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**',
       },
-      // Temporary placeholder used when a video doc has no thumbnail yet — see
-      // FALLBACK_VIDEO_BANNER_POSTER_URL in src/app/(frontend)/[lang]/page.tsx.
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        pathname: '/**',
-      },
     ],
+    // Sponsor logos can be SVGs (see src/collections/media/Media.ts). Next.js
+    // blocks SVG optimization by default since SVGs can embed scripts — these
+    // two options are Next's own recommended pairing for allowing SVGs
+    // safely: force direct visits to download rather than render, and block
+    // any embedded scripts from executing via CSP.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 }
 

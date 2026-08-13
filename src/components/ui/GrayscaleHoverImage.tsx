@@ -9,6 +9,9 @@ interface GrayscaleHoverImageProps {
   // default covers that shape so next/image doesn't default to assuming
   // 100vw (and fetching a full-viewport-sized image) for every card.
   sizes?: string;
+  // For full-bleed placements (e.g. the video banner poster) where the
+  // parent's own size drives layout instead of an intrinsic width/height.
+  fill?: boolean;
 }
 
 export default function GrayscaleHoverImage({
@@ -17,7 +20,23 @@ export default function GrayscaleHoverImage({
   className,
   loading = "lazy",
   sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px",
+  fill = false,
 }: GrayscaleHoverImageProps) {
+  const grayscaleClassName = `grayscale hover:grayscale-0 group-hover:grayscale-0 transition-[filter] duration-500 ${className ?? ""}`;
+
+  if (fill) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        loading={loading}
+        sizes={sizes}
+        className={grayscaleClassName}
+      />
+    );
+  }
+
   return (
     <Image
       src={src}
@@ -26,7 +45,7 @@ export default function GrayscaleHoverImage({
       height={1080}
       loading={loading}
       sizes={sizes}
-      className={`grayscale hover:grayscale-0 group-hover:grayscale-0 transition-[filter] duration-500 ${className ?? ""}`}
+      className={grayscaleClassName}
     />
   );
 }

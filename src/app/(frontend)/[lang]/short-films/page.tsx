@@ -3,6 +3,7 @@ import Footer, {
   type Sponsor as SponsorProp,
 } from "@/components/layout/Footer";
 import SectionIntroTextWide from "@/components/ui/SectionIntroTextWide";
+import TitleImage from "@/components/ui/TitleImage";
 import ProgramsSection, {
   type Program,
 } from "@/components/short-films/ProgramsSection";
@@ -93,13 +94,20 @@ export default async function ShortFilmsPage({ params }: PageProps<'/[lang]/shor
       <div className="flex-1">
         <Header lang={lang} dict={dict} />
 
-        <h1 className="font-visf-headline font-medium leading-none text-black text-4xl sm:text-5xl lg:text-[79px] px-4 sm:px-6 md:px-12 lg:px-[87px] pt-6 lg:pt-0">
-          {dict.shortFilmsPage.h1Line1}
-          <br />
-          <span className="text-visf-accent">{dict.shortFilmsPage.h1Accent}</span>
+        <h1 className="font-visf-headline font-medium leading-none px-4 sm:px-6 md:px-12 lg:px-[87px] pt-8 sm:pt-10 lg:pt-6">
+          <div className="h-[72px] sm:h-[96px] lg:h-[150px] overflow-hidden">
+            <TitleImage
+              src={dict.shortFilmsPage.h1Image}
+              alt={dict.shortFilmsPage.h1ImageAlt}
+              width={3000}
+              height={2000}
+              className="h-[180px] sm:h-[241px] lg:h-[378px] w-auto block -mt-[62px] sm:-mt-[83px] lg:-mt-[131px] -ml-[44px] sm:-ml-[58px] lg:-ml-[92px]"
+              loading="eager"
+            />
+          </div>
         </h1>
 
-        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
+        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-8 max-w-sm lg:max-w-[745px]">
           {dict.common.nextEdition}
           <br />
           {nextEditionLabel}
@@ -111,7 +119,7 @@ export default async function ShortFilmsPage({ params }: PageProps<'/[lang]/shor
 
         <SectionIntroTextWide
           text={introText}
-          className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] lg:h-[188px] text-sm sm:text-base lg:text-[25px]"
+          className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] text-sm sm:text-base lg:text-[25px]"
         />
 
         <ProgramsSection programs={programsData} />

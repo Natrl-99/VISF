@@ -61,7 +61,11 @@ export default async function OnlineScreeningSchedulePage({
               alt={dict.onlineScreeningSchedulePage.h1ImageAlt}
               width={12500}
               height={8334}
-              className="h-[177px] sm:h-[236px] lg:h-[369px] w-auto block -mt-[42px] sm:-mt-[57px] lg:-mt-[89px]"
+              className={
+                lang === 'it'
+                  ? 'h-[224px] sm:h-[299px] lg:h-[470px] w-auto block -mt-[80px] sm:-mt-[107px] lg:-mt-[168px] -ml-[18px] sm:-ml-[24px] lg:-ml-[38px]'
+                  : 'h-[187px] sm:h-[249px] lg:h-[392px] w-auto block -mt-[45px] sm:-mt-[60px] lg:-mt-[94px] -ml-[42px] sm:-ml-[56px] lg:-ml-[88px]'
+              }
               loading="eager"
             />
           </div>

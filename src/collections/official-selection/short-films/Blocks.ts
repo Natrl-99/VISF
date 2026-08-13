@@ -66,6 +66,9 @@ export const ShortFilmsBlocks: CollectionConfig = {
           relationTo: "media",
           required: true,
           label: "Poster",
+          admin: {
+            description: "Recommended: 800×1200px or larger, portrait ~2:3 (standard movie poster ratio, cropped to fill the frame). JPG, PNG, WebP, or HEIC.",
+          },
         },
         {
           name: "director",

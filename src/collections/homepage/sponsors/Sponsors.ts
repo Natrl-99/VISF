@@ -40,7 +40,7 @@ export const Sponsors: CollectionConfig = {
       required: true,
       label: 'Logo',
       admin: {
-        description: 'Recommended: logo with transparent background, minimum 400px wide.',
+        description: 'Recommended: logo with transparent background, minimum 400-600px wide. SVG (best for logos), PNG, JPG, WebP, or HEIC.',
       },
     },
     {

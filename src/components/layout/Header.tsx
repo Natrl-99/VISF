@@ -8,9 +8,9 @@ import { FaInstagram, FaVimeoV } from 'react-icons/fa'
 import SubmitFilmButton from '@/components/ui/SubmitFilmButton'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
+import { CONTACT_EMAIL } from '@/lib/constants'
 
 const HEADER_HEIGHT = 'h-20 sm:h-24 lg:h-36'
-const CONTACT_EMAIL = 'victormgb99@gmail.com'
 
 type HeaderProps = {
   lang: string

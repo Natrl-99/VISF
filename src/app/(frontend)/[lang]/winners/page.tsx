@@ -57,7 +57,11 @@ export default async function WinnersPage({ params }: PageProps<'/[lang]/winners
               alt={dict.winnersPage.titleImageAlt}
               width={12500}
               height={8334}
-              className="h-[160px] sm:h-[214px] lg:h-[334px] w-auto block -mt-[48px] sm:-mt-[64px] lg:-mt-[100px]"
+              className={
+                lang === 'it'
+                  ? 'h-[200px] sm:h-[267px] lg:h-[416px] w-auto block -mt-[75px] sm:-mt-[100px] lg:-mt-[156px] -ml-[43px] sm:-ml-[58px] lg:-ml-[90px]'
+                  : 'h-[160px] sm:h-[214px] lg:h-[334px] w-auto block -mt-[48px] sm:-mt-[64px] lg:-mt-[100px] -ml-[22px] sm:-ml-[30px] lg:-ml-[46px]'
+              }
               loading="eager"
             />
           </div>

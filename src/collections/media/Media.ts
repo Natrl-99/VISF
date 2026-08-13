@@ -15,6 +15,12 @@ export const Media: CollectionConfig = {
   },
   upload: {
     pasteURL: false,
+    // Covers standard web formats plus iOS/macOS's native photo format
+    // (HEIC/HEIF, the default since iOS 11) — Cloudinary's fetch_format:auto
+    // already transcodes whatever's uploaded to whatever the visitor's
+    // browser supports, so admins can upload straight from an iPhone without
+    // converting first.
+    mimeTypes: ["image/jpeg", "image/png", "image/webp", "image/gif", "image/heic", "image/heif", "image/svg+xml"],
   },
   fields: [
     {

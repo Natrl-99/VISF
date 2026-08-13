@@ -38,9 +38,10 @@ const introSectionData = {
   imageUrl: "/homepage/Homepage_Intro.jpg",
 };
 
-const FALLBACK_VIDEO_BANNER_POSTER_URL = "https://picsum.photos/seed/visf-video/1600/700?grayscale";
+const FALLBACK_VIDEO_BANNER_POSTER_URL =
+  "/homepage/Homepage_Video_Placeholder.jpg";
 
-export default async function HomePage({ params }: PageProps<'/[lang]'>) {
+export default async function HomePage({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);
   const payload = await getPayloadClient();
@@ -60,49 +61,56 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
 
   // Independent queries — run in parallel instead of paying for 6 sequential
   // round trips to the DB on every request.
-  const [juryResult, sponsorsResult, dateEventsResult, introResult, competitionsResult, categoriesResult, videoResult] =
-    await Promise.all([
-      payload.find({
-        collection: "jury-members",
-        depth: 1, // para que "photo" venga con la URL ya resuelta, no solo el ID
-        sort: "createdAt",
-        locale: lang,
-      }),
-      payload.find({
-        collection: "sponsors",
-        depth: 1,
-        locale: lang,
-      }),
-      payload.find({
-        collection: "date-event",
-        sort: "initialDate",
-        depth: 0,
-        locale: lang,
-      }),
-      payload.find({
-        collection: "introduction",
-        limit: 1,
-        depth: 0,
-        locale: lang,
-      }),
-      payload.find({
-        collection: "competition",
-        depth: 0,
-        limit: 0,
-        locale: lang,
-      }),
-      payload.find({
-        collection: "categories",
-        depth: 0,
-        limit: 0,
-        locale: lang,
-      }),
-      payload.find({
-        collection: "video",
-        limit: 1,
-        depth: 1, // resolves "thumbnail" to its media URL instead of just an ID
-      }),
-    ]);
+  const [
+    juryResult,
+    sponsorsResult,
+    dateEventsResult,
+    introResult,
+    competitionsResult,
+    categoriesResult,
+    videoResult,
+  ] = await Promise.all([
+    payload.find({
+      collection: "jury-members",
+      depth: 1, // para que "photo" venga con la URL ya resuelta, no solo el ID
+      sort: "createdAt",
+      locale: lang,
+    }),
+    payload.find({
+      collection: "sponsors",
+      depth: 1,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "date-event",
+      sort: "initialDate",
+      depth: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "introduction",
+      limit: 1,
+      depth: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "competition",
+      depth: 0,
+      limit: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "categories",
+      depth: 0,
+      limit: 0,
+      locale: lang,
+    }),
+    payload.find({
+      collection: "video",
+      limit: 1,
+      depth: 1, // resolves "thumbnail" to its media URL instead of just an ID
+    }),
+  ]);
 
   const juryData: JuryMemberProp[] = (
     juryResult.docs as PayloadJuryMember[]
@@ -178,7 +186,10 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         imageUrl={introSectionData.imageUrl}
         dateLabel={
           dateEventDoc
-            ? formatDateEventRange(dateEventDoc.initialDate, dateEventDoc.endDate)
+            ? formatDateEventRange(
+                dateEventDoc.initialDate,
+                dateEventDoc.endDate,
+              )
             : ""
         }
         locationLabel={
@@ -194,10 +205,7 @@ export default async function HomePage({ params }: PageProps<'/[lang]'>) {
         onlineSessionsImageUrl="/homepage/Homepage_OnlineSessions.jpg"
       />
 
-      <VideoBanner
-        posterUrl={videoBannerPosterUrl}
-        videoUrl={videoBannerUrl}
-      />
+      <VideoBanner posterUrl={videoBannerPosterUrl} videoUrl={videoBannerUrl} />
 
       <JurySection members={juryData} dict={dict} />
 

@@ -97,13 +97,17 @@ export default async function OnlineSessionsLineUpPage({
               alt={dict.onlineSessionsLineUpPage.h1ImageAlt}
               width={12500}
               height={8334}
-              className="h-[193px] sm:h-[257px] lg:h-[402px] w-auto block -mt-[49px] sm:-mt-[66px] lg:-mt-[103px]"
+              className={
+                lang === 'it'
+                  ? 'h-[181px] sm:h-[241px] lg:h-[378px] w-auto block -mt-[50px] sm:-mt-[66px] lg:-mt-[103px] -ml-[52px] sm:-ml-[69px] lg:-ml-[108px]'
+                  : 'h-[193px] sm:h-[257px] lg:h-[402px] w-auto block -mt-[49px] sm:-mt-[66px] lg:-mt-[103px] -ml-[62px] sm:-ml-[81px] lg:-ml-[128px]'
+              }
               loading="eager"
             />
           </div>
         </h1>
 
-        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-6 lg:mt-14 max-w-sm lg:max-w-[745px]">
+        <p className="font-visf-headline font-extralight text-black text-2xl sm:text-3xl lg:text-[48px] leading-tight lg:leading-[49px] px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-8 max-w-sm lg:max-w-[745px]">
           {dict.common.nextEdition}
           <br />
           {nextEditionLabel}
@@ -115,7 +119,7 @@ export default async function OnlineSessionsLineUpPage({
 
         <SectionIntroTextWide
           text={introText}
-          className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] lg:h-[188px] text-sm sm:text-base lg:text-[25px]"
+          className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-4 lg:mt-6 w-full lg:w-[1200px] text-sm sm:text-base lg:text-[25px]"
         />
 
         <ProgramsSection programs={programsData} showPoster={false} />

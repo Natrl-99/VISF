@@ -4,6 +4,7 @@ import Footer, { type Sponsor as SponsorProp } from '@/components/layout/Footer'
 import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
 import BuyTicketsButton from '@/components/ui/BuyTicketsButton'
 import TitleImage from '@/components/ui/TitleImage'
+import JoinScreeningCard from '@/components/online-sessions/JoinScreeningCard'
 import { getPayloadClient } from '@/lib/fetchFromCMS'
 import { getDictionary, type Locale } from '../dictionaries'
 import type { PayloadSponsor, PayloadJoinURL } from '@/types/cms'
@@ -100,24 +101,16 @@ export default async function OfficialSelectionPage({ params }: PageProps<'/[lan
               </p>
             </Link>
 
-            <a
-              href={joinScreeningUrl ?? '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+            <JoinScreeningCard
+              url={joinScreeningUrl ?? null}
+              imageUrl="/online-sessions/OnlineSessions_JoinScreening.jpg"
+              line1={dict.onlineSessionsPage.joinScreeningCardLine1}
+              line2={dict.onlineSessionsPage.joinScreeningCardLine2}
+              unavailableMessage={dict.onlineSessionsPage.joinScreeningUnavailable}
+              contactLabel={dict.footer.contactUs}
               className={CARD_CLASSNAME}
-            >
-              <GrayscaleHoverImage
-                src="/online-sessions/OnlineSessions_JoinScreening.jpg"
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
-              <p className={CAPTION_CLASSNAME}>
-                {dict.onlineSessionsPage.joinScreeningCardLine1}
-                <br />
-                {dict.onlineSessionsPage.joinScreeningCardLine2}
-              </p>
-            </a>
+              captionClassName={CAPTION_CLASSNAME}
+            />
           </div>
         </section>
       </div>

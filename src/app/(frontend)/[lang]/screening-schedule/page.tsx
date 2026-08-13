@@ -65,7 +65,11 @@ export default async function ScreeningSchedulePage({ params }: PageProps<'/[lan
               alt={dict.screeningSchedulePage.h1ImageAlt}
               width={12500}
               height={8334}
-              className="h-[163px] sm:h-[217px] lg:h-[339px] w-auto block -mt-[56px] sm:-mt-[75px] lg:-mt-[117px]"
+              className={
+                lang === 'it'
+                  ? 'h-[230px] sm:h-[307px] lg:h-[482px] w-auto block -mt-[92px] sm:-mt-[123px] lg:-mt-[193px] -ml-[15px] sm:-ml-[20px] lg:-ml-[32px]'
+                  : 'h-[188px] sm:h-[251px] lg:h-[394px] w-auto block -mt-[65px] sm:-mt-[87px] lg:-mt-[136px] -ml-[37px] sm:-ml-[50px] lg:-ml-[78px]'
+              }
               loading="eager"
             />
           </div>

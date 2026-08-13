@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import GrayscaleHoverImage from '@/components/ui/GrayscaleHoverImage'
-import TitleImage from '@/components/ui/TitleImage'
-import type { Dictionary } from '@/app/(frontend)/[lang]/dictionaries'
+import Link from "next/link";
+import GrayscaleHoverImage from "@/components/ui/GrayscaleHoverImage";
+import TitleImage from "@/components/ui/TitleImage";
+import type { Dictionary } from "@/app/(frontend)/[lang]/dictionaries";
 
 type OfficialSelectionOnlineSessionsProps = {
-  lang: string
-  dict: Dictionary
-  officialSelectionImageUrl: string
-  onlineSessionsImageUrl: string
-}
+  lang: string;
+  dict: Dictionary;
+  officialSelectionImageUrl: string;
+  onlineSessionsImageUrl: string;
+};
 
 export default function OfficialSelectionOnlineSessions({
   lang,
@@ -29,7 +29,10 @@ export default function OfficialSelectionOnlineSessions({
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
+            <div
+              className="absolute inset-0"
+              style={{ background: "rgba(0,0,0,0.32)" }}
+            />
           </div>
           <div className="absolute bottom-2 sm:-bottom-[43px] lg:-bottom-[57px] right-6 h-[66px] sm:h-[84px] lg:h-[110px] overflow-hidden">
             <TitleImage
@@ -52,7 +55,10 @@ export default function OfficialSelectionOnlineSessions({
               alt=""
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0" style={{ background: 'rgba(0,0,0,0.32)' }} />
+            <div
+              className="absolute inset-0"
+              style={{ background: "rgba(0,0,0,0.32)" }}
+            />
           </div>
           <div className="absolute top-2 sm:-top-[39px] lg:-top-[50px] right-6 h-[55px] sm:h-[69px] lg:h-[89px] overflow-hidden">
             <TitleImage
@@ -60,11 +66,15 @@ export default function OfficialSelectionOnlineSessions({
               alt={dict.home.onlineSessionsCardAccentVisfImageAlt}
               width={12500}
               height={8334}
-              className="h-[139px] sm:h-[177px] lg:h-[231px] w-auto block -mt-[47px] sm:-mt-[60px] lg:-mt-[79px]"
+              className={
+                lang === "it"
+                  ? "h-[139px] sm:h-[177px] lg:h-[231px] w-auto block -mt-[42px] sm:-mt-[53px] lg:-mt-[69px]"
+                  : "h-[139px] sm:h-[177px] lg:h-[231px] w-auto block -mt-[47px] sm:-mt-[60px] lg:-mt-[79px]"
+              }
             />
           </div>
         </Link>
       </div>
     </section>
-  )
+  );
 }
