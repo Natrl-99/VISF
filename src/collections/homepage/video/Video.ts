@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { createDeepLAutofillHook } from "@/lib/deeplAutofillHook";
+import { createMediaCleanupOnDeleteHook } from "@/lib/cleanupOrphanedMedia";
 import path from "path";
 import os from "os";
 import fs from "fs/promises";
@@ -47,8 +48,13 @@ export const Video: CollectionConfig = {
   admin: {
     useAsTitle: "filename",
     defaultColumns: ["filename", "thumbnail"],
-    description: "The video that plays in the video banner on the homepage. Only one is allowed — to change it, edit this existing entry instead of creating a new one.",
+    description: "The video that plays in the video banner on the homepage. Only one is allowed — to change it, edit this existing entry instead of creating a new one. Recommended: 1920×1080px (Full HD) or larger, landscape 16:9. MP4, WebM, MKV, or MOV (iPhone's native format) — any of these work, no need to convert first.",
     group: "Homepage",
+    components: {
+      edit: {
+        beforeDocumentControls: ["@/app/(payload)/admin/components/VideoUploadNotice#VideoUploadNotice"],
+      },
+    },
   },
   access: {
     read: () => true,
@@ -211,6 +217,7 @@ export const Video: CollectionConfig = {
         return doc;
       },
     ],
+    afterDelete: [createMediaCleanupOnDeleteHook("thumbnail")],
   },
 };
 

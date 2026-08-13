@@ -45,7 +45,11 @@ export default async function GalleryPage({ params }: PageProps<'/[lang]/gallery
               alt={dict.galleryPage.h1ImageAlt}
               width={1389}
               height={283}
-              className="h-[37px] sm:h-[50px] lg:h-[82px] w-auto block -mt-[3px] sm:-mt-[4px] lg:-mt-[6px] -ml-[8px] sm:-ml-[11px] lg:-ml-[19px]"
+              className={
+                lang === 'it'
+                  ? 'h-[191px] sm:h-[258px] lg:h-[424px] w-auto block -mt-[80px] sm:-mt-[108px] lg:-mt-[176px] -ml-[4px] sm:-ml-[7px] lg:-ml-[11px]'
+                  : 'h-[37px] sm:h-[50px] lg:h-[82px] w-auto block -mt-[3px] sm:-mt-[4px] lg:-mt-[6px] -ml-[8px] sm:-ml-[11px] lg:-ml-[19px]'
+              }
               loading="eager"
             />
           </div>

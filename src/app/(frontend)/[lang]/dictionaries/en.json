@@ -74,7 +74,8 @@
     "screeningScheduleCardLine1": "SCREENING",
     "screeningScheduleCardLine2": "SCHEDULE",
     "joinScreeningCardLine1": "JOIN THE",
-    "joinScreeningCardLine2": "SCREENING"
+    "joinScreeningCardLine2": "SCREENING",
+    "joinScreeningUnavailable": "This link hasn't been set up yet. Please contact us and we'll help you join the screening."
   },
   "onlineScreeningSchedulePage": {
     "h1Image": "/headings/Heading_OnlineScreeningScheduleEN.png",
@@ -89,6 +90,8 @@
     "h1ImageAlt": "SCREENING SCHEDULE"
   },
   "shortFilmsPage": {
+    "h1Image": "/headings/Heading_SessionsLineUpEN.png",
+    "h1ImageAlt": "SESSIONS LINE UP",
     "h1Line1": "SESSIONS",
     "h1Accent": "LINE UP"
   },

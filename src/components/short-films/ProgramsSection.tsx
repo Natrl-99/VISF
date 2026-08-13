@@ -34,7 +34,7 @@ export default function ProgramsSection({ programs, showPoster = true }: Program
   if (!selected) return null
 
   return (
-    <section className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-12 lg:mt-24 pb-8 lg:pb-14">
+    <section className="px-4 sm:px-6 md:px-12 lg:px-[87px] mt-8 lg:mt-14 pb-8 lg:pb-14">
       <nav className="flex flex-wrap gap-3 lg:gap-4">
         {programs.map((program, idx) => (
           <button
@@ -50,10 +50,10 @@ export default function ProgramsSection({ programs, showPoster = true }: Program
       </nav>
       <SectionIntroTextWide
         text={selected.intro}
-        className="text-sm sm:text-base lg:text-[25px] mt-8 lg:mt-10 w-full lg:w-[1026px] lg:h-[188px]"
+        className="text-sm sm:text-base lg:text-[25px] mt-8 lg:mt-10 w-full lg:w-[1026px]"
       />
 
-      <div className="mt-14 lg:mt-16 flex flex-col gap-9 lg:gap-16">
+      <div className="mt-10 lg:mt-12 flex flex-col gap-6 lg:gap-10">
         {selected.films.map((film) => (
           <div
             key={film.id}

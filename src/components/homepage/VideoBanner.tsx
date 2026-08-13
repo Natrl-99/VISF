@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { Maximize2, Minimize2, Pause, Play, Volume2, VolumeX, X } from "lucide-react";
+import GrayscaleHoverImage from "@/components/ui/GrayscaleHoverImage";
 
 type VideoBannerProps = {
   posterUrl: string;
@@ -82,13 +82,13 @@ export default function VideoBanner({ posterUrl, videoUrl }: VideoBannerProps) {
   return (
     <section
       ref={sectionRef}
-      className="cursor-visf-white relative w-full h-[330px] sm:h-[440px] lg:h-[672px] overflow-hidden bg-black"
+      className="group cursor-visf-white relative w-full h-[330px] sm:h-[440px] lg:h-[672px] overflow-hidden bg-black"
     >
       {/* Below sm: the poster stays put — cropping a landscape video into this
           tall, narrow band loses too much of the frame on a phone. The
           ambient background video only takes over from sm: up, where the
           crop still reads fine. */}
-      <Image
+      <GrayscaleHoverImage
         src={posterUrl}
         alt=""
         fill

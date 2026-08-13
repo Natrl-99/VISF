@@ -31,6 +31,9 @@ export const Gallery: CollectionConfig = {
       relationTo: "media",
       required: true,
       label: "Photo",
+      admin: {
+        description: "Recommended: 1600×1200px or larger, landscape ~4:3 or 3:2. Shown both cropped (grid) and uncropped (lightbox), so this ratio works best for both. JPG, PNG, WebP, or HEIC.",
+      },
     },
   ],
   hooks: {

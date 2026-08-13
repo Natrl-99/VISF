@@ -43,7 +43,7 @@ export const Jury: CollectionConfig = {
       required: true,
       label: "Photo",
       admin: {
-        description: "800x800px recommended.",
+        description: "Recommended: 800×1067px or larger, portrait ~3:4 (it's cropped to fill the frame, so the exact ratio matters more than for other photos). JPG, PNG, WebP, or HEIC.",
       },
     },
   ],

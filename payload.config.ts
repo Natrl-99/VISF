@@ -49,7 +49,7 @@ export default buildConfig({
     theme: "light",
     meta: {
       icons: {
-        icon: "/cursor-visf.png",
+        icon: "/ui/cursor-visf.png",
       },
     },
     components: {

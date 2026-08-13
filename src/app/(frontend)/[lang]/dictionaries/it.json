@@ -31,16 +31,16 @@
     "heroLine2": "Aperte",
     "introHeadlineLine1": "DOVE",
     "introHeadlineLine2": "IL",
-    "introHeadlineAccentImage": "/Heading_JuryIT.png",
+    "introHeadlineAccentImage": "/headings/IT/Heading_CinemaIT.png",
     "introHeadlineAccentImageAlt": "CINEMA",
     "introHeadlineLine3Rest": "INDIPENDENTE TROVA IL SUO",
     "introHeadlineLine4": "PUBBLICO",
     "introSubmitLine1": "ISCRIVI",
     "introSubmitLine2": "IL TUO FILM",
-    "officialSelectionCardLine1Image": "",
+    "officialSelectionCardLine1Image": "/headings/IT/Heading_WhiteOfficialSelectionIT.png",
     "officialSelectionCardLine1ImageAlt": "SELEZIONE",
     "officialSelectionCardAccent": "UFFICIALE",
-    "onlineSessionsCardAccentVisfImage": "",
+    "onlineSessionsCardAccentVisfImage": "/headings/IT/Heading_WhiteVisfonlineSessionsIT.png",
     "onlineSessionsCardAccentVisfImageAlt": "VISF SESSIONI",
     "onlineSessionsCardLine2": "ONLINE",
     "competitionsTitleLine1": "COMPETIZIONI",
@@ -50,16 +50,16 @@
     "viewGalleryAriaLabel": "Vai alla galleria"
   },
   "jury": {
-    "headingAccentImage": "/Heading_JuryIT.png",
+    "headingAccentImage": "/headings/IT/Heading_JuryIT.png",
     "headingAccentImageAlt": "INCONTRA",
     "intro": "La nostra prestigiosa giuria riunisce leader del settore, visionari creativi e professionisti esperti provenienti dal mondo del design e dell'innovazione. Ogni giurato è stato selezionato con cura per la propria competenza, i propri risultati e l'impegno nel riconoscere lavori eccellenti.\n\nGrazie a prospettive diverse e a una conoscenza approfondita, valuteranno ogni candidatura in base a creatività, originalità, esecuzione, impatto ed eccellenza, garantendo un processo di giudizio equo e trasparente. La loro esperienza collettiva contribuisce a celebrare i progetti e i talenti che stanno plasmando il futuro del settore."
   },
   "winnersPage": {
-    "titleImage": "",
+    "titleImage": "/headings/IT/Heading_LisfOfWinnersIT.png",
     "titleImageAlt": "ELENCO DEI VINCITORI"
   },
   "officialSelectionPage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_BlackOfficialSelectionblackIT.png",
     "h1ImageAlt": "SELEZIONE UFFICIALE",
     "shortFilmsCardLine1": "SELEZIONE UFFICIALE",
     "shortFilmsCardLine2": "CORTOMETRAGGI",
@@ -68,7 +68,7 @@
     "winnersCard": "VINCITORI"
   },
   "onlineSessionsPage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_BlackVisfonlineSessionsIT.png",
     "h1ImageAlt": "VISF SESSIONI ONLINE",
     "lineUpCardLine1": "SESSIONI",
     "lineUpCardLine2": "ONLINE",
@@ -76,26 +76,29 @@
     "screeningScheduleCardLine1": "PROGRAMMA",
     "screeningScheduleCardLine2": "PROIEZIONI",
     "joinScreeningCardLine1": "PARTECIPA ALLA",
-    "joinScreeningCardLine2": "PROIEZIONE"
+    "joinScreeningCardLine2": "PROIEZIONE",
+    "joinScreeningUnavailable": "Questo link non è ancora stato configurato. Contattaci e ti aiuteremo a partecipare alla proiezione."
   },
   "onlineScreeningSchedulePage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_OnlineScreeningScheduleIT.png",
     "h1ImageAlt": "PROGRAMMA PROIEZIONI ONLINE"
   },
   "onlineSessionsLineUpPage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_OnlineSessionsLineUpIT.png",
     "h1ImageAlt": "SESSIONI ONLINE LINE UP"
   },
   "screeningSchedulePage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_ScreeningScheduleIT.png",
     "h1ImageAlt": "PROGRAMMA PROIEZIONI"
   },
   "shortFilmsPage": {
+    "h1Image": "/headings/IT/Heading_SessionsLineUpIT.png",
+    "h1ImageAlt": "SESSIONI LINE UP",
     "h1Line1": "SESSIONI",
     "h1Accent": "LINE UP"
   },
   "galleryPage": {
-    "h1Image": "",
+    "h1Image": "/headings/IT/Heading_GalleryIT.png",
     "h1ImageAlt": "GALLERIA",
     "h2": "SCOPRI IL FESTIVAL",
     "photoAlt": "Foto del festival VISF"

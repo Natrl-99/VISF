@@ -36,7 +36,7 @@ export default function IntroSection({
               alt={dict.home.introHeadlineAccentImageAlt}
               width={4000}
               height={4000}
-              className="h-[181px] sm:h-[226px] lg:h-[271px] w-auto max-w-none block -mt-[74px] sm:-mt-[93px] lg:-mt-[111px] -ml-[11px] sm:-ml-[14px] lg:-ml-[17px]"
+              className="h-[181px] sm:h-[226px] lg:h-[271px] w-auto max-w-none block -mt-[74px] sm:-mt-[93px] lg:-mt-[111px] -ml-[10px] sm:-ml-[13px] lg:-ml-[16px]"
             />
           </span>{' '}
           {dict.home.introHeadlineLine3Rest} {dict.home.introHeadlineLine4}
